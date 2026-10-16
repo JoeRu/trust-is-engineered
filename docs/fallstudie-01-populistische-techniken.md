@@ -1,5 +1,7 @@
 ## Fallstudie 1: Populistische Argumentationstechniken als Angriff auf die Makroebene
 
+> **ENTWURF (DRAFT).** Arbeitsstand, nicht begutachtet und nicht empirisch validiert. Inhalte, Kapitelnummern und Literaturangaben können sich ändern; Literatur ist teils noch nicht am Original geprüft (Vermerke in Kapitel 16).
+
 *Begleitpapier zu „Trust is Engineered“ v0.6 (Paper-Stand 12.10.2026) · Fallstudie Stand 12.10.2026 · Ableitung aus dem Modell, noch nicht empirisch geprüft · Abschnittsverweise beziehen sich auf v0.6*
 
 **Kurzantwort.** Die vier Techniken sind Angriffe im Sinne des Modells, aber kein Vertrauensmissbrauch im Sinne von Abschnitt 7.2. Sie nutzen keinen eingeräumten Handlungsspielraum P aus, sondern greifen die Bewertung selbst an. **Ihr Ziel ist die Kalibrierungslücke Γ auf Ebene einer Population, und zwar in beide Richtungen zugleich:** Γ > 0 gegenüber dem Sprecher und der Gruppe, für die er zu sprechen beansprucht, Γ < 0 gegenüber Institutionen, Medien und Gegnern. Jede Technik setzt an einer anderen Modellgröße an: die schweigende Mehrheit an Quellenabhängigkeit und Gruppenkanten, das falsche Entweder-oder am Tripel (b, d, u) und am Handlungsraum, der Strohmann an der Zurechnung von Evidenz, Motte und Bailey am Gegenstand der Zustimmung. Auf der Makroebene wirken sie, weil Kanten zu Institutionen und Fremdgruppen bei den meisten Menschen wenig eigene Evidenz tragen. Nach ΔE = u·Δa (12.4) trifft eine Verschiebung dort fast voll. Der Vergleich deckt außerdem vier Lücken im Modell auf (F1.6).

@@ -1,4 +1,6 @@
-# Trust is Engineered – Version 0.6
+# Trust is Engineered – Version 0.6 (Entwurf)
+
+> **ENTWURF (DRAFT).** Arbeitsstand, nicht begutachtet und nicht empirisch validiert. Inhalte, Kapitelnummern und Literaturangaben können sich ändern; Literatur ist teils noch nicht am Original geprüft (Vermerke in Kapitel 16).
 
 Stand: 12. Oktober 2026 · Johannes Rumpf
 

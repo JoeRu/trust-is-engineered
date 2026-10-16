@@ -1,5 +1,7 @@
 # Trust is Engineered
 
+> **ENTWURF (DRAFT).** Arbeitsstand, nicht begutachtet und nicht empirisch validiert. Inhalte, Kapitelnummern und Literaturangaben können sich ändern; Literatur ist teils noch nicht am Original geprüft (Vermerke in Kapitel 16).
+
 Ein dynamisches, kontextsensitives Modell für Vertrauen, Misstrauen und Entscheidungen unter Unsicherheit.
 
 **Status:** Forschungskonzept und mathematische Modellhypothese, Version 0.6 (Stand 12. Oktober 2026). Das Modell ist nicht empirisch validiert.

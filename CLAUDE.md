@@ -2,6 +2,7 @@
 
 Arbeitspapier *Trust Is Engineered* (`docs/trust-is-engineered.md`) mit
 Begleitpapieren (`docs/fallstudie-*.md`) und Abbildungen (`docs/figures/`).
+Das Paper ist als **ENTWURF** gekennzeichnet (Hinweis oben in README, Paper und Fallstudie) — den Hinweis nicht entfernen, solange Johannes keine Fassung freigibt. Bewusst ohne Lizenz.
 Das Repository ist **öffentlich**: Jeder Commit, jede Commit-Nachricht und
 jeder PR-Text ist sofort sichtbar.
 
