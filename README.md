@@ -1,12 +1,24 @@
 # Trust is Engineered
 
-> **DRAFT.** Work in progress, not peer reviewed and not empirically validated. Content, chapter numbers and references may change; some references have not yet been checked against the original (status notes in Chapter 16).
+> **DRAFT.** Work in progress, not peer reviewed and not empirically validated. Content, chapter numbers and references may change; some references have not yet been checked against the original (status notes in Chapter 16 of the long version).
 
 A dynamic, context-sensitive model of trust, distrust and decisions under uncertainty.
 
 **Status:** research concept and mathematical model hypothesis, version 0.6 (12 October 2026). The model has not been empirically validated. From version 0.6 onward the English text is authoritative; the German original is kept unchanged in [`docs/de/`](docs/de/).
 
-➡️ **[Read the paper: docs/trust-is-engineered.md](docs/trust-is-engineered.md)**
+## Documents
+
+| Document | What it is |
+| --- | --- |
+| [**Long version** (working paper v0.6)](docs/trust-is-engineered.md) | The complete model and the source of all statements; Chapters 0–16 |
+| [Paper 1: An Evidence Model of Trust, Distrust and the Calibration Gap](papers/01-evidence-model/paper.md) | Core model: trust, distrust and uncertainty per edge, temporal decay, source dependence, normative vs. descriptive account · [related work](papers/01-evidence-model/related-work.md) |
+| [Paper 2: Verification as a Public Good](papers/02-verification-in-organizations/paper.md) | Groups act on verification, protection delegation, action-bound rules, trust dimensions × security objectives · [related work](papers/02-verification-in-organizations/related-work.md) |
+| [Paper 3: Engineering Calibrated Trust between Humans, Agents and Machines](papers/03-human-agent-trust/paper.md) | Evidence accounts, decay and re-verification for agents and machines; utility as a risk dimension · [related work](papers/03-human-agent-trust/related-work.md) |
+| [Case Study 1](docs/case-study-01-populist-techniques.md) | Populist argumentation techniques as calibration attacks on the macro level |
+
+Papers 1–3 are self-contained versions of the long version for submission (version 0.1, draft). They contain nothing that is not in the long version and keep its identifiers and evidence status. Each comes with a related-work document that compares it with prior work and names its weakest novelty claims.
+
+**PDFs** of all five documents are built automatically: open the latest successful run of the [LaTeX build workflow](../../actions/workflows/latex.yml) and download the artifact (see [Building the PDFs](#building-the-pdfs)).
 
 ## What it is about
 
@@ -27,7 +39,7 @@ Both problems share one structure: an entity has to decide which action it allow
 - Two accounts run in parallel: a normative one (as the evidence warrants) and a descriptive one (how people actually judge). Their difference is the calibration gap and thus the attack surface for social engineering.
 - Permissions depend on the action and the size of its potential loss, not on trust in the person.
 
-## Contents of the paper
+## Contents of the long version
 
 | Chapter | Topic |
 | --- | --- |
@@ -44,17 +56,12 @@ Both problems share one structure: an entity has to decide which action it allow
 | 14 | Practical implications for information security |
 | 15–16 | Research plan, limitations, ethics and law, references |
 
-## Papers
+## How to read it
 
-The long version is split into three self-contained papers for submission. Each derives its content from the long version, keeps its identifiers and evidence status, and comes with a related-work document that compares it with prior work and names the main overlap risks.
-
-| Paper | Contribution | Related work |
-| --- | --- | --- |
-| [Paper 1: An Evidence Model of Trust, Distrust and the Calibration Gap](papers/01-evidence-model/paper.md) | evidence model with trust, distrust and uncertainty, temporal decay, source dependence, normative vs. descriptive account | [related-work.md](papers/01-evidence-model/related-work.md) |
-| [Paper 2: Verification as a Public Good](papers/02-verification-in-organizations/paper.md) | groups act on verification; protection delegation; action-bound rules; trust dimensions × security objectives | [related-work.md](papers/02-verification-in-organizations/related-work.md) |
-| [Paper 3: Engineering Calibrated Trust between Humans, Agents and Machines](papers/03-human-agent-trust/paper.md) | evidence accounts, decay and re-verification for agents and machines; utility as a risk dimension | [related-work.md](papers/03-human-agent-trust/related-work.md) |
-
-All references are in [`bib/references.bib`](bib/references.bib) with their verification status; see [`bib/README.md`](bib/README.md) and the open points in [`bib/check-report.md`](bib/check-report.md).
+- The predictions (Chapter 12), the security rules (Chapter 14) and the worked examples are derived from the model and have not been tested empirically. Numbers in the figures are illustrative.
+- Most references have not been verified against the full text. Entries marked "to be checked" must be checked against the original before publication. The verification status of every reference is kept in [`bib/references.bib`](bib/references.bib) (conventions in [`bib/README.md`](bib/README.md), open points in [`bib/check-report.md`](bib/check-report.md)).
+- Identifiers are kept from the German original for stability: G = core assumption (*Grundannahme*), H = hypothesis, V = prediction (*Vorhersage*), S = security rule (*Sicherheitsregel*). They are the same in the long version and in Papers 1–3.
+- The model is meant for self-reflection, training, simulation and the assessment of technical systems. It is not meant for rating people for decisions made by third parties.
 
 ## Building the PDFs
 
@@ -63,27 +70,14 @@ A GitHub Actions workflow ([`.github/workflows/latex.yml`](.github/workflows/lat
 1. `python3 tools/build_papers.py check` matches every author–year citation and every reference-list entry against [`bib/references.bib`](bib/references.bib) and fails on references that are missing or ambiguous.
 2. `python3 tools/build_papers.py build --pdf` converts the papers, the long version and Case Study 1 with pandoc to LaTeX and builds PDFs with LuaLaTeX and biber. The reference lists are generated from the bibliography, and the verification status of each entry (e.g. "to be checked") is printed after it.
 
-The PDFs and, per document, a self-contained LaTeX folder (`.tex`, the document's own `.bib`, preamble and figures) are available as a workflow artifact; for version tags (`v*`) the PDFs are attached to the release. Locally the same commands work with pandoc, LuaLaTeX, latexmk and biber installed; output goes to `build/`.
-
-## Companion papers
-
-| Paper | Topic |
-| --- | --- |
-| [Case Study 1](docs/case-study-01-populist-techniques.md) | Populist argumentation techniques as calibration attacks on the macro level |
-
-## How to read it
-
-- The predictions (Chapter 12), the security rules (Chapter 14) and the worked examples are derived from the model and have not been tested empirically. Numbers in the figures are illustrative.
-- Most references have not been verified against the full text. Entries marked "to be checked" must be checked against the original before publication.
-- Identifiers are kept from the German original for stability: G = core assumption (*Grundannahme*), H = hypothesis, V = prediction (*Vorhersage*), S = security rule (*Sicherheitsregel*).
-- The model is meant for self-reflection, training, simulation and the assessment of technical systems. It is not meant for rating people for decisions made by third parties.
+The artifact contains the PDFs and, per document, a self-contained LaTeX folder (`.tex`, the document's own `.bib`, preamble and figures). For version tags (`v*`) the PDFs are also attached to a release. Locally the same commands work with pandoc, LuaLaTeX, latexmk and biber installed; output goes to `build/`.
 
 ## Repository layout
 
 ```
-docs/trust-is-engineered.md                    the working paper (v0.6, English)
-docs/case-study-01-populist-techniques.md      companion paper: Case Study 1
-docs/figures/                                  Figures 1 to 10 (English)
+docs/trust-is-engineered.md                    long version (working paper v0.6)
+docs/case-study-01-populist-techniques.md      Case Study 1
+docs/figures/                                  Figures 1 to 10
 docs/figures/src/make_figures.py               script that generates the figures
 docs/de/                                       German original v0.6 (archived, not maintained)
 papers/0N-*/paper.md                           Papers 1-3 derived from the long version
