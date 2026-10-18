@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+message: "Wenn Sie dieses Arbeitspapier verwenden, zitieren Sie es bitte wie unten angegeben."
+title: "Trust is Engineered"
+abstract: >-
+  Ein dynamisches, kontextsensitives Modell für Vertrauen, Misstrauen und
+  Entscheidungen unter Unsicherheit. Forschungskonzept und mathematische
+  Modellhypothese; Entwurf, nicht begutachtet und nicht empirisch validiert.
+type: software
+authors:
+  - family-names: Rumpf
+    given-names: Johannes
+    orcid: "https://orcid.org/0009-0001-8675-0608"
+version: "0.6"
+date-released: "2026-10-12"
+license: CC-BY-4.0
+repository-code: "https://github.com/JoeRu/trust-is-engineered"
+url: "https://github.com/JoeRu/trust-is-engineered"
+keywords:
+  - Vertrauen
+  - Misstrauen
+  - Social Engineering
+  - Informationssicherheit
+  - Subjective Logic
+  - Mensch-Agent-Vertrauen
+preferred-citation:
+  type: report
+  title: "Trust is Engineered"
+  authors:
+    - family-names: Rumpf
+      given-names: Johannes
+      orcid: "https://orcid.org/0009-0001-8675-0608"
+  year: 2026
+  month: 10
+  version: "0.6"
+  status: preprint
+  languages:
+    - de
+  notes: "Arbeitspapier, Entwurf"
+  url: "https://github.com/JoeRu/trust-is-engineered"

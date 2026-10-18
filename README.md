@@ -62,4 +62,18 @@ Beide Probleme haben dieselbe Struktur: Eine Entität muss entscheiden, welche H
 docs/trust-is-engineered.md                     das Arbeitspapier (v0.6)
 docs/fallstudie-01-populistische-techniken.md   Begleitpapier: Fallstudie 1
 docs/figures/                                   Abbildungen 1 bis 10
+LICENSE                                         Lizenztext CC BY 4.0
+CITATION.cff                                    Zitierangaben (maschinenlesbar)
 ```
+
+## Lizenz und Zitieren
+
+Text und Abbildungen stehen unter der Lizenz [Creative Commons Namensnennung 4.0 International (CC BY 4.0)](LICENSE). Sie dürfen das Material nutzen, weitergeben, übersetzen und bearbeiten, auch kommerziell. Bedingung ist, dass Sie den Urheber nennen, auf die Lizenz verweisen und angeben, ob Sie Änderungen vorgenommen haben.
+
+Zitate und Inhalte aus der zitierten Literatur fallen nicht unter diese Lizenz; für sie gelten die Rechte der jeweiligen Urheber.
+
+**Zitiervorschlag:**
+
+> Rumpf, J. (2026). *Trust is Engineered* (Arbeitspapier, Version 0.6, Entwurf). https://github.com/JoeRu/trust-is-engineered
+
+Die Angaben stehen maschinenlesbar in [`CITATION.cff`](CITATION.cff); GitHub zeigt sie unter „Cite this repository“ an.
