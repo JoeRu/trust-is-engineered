@@ -2,7 +2,7 @@
 
 > Working document accompanying [paper.md](paper.md); condensed from [related-work.md](related-work.md). Draft, 18 October 2026. Status markers as in the bibliography.
 
-The paper claims that groups act on verification rather than on evaluation, and it derives from one evidence model why verification is undersupplied, why it should be triggered by the action class, and why trust dimensions and security objectives form a matrix. Most of its building blocks are known. The table below compares each contribution with the closest prior work named in the related-work document. All hypotheses (H6 to H19) and predictions (V22 to V27) remain untested.
+The paper claims that groups act on verification rather than on evaluation, and it derives from one evidence model why verification is undersupplied, why it should be triggered by the action class, and why trust dimensions and security objectives form a matrix. Most of its building blocks are known. The table below compares each contribution with the closest prior work named in the related-work document. No hypothesis is established. The hypotheses keep the evidence status given in the paper (Section 9.3): H7 is contested, H8 partly supported, H17 and H18 rest on well-supported mechanisms whose transfer to security is untested, and the others are untested or only conceptually grounded. The predictions V22 to V27 are untested.
 
 ## Compared with prior work
 
@@ -36,7 +36,7 @@ The paper claims that groups act on verification rather than on evaluation, and 
 
 - The empirical diagnosis that training changes knowledge more than behavior (Ho et al. 2025; Lain, Kostiainen & Čapkun 2022; Bullee & Junger 2020; Prümmer, van Steen & van den Berg 2025).
 - Security as a public good with free riding (Varian 2004; Grossklags, Christin & Chuang 2008).
-- That perceived technical protection lowers one's own compliance (Zhang, Reithel & Li 2009), and risk compensation in general (Peltzman 1975; Wilde 1982).
+- That perceived technical protection lowers one's intention to comply, measured in a survey rather than as observed behavior (Zhang, Reithel & Li 2009), and risk compensation in general (Peltzman 1975; Wilde 1982).
 - That norms, peer behavior and social proof shape security behavior (Herath & Rao 2009; Das et al. 2014), and that diffusion of responsibility occurs in fraud and security settings (Brink, Eller & Gan 2015; Paravastu, Simmers & Anandarajan 2018).
 - The controls themselves: separation of duty, four-eyes approval and out-of-band call-back (Saltzer & Schroeder 1975; Clark & Wilson 1987; Cross & Gillett 2020).
 - Utility as a security element and extensions of the triad (Parker 1998; Avizienis et al. 2004; Samonas & Coss 2014; Cherdantseva et al. 2016).

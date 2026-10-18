@@ -30,7 +30,7 @@ The paper proposes no new operators. Its contribution is one evidence model that
 
 ## What remains new
 
-- The integration of dependence D and diagnosticity q into the evidence weight of a trust account, so that repetition from dependent sources does not raise normative trust (5.3, 5.7). This is an integration, not a new mechanism.
+- The integration of dependence D and diagnosticity q into the evidence weight of a trust account, so that repetition from dependent sources counts at most as 1/D independent sources in the normative account: fully dependent repetition (D = 1) adds nothing beyond the first report, partially dependent repetition adds less than independent repetition (5.3, 5.7). This is an integration, not a new mechanism.
 - Two accounts on one event stream and their signed difference Γ per edge, context, dimension and time, with each miscalibration mechanism as a separately parameterized term: the familiarity term φ(1−m)ln(1+R), neglect of D, belief-colored valence (5.7, 5.8).
 - The distinction between abuse attacks and calibration attacks, and the mapping of social-engineering techniques onto model variables (8.2, 8.4). This is the weakest-evidenced claim: conceptual, untested, based on a non-systematic search.
 - The closed-form readings of decay (t½, u_min, "decay to ignorance") and the list of qualitative predictions V1–V21 with a named test per prediction (5.3, 10). The predictions are derivations, not findings.
