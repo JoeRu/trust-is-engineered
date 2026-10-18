@@ -1,79 +1,82 @@
 # Trust is Engineered
 
-> **ENTWURF (DRAFT).** Arbeitsstand, nicht begutachtet und nicht empirisch validiert. Inhalte, Kapitelnummern und Literaturangaben können sich ändern; Literatur ist teils noch nicht am Original geprüft (Vermerke in Kapitel 16).
+> **DRAFT.** Work in progress, not peer reviewed and not empirically validated. Content, chapter numbers and references may change; some references have not yet been checked against the original (status notes in Chapter 16).
 
-Ein dynamisches, kontextsensitives Modell für Vertrauen, Misstrauen und Entscheidungen unter Unsicherheit.
+A dynamic, context-sensitive model of trust, distrust and decisions under uncertainty.
 
-**Status:** Forschungskonzept und mathematische Modellhypothese, Version 0.6 (Stand 12. Oktober 2026). Das Modell ist nicht empirisch validiert.
+**Status:** research concept and mathematical model hypothesis, version 0.6 (12 October 2026). The model has not been empirically validated. From version 0.6 onward the English text is authoritative; the German original is kept unchanged in [`docs/de/`](docs/de/).
 
-➡️ **[Zum Dokument: docs/trust-is-engineered.md](docs/trust-is-engineered.md)**
+➡️ **[Read the paper: docs/trust-is-engineered.md](docs/trust-is-engineered.md)**
 
-## Worum es geht
+## What it is about
 
-Das Modell ist ein theoretischer Rahmen für zwei praktische Probleme:
+The model is a theoretical framework for two practical problems:
 
-1. **Menschen schulen.** Wie lernen Menschen, Vertrauensmissbrauch wie Phishing und Social Engineering mit geringem Aufwand zu erkennen, ohne legitime Anfragen pauschal abzulehnen?
-2. **Maschinen einbinden.** Wie lässt sich Vertrauen zwischen Mensch und Agent sowie zwischen Maschinen etablieren und wiederkehrend verifizieren?
+1. **Training people.** How do people learn to recognize abuse of trust, such as phishing and social engineering, with little effort and without rejecting legitimate requests across the board?
+2. **Integrating machines.** How can trust between humans and agents, and between machines, be established and verified repeatedly?
 
-Beide Probleme haben dieselbe Struktur: Eine Entität muss entscheiden, welche Handlung sie einer anderen bei unvollständiger Evidenz erlaubt.
+Both problems share one structure: an entity has to decide which action it allows another entity to take on incomplete evidence.
 
-![Die Lücke zwischen gefühltem und begründetem Vertrauen ist die Angriffsfläche](docs/figures/fig-06-architektur.png)
+![The gap between felt and justified trust is the attack surface](docs/figures/fig-06-architecture.png)
 
-## Kernideen
+## Core ideas
 
-- Vertrauen wird als gerichteter, kontextabhängiger Graph geführt. Jede Kante trägt Vertrauen, Misstrauen und Unsicherheit getrennt.
-- Evidenz altert. Ohne neue Evidenz kehrt Vertrauen zur Basisrate zurück, und die Unsicherheit wächst.
-- Gruppen wirken weniger auf die Bewertung als auf die Prüfung: Wer glaubt, dass andere oder die IT prüfen, prüft selbst nicht. Prüfung braucht eine benannte Rolle und eine sichtbare Norm.
-- Zwei Konten laufen parallel: ein normatives (evidenzgerecht) und ein deskriptives (wie Menschen tatsächlich urteilen). Ihre Differenz ist die Kalibrierungslücke und damit die Angriffsfläche für Social Engineering.
-- Berechtigungen hängen an der Handlung und ihrer Schadenshöhe, nicht am Vertrauen in die Person.
+- Trust is represented as a directed, context-dependent graph. Each edge carries trust, distrust and uncertainty separately.
+- Evidence ages. Without new evidence, trust returns to the base rate and uncertainty grows.
+- Groups act less on evaluation than on verification: whoever believes that others or IT are checking does not check. Verification needs a named role and a visible norm.
+- Two accounts run in parallel: a normative one (as the evidence warrants) and a descriptive one (how people actually judge). Their difference is the calibration gap and thus the attack surface for social engineering.
+- Permissions depend on the action and the size of its potential loss, not on trust in the person.
 
-## Inhalt des Dokuments
+## Contents of the paper
 
-| Kapitel | Thema |
+| Chapter | Topic |
 | --- | --- |
-| 0 | Änderungen gegenüber der Vorversion |
-| 1–3 | Zielsetzung, Begriffe, Graphmodell |
-| 4–6 | Evidenzmodell, psychologische Einflussgrößen, Entscheidungsschicht |
-| 7 | Gruppen und Organisation: Verantwortungsdiffusion, Schutzdelegation, Normen |
-| 8 | Angriffe als Operationen auf Modellgrößen |
-| 9 | Anwendung A: Vertrauensmissbrauch aufwandsarm erkennen |
-| 10 | Anwendung B: Mensch-Agent- und Maschine-Maschine-Vertrauen |
-| 11 | Grundannahmen und Hypothesen mit Evidenzstatus |
-| 12 | Ableitbare Vorhersagen |
-| 13 | Vertrauensdimensionen und Schutzziele der Informationssicherheit |
-| 14 | Praktische Aussagen zur Informationssicherheit |
-| 15–16 | Forschungsplan, Grenzen, Ethik und Recht, Literatur |
+| 0 | Changes from the previous version |
+| 1–3 | Objectives, concepts, graph model |
+| 4–6 | Evidence model, psychological factors, decision layer |
+| 7 | Groups and organizations: diffusion of responsibility, protection delegation, norms |
+| 8 | Attacks as operations on model quantities |
+| 9 | Application A: recognizing abuse of trust with little effort |
+| 10 | Application B: human–agent and machine–machine trust |
+| 11 | Core assumptions and hypotheses with evidence status |
+| 12 | Derivable predictions |
+| 13 | Trust dimensions and security objectives of information security |
+| 14 | Practical implications for information security |
+| 15–16 | Research plan, limitations, ethics and law, references |
 
-## Begleitpapiere
+## Companion papers
 
-| Papier | Thema |
+| Paper | Topic |
 | --- | --- |
-| [Fallstudie 1](docs/fallstudie-01-populistische-techniken.md) | Populistische Argumentationstechniken als Kalibrierungsangriffe auf der Makroebene |
+| [Case Study 1](docs/case-study-01-populist-techniques.md) | Populist argumentation techniques as calibration attacks on the macro level |
 
-## Hinweise zur Einordnung
+## How to read it
 
-- Die Vorhersagen (Kapitel 12), die Sicherheitsregeln (Kapitel 14) und die Rechenbeispiele sind Ableitungen aus dem Modell und empirisch ungeprüft. Zahlenwerte in den Abbildungen sind illustrativ.
-- Die Literaturangaben sind überwiegend nicht am Volltext verifiziert. Einträge mit dem Vermerk „prüfen“ sind vor einer Veröffentlichung am Original gegenzuprüfen.
-- Das Modell dient der Selbstreflexion, der Schulung, der Simulation und der Bewertung technischer Systeme. Es dient nicht der Bewertung von Personen für Entscheidungen Dritter.
+- The predictions (Chapter 12), the security rules (Chapter 14) and the worked examples are derived from the model and have not been tested empirically. Numbers in the figures are illustrative.
+- Most references have not been verified against the full text. Entries marked "to be checked" must be checked against the original before publication.
+- Identifiers are kept from the German original for stability: G = core assumption (*Grundannahme*), H = hypothesis, V = prediction (*Vorhersage*), S = security rule (*Sicherheitsregel*).
+- The model is meant for self-reflection, training, simulation and the assessment of technical systems. It is not meant for rating people for decisions made by third parties.
 
-## Aufbau des Repositories
+## Repository layout
 
 ```
-docs/trust-is-engineered.md                     das Arbeitspapier (v0.6)
-docs/fallstudie-01-populistische-techniken.md   Begleitpapier: Fallstudie 1
-docs/figures/                                   Abbildungen 1 bis 10
-LICENSE                                         Lizenztext CC BY 4.0
-CITATION.cff                                    Zitierangaben (maschinenlesbar)
+docs/trust-is-engineered.md                    the working paper (v0.6, English)
+docs/case-study-01-populist-techniques.md      companion paper: Case Study 1
+docs/figures/                                  Figures 1 to 10 (English)
+docs/figures/src/make_figures.py               script that generates the figures
+docs/de/                                       German original v0.6 (archived, not maintained)
+LICENSE                                        license text CC BY 4.0
+CITATION.cff                                   citation metadata (machine-readable)
 ```
 
-## Lizenz und Zitieren
+## License and citation
 
-Text und Abbildungen stehen unter der Lizenz [Creative Commons Namensnennung 4.0 International (CC BY 4.0)](LICENSE). Sie dürfen das Material nutzen, weitergeben, übersetzen und bearbeiten, auch kommerziell. Bedingung ist, dass Sie den Urheber nennen, auf die Lizenz verweisen und angeben, ob Sie Änderungen vorgenommen haben.
+Text and figures are licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](LICENSE). You may use, share, translate and adapt the material, including commercially, provided you give credit to the author, link to the license and indicate whether changes were made.
 
-Zitate und Inhalte aus der zitierten Literatur fallen nicht unter diese Lizenz; für sie gelten die Rechte der jeweiligen Urheber.
+Quotations from and content of the cited literature are not covered by this license; the rights of their respective authors apply.
 
-**Zitiervorschlag:**
+**Suggested citation:**
 
-> Rumpf, J. (2026). *Trust is Engineered* (Arbeitspapier, Version 0.6, Entwurf). https://github.com/JoeRu/trust-is-engineered
+> Rumpf, J. (2026). *Trust is Engineered* (Working paper, version 0.6, draft). https://github.com/JoeRu/trust-is-engineered
 
-Die Angaben stehen maschinenlesbar in [`CITATION.cff`](CITATION.cff); GitHub zeigt sie unter „Cite this repository“ an.
+The metadata are available in machine-readable form in [`CITATION.cff`](CITATION.cff); GitHub shows them under "Cite this repository".

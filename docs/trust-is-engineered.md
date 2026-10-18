@@ -1,229 +1,231 @@
-# Trust is Engineered – Version 0.6 (Entwurf)
+# Trust is Engineered – Version 0.6 (Draft)
 
-> **ENTWURF (DRAFT).** Arbeitsstand, nicht begutachtet und nicht empirisch validiert. Inhalte, Kapitelnummern und Literaturangaben können sich ändern; Literatur ist teils noch nicht am Original geprüft (Vermerke in Kapitel 16).
+> **DRAFT.** Work in progress, not peer reviewed and not empirically validated. Content, chapter numbers and references may change; some references have not yet been checked against the original (status notes in Chapter 16).
 
-Stand: 12. Oktober 2026 · Johannes Rumpf
+As of: 12 October 2026 · Johannes Rumpf · English translation of the German original of 12 October 2026, translated 18 October 2026; the English version is authoritative from now on (German original: [de/trust-is-engineered.md](de/trust-is-engineered.md)).
 
-Ein dynamisches, kontextsensitives Modell für Vertrauen, Misstrauen und Entscheidungen unter Unsicherheit. Status: Forschungskonzept und mathematische Modellhypothese, überarbeitet nach Literaturprüfung.
+*Note on identifiers:* the identifiers are kept from the German original for stability: G = core assumption (*Grundannahme*), H = hypothesis, V = prediction (*Vorhersage*), S = security rule (*Sicherheitsregel*).
 
-## 0. Was sich gegenüber den Vorversionen geändert hat
+A dynamic, context-sensitive model of trust, distrust and decisions under uncertainty. Status: research concept and mathematical model hypothesis, revised after a literature review.
 
-**Ergänzung in v0.6.** Neu ist Kapitel 7 „Gruppen und Organisation“. Es führt die Mesoebene ein (Team, Abteilung, Organisation), auf der Informationssicherheit tatsächlich gelebt wird, und zeigt, dass Gruppen weniger auf die Bewertung als auf die Prüfung wirken: über Verantwortungsdiffusion, Schutzdelegation („Das ist Aufgabe der IT“) und deskriptive Normen. Das Modell erhält keinen neuen Parameter, aber zwei abgeleitete Größen (Prüfdeckung C, effektives Vertrauen nach vermuteter Filterung E′), eine Grundannahme (G4), vier Hypothesen (H16 bis H19), sechs Vorhersagen (V22 bis V27) und fünf Regeln (S20 bis S24). H12 wird geschärft. Abschnitt 8.2 unterscheidet zwei Angriffsklassen (Missbrauch und Kalibrierung). Das Begleitpapier [Fallstudie 1](fallstudie-01-populistische-techniken.md) wendet das Modell auf populistische Argumentationstechniken als Kalibrierungsangriffe auf der Makroebene an. Durch das neue Kapitel 7 sind die bisherigen Kapitel 7 bis 15 jetzt 8 bis 16; Hypothesen-, Regel- und Vorhersagenummern bleiben stabil.
+## 0. What has changed compared with earlier versions
 
-**Ergänzung in v0.5.** Neu war das Kapitel zu Vertrauensdimensionen und Schutzzielen (jetzt Kapitel 13). Ergebnis: Dimensionen und Schutzziele liegen auf zwei Achsen (Akteur und Asset), drei Dimensionen haben ein starkes Gegenstück, Kompetenz keines; für KI-Agenten wird Nützlichkeit zur eigenen Risikodimension (Hypothese H15, Regel S19, Abbildung 10).
+**Addition in v0.6.** Chapter 7 “Groups and Organization” is new. It introduces the meso level (team, department, organization), at which information security is actually practiced, and shows that groups act less on the assessment than on verification: through diffusion of responsibility, protection delegation (“That's IT's job”) and descriptive norms. The model gains no new parameter, but two derived quantities (verification coverage C, effective trust after presumed filtering E′), one core assumption (G4), four hypotheses (H16 to H19), six predictions (V22 to V27) and five rules (S20 to S24). H12 is sharpened. Section 8.2 distinguishes two attack classes (abuse and calibration). The companion paper [Case Study 1](case-study-01-populist-techniques.md) applies the model to populist argumentation techniques as calibration attacks at the macro level. Because of the new Chapter 7, the former Chapters 7 to 15 are now 8 to 16; hypothesis, rule and prediction numbers remain stable.
 
-**Version 0.4** ersetzte den mathematischen Kern, fasste die Hypothesen neu und richtete das Modell auf zwei Anwendungsprobleme aus.
+**Addition in v0.5.** The chapter on trust dimensions and security objectives (now Chapter 13) was new. Result: dimensions and security objectives lie on two axes (actor and asset), three dimensions have a strong counterpart, competence has none; for AI agents, utility becomes a risk dimension of its own (hypothesis H15, rule S19, Figure 10).
 
-| Bereich | v0.3 | v0.4 | Grund |
+**Version 0.4** replaced the mathematical core, reformulated the hypotheses and aligned the model with two application problems.
+
+| Area | v0.3 | v0.4 | Reason |
 | --- | --- | --- | --- |
-| Vertrauenswert | ein Skalar T in [0,1] | Tripel aus Vertrauen b, Misstrauen d, Unsicherheit u | Skalar trennt Unwissen nicht von Ambivalenz (Jøsang 2016; Lewicki et al. 1998) |
-| Aktualisierung | T + α·s·(1−T) | Evidenzkonten r und s mit Vergessensfaktor λ | alte Regel ist Bush-Mosteller/Rescorla-Wagner: reihenfolgeabhängig, ohne Zeitverfall, strukturell asymmetrisch |
-| Asymmetrie | β > α als Grundannahme | bedingt: abhängig von Dimension, Täuschung, Vorvertrauen | Kompetenz- und Integritätsverletzungen wirken verschieden (Kim et al. 2004) |
-| Dimensionen | acht gleichrangige | Kompetenz, Wohlwollen, Integrität, Vorhersagbarkeit | ABI-Modell (Mayer et al. 1995) plus Predictability |
-| Kontext | Rad des Lebens plus Tags | Aufgabendomäne × Verwundbarkeitstyp × Beziehungstyp | Rad des Lebens ist ein Coaching-Werkzeug, keine validierte Taxonomie |
-| Gruppen | beeinflussen initiales Vertrauen | schwacher Prior mit kleiner Stichprobenstärke | individuelle Evidenz verdrängt Kategorien (Kunda & Thagard 1996) |
-| Wiederholung | ΔT = Evidenz + Familiarität | zwei parallele Konten: normativ und deskriptiv | Differenz wird als Kalibrierungslücke messbar |
-| Entscheidung | qualitativ | Schwellenregel aus Schaden und Nutzen, Prüfregel aus Prüfkosten | macht H3 und H6 operational |
-| Adversariales Denken | verbessert Entscheidungen | handlungsgebunden statt generelle Skepsis | Skepsistrainings verschieben oft nur die Antworttendenz (Modirrousta-Galian & Higham 2023) |
-| Anwendungsbereich | offen | Schulung, Agentenvertrauen, Simulation; kein Personen-Scoring für Dritte | EU AI Act Art. 5 Abs. 1 lit. c; DSGVO Art. 22 und 9 |
+| Trust value | a scalar T in [0,1] | triple of trust b, distrust d, uncertainty u | a scalar does not separate ignorance from ambivalence (Jøsang 2016; Lewicki et al. 1998) |
+| Updating | T + α·s·(1−T) | evidence accounts r and s with forgetting factor λ | the old rule is Bush-Mosteller/Rescorla-Wagner: order-dependent, without temporal decay, structurally asymmetric |
+| Asymmetry | β > α as a core assumption | conditional: dependent on dimension, deception, prior trust | competence and integrity violations act differently (Kim et al. 2004) |
+| Dimensions | eight of equal rank | ability, benevolence, integrity, predictability | ABI model (Mayer et al. 1995) plus Predictability |
+| Context | Wheel of Life plus tags | task domain × vulnerability type × relationship type | the Wheel of Life is a coaching tool, not a validated taxonomy |
+| Groups | influence initial trust | weak prior with small sample strength | individual evidence displaces categories (Kunda & Thagard 1996) |
+| Repetition | ΔT = evidence + familiarity | two parallel accounts: normative and descriptive | the difference becomes measurable as the calibration gap |
+| Decision | qualitative | threshold rule from loss and benefit, verification rule from verification costs | makes H3 and H6 operational |
+| Adversarial thinking | improves decisions | tied to actions instead of general skepticism | skepticism trainings often only shift the response bias (Modirrousta-Galian & Higham 2023) |
+| Scope | open | training, agent trust, simulation; no scoring of persons for third parties | EU AI Act Art. 5(1)(c); GDPR Art. 22 and 9 |
 
-Neu waren in v0.4 die Kapitel zu Schulung (jetzt 9), Agenten und Maschinen (jetzt 10), Vorhersagen (jetzt 12) und Informationssicherheit (jetzt 14). Die Hypothesennummern bleiben über Versionen stabil: H3 ist jetzt Grundannahme G1, die Asymmetrieannahme ist H5a. In der Nummerierung ab v0.6 enthalten die Kapitel 4, 6, 7, 12, 13 und 14 eigene Ableitungen aus dem Modell. Sie sind als Modellaussagen gekennzeichnet und noch nicht empirisch geprüft.
+New in v0.4 were the chapters on training (now 9), agents and machines (now 10), predictions (now 12) and information security (now 14). Hypothesis numbers remain stable across versions: H3 is now core assumption G1, the asymmetry assumption is H5a. In the numbering from v0.6 onward, Chapters 4, 6, 7, 12, 13 and 14 contain derivations of their own from the model. They are marked as model statements and have not yet been empirically tested.
 
-## 1. Ausgangslage und Zielsetzung
+## 1. Starting point and objectives
 
-### 1.1 Vertrauen in einer KI-geprägten Welt
+### 1.1 Trust in an AI-shaped world
 
-AI Slop, Deepfakes, Love Scams und KI-generierte Identitäten verändern die Voraussetzungen, unter denen Menschen Informationen und anderen Entitäten vertrauen. **Nicht mehr allein der Inhalt entscheidet über Glaubwürdigkeit.** Relevant wird, woher er stammt, wie er entstanden ist und über welchen Kanal er kommt.
+AI slop, deepfakes, love scams and AI-generated identities change the conditions under which people trust information and other entities. **Content alone no longer determines credibility.** What becomes relevant is where it comes from, how it was created and through which channel it arrives.
 
-Beispiele:
+Examples:
 
-- Ist eine Person auf LinkedIn diejenige, die sie vorgibt zu sein?
-- Ist ein Jobangebot, eine Einladung oder eine Produktbewertung authentisch?
-- Zeigt ein beeindruckendes Arbeitsergebnis Kompetenz oder nur eine überzeugende KI-Ausgabe?
-- Was bedeutet es, wenn viele scheinbar unabhängige Quellen dieselbe Behauptung wiederholen?
-- Darf ein KI-Agent, der sich korrekt ausweist, die angeforderte Handlung auch auslösen?
+- Is a person on LinkedIn the one they claim to be?
+- Is a job offer, an invitation or a product review authentic?
+- Does an impressive work result show competence or merely a convincing AI output?
+- What does it mean when many seemingly independent sources repeat the same claim?
+- May an AI agent that identifies itself correctly also trigger the requested action?
 
-Die Veränderung wirkt auf der Makroebene (Öffentlichkeit, Institutionen, Informationsqualität), auf der Mesoebene (Teams, Abteilungen, Organisationen, in denen Sicherheitsentscheidungen tatsächlich fallen) und auf der Mikroebene (einzelne Vertrauensentscheidungen). Kapitel 7 behandelt die Mesoebene.
+The change acts at the macro level (public sphere, institutions, information quality), at the meso level (teams, departments, organizations in which security decisions are actually made) and at the micro level (individual trust decisions). Chapter 7 deals with the meso level.
 
-### 1.2 Verschiebung der Bewertung von Arbeit
+### 1.2 Shift in the assessment of work
 
-Generative KI senkt die Kosten, ein überzeugendes Ergebnis zu erzeugen. Ein Signal ist nur glaubwürdig, wenn es für Täuschende teuer ist (Spence 1973). **Ergebnismerkmale verlieren deshalb an Aussagekraft.** Gewicht gewinnen der nachvollziehbare Entstehungsprozess, überprüfbare Evidenz und die verwendeten Quellen.
+Generative AI lowers the cost of producing a convincing result. A signal is only credible if it is costly for deceivers (Spence 1973). **Features of the result therefore lose informative value.** Weight shifts to the traceable process of creation, verifiable evidence and the sources used.
 
-### 1.3 Zwei Anwendungsprobleme
+### 1.3 Two application problems
 
-Das Modell ist ein theoretischer Rahmen für zwei praktische Probleme.
+The model is a theoretical framework for two practical problems.
 
-**Problem A – Menschen schulen.** Wie lernen Menschen, Vertrauensmissbrauch wie Phishing und Social Engineering mit geringem Aufwand und hoher Trefferquote zu erkennen, ohne legitime Anfragen pauschal abzulehnen?
+**Problem A – Training people.** How do people learn to recognize abuse of trust such as phishing and social engineering with little effort and a high hit rate, without rejecting legitimate requests across the board?
 
-**Problem B – Maschinen einbinden.** Wie lässt sich Vertrauen zwischen Mensch und Agent sowie zwischen Maschinen etablieren und wiederkehrend verifizieren?
+**Problem B – Integrating machines.** How can trust between human and agent, and between machines, be established and verified on a recurring basis?
 
-**Beide Probleme haben dieselbe Struktur: Eine Entität muss entscheiden, welche Handlung sie einer anderen bei unvollständiger Evidenz erlaubt.**
+**Both problems have the same structure: an entity must decide which action it allows another entity under incomplete evidence.**
 
-### 1.4 Forschungsfragen
+### 1.4 Research questions
 
-1. Wie lässt sich Vertrauen zwischen Menschen, Gruppen, Institutionen und technischen Systemen kontextabhängig, dynamisch und unter Unsicherheit modellieren?
-2. Welche Abweichung besteht zwischen tatsächlicher (deskriptiver) und evidenzgerechter (normativer) Vertrauensbildung, und wie nutzen Angreifer sie?
-3. Welche Vorhersagen erlaubt das Modell zu Misstrauen, Kontextübertragung, Verlust über Zeit sowie zur Wirkung von Nachrichten und globalen Ereignissen?
-4. Welche Regeln für Schulung, Agentensysteme und Informationssicherheit folgen daraus?
+1. How can trust between people, groups, institutions and technical systems be modeled in a context-dependent, dynamic way and under uncertainty?
+2. What deviation exists between actual (descriptive) and evidence-appropriate (normative) trust formation, and how do attackers exploit it?
+3. What predictions does the model allow about distrust, context transfer, loss over time, and the effect of news and global events?
+4. Which rules for training, agent systems and information security follow from it?
 
-Deskriptives und normatives Ziel bleiben methodisch getrennt. **Ihre Differenz ist der zentrale Untersuchungsgegenstand.**
+The descriptive and the normative goal remain methodologically separate. **Their difference is the central object of investigation.**
 
-## 2. Begriffliche und theoretische Grundlagen
+## 2. Conceptual and theoretical foundations
 
-### 2.1 Definition von Vertrauen
+### 2.1 Definition of trust
 
-**Vertrauen ist eine subjektive, kontextabhängige Erwartung über das Verhalten einer Entität unter Unsicherheit, verbunden mit der Bereitschaft, sich verwundbar zu machen.** Die Definition folgt Rousseau, Sitkin, Burt & Camerer (1998) und Mayer, Davis & Schoorman (1995).
+**Trust is a subjective, context-dependent expectation about the behavior of an entity under uncertainty, combined with the willingness to make oneself vulnerable.** The definition follows Rousseau, Sitkin, Burt & Camerer (1998) and Mayer, Davis & Schoorman (1995).
 
-Vertrauen ist eine dreistellige Relation: A vertraut B in Bezug auf X (Hardin 2002). **Das Ziel ist nicht mehr Vertrauen, sondern Vertrauen in Vertrauenswürdiges** (O'Neill 2002).
+Trust is a three-place relation: A trusts B with respect to X (Hardin 2002). **The goal is not more trust, but trust in what is trustworthy** (O'Neill 2002).
 
-Fünf Größen werden getrennt geführt:
+Five quantities are kept separate:
 
-1. Vertrauensbewertung: Wie positiv ist meine Erwartung?
-2. Evidenzsicherheit: Wie gut ist sie begründet?
-3. Verwundbarkeit: Welchen Schaden verursacht eine falsche Erwartung?
-4. Handlungsbereitschaft: Welches Risiko gehe ich ein?
-5. Berechtigung: Welchen Handlungsspielraum räume ich tatsächlich ein?
+1. Trust assessment: How positive is my expectation?
+2. Evidential certainty: How well is it justified?
+3. Vulnerability: What loss does a wrong expectation cause?
+4. Willingness to act: What risk do I take?
+5. Permission: What scope of action do I actually grant?
 
-Mayer et al. (1995) trennen bereits Trust von Risk Taking in Relationship. Das Modell übernimmt diese Trennung als Grundannahme.
+Mayer et al. (1995) already separate Trust from Risk Taking in Relationship. The model adopts this separation as a core assumption.
 
-### 2.2 Vertrauen und Misstrauen sind zwei Größen
+### 2.2 Trust and distrust are two quantities
 
-**Misstrauen ist nicht das Fehlen von Vertrauen.** Lewicki, McAllister & Bies (1998) beschreiben beide als getrennte Dimensionen. Reimann, Schilke & Cook (2017) finden unterschiedliche Ursprünge: **Vertrauen ist teils erblich, Misstrauen folgt der Sozialisation**.
+**Distrust is not the absence of trust.** Lewicki, McAllister & Bies (1998) describe both as separate dimensions. Reimann, Schilke & Cook (2017) find different origins: **trust is partly heritable, distrust follows socialization**.
 
-Daraus folgen drei unterscheidbare Zustände, die ein einzelner Skalar gleichsetzt:
+This yields three distinguishable states that a single scalar equates:
 
-| Zustand | Vertrauen b | Misstrauen d | Unsicherheit u | Beispiel |
+| State | Trust b | Distrust d | Uncertainty u | Example |
 | --- | --- | --- | --- | --- |
-| Unwissen | niedrig | niedrig | hoch | unbekannter Absender |
-| Ambivalenz | hoch | hoch | niedrig | fähiger Kollege mit bekanntem Interessenkonflikt |
-| begründetes Vertrauen | hoch | niedrig | niedrig | langjähriger, geprüfter Lieferant |
+| Ignorance | low | low | high | unknown sender |
+| Ambivalence | high | high | low | capable colleague with a known conflict of interest |
+| Justified trust | high | low | low | long-standing, verified supplier |
 
-![Unwissen und Ambivalenz haben denselben Erwartungswert, aber eine andere Lage](figures/fig-01-zustaende.png)
+![Ignorance and ambivalence have the same expected value, but a different position](figures/fig-01-states.png)
 
-*Abbildung 1: Drei Zustände im Vergleich · illustrative Werte, Basisrate a = 0,5*
+*Figure 1: Three states compared · illustrative values, base rate a = 0.5*
 
-Unwissen und Ambivalenz ergeben denselben Erwartungswert. Sie unterscheiden sich in der Unsicherheit: Bei Unwissen ändert ein einzelnes Ereignis viel, bei Ambivalenz wenig. Dieselbe Trennung unterscheidet die epistemische Blase (u gegenüber Außenquellen) von der Echokammer (d gegenüber Außenquellen); beide verlangen entgegengesetzte Gegenmaßnahmen (7.8).
+Ignorance and ambivalence yield the same expected value. They differ in uncertainty: under ignorance, a single event changes a lot; under ambivalence, little. The same separation distinguishes the epistemic bubble (u toward outside sources) from the echo chamber (d toward outside sources); the two call for opposite countermeasures (7.8).
 
-### 2.3 Vertrauen schenken und Vertrauen verdienen
+### 2.3 Giving trust and earning trust
 
-Initiales Vertrauen ist ein Vorschuss ohne direkte Erfahrung. Erfahrungsbasiertes Vertrauen entsteht aus Beobachtungen. Im Modell entspricht der Vorschuss dem Prior, die Erfahrung der gesammelten Evidenz. **Hohes initiales Vertrauen bedeutet nie hohe Evidenzsicherheit.**
+Initial trust is an advance without direct experience. Experience-based trust arises from observations. In the model, advance trust corresponds to the prior, experience to the accumulated evidence. **High initial trust never means high evidential certainty.**
 
-Die Entwicklungsphasen nach Lewicki & Bunker (calculus-, knowledge- und identification-based trust) und die Initialbildung nach McKnight, Cummings & Chervany (1998) werden als Bezugsrahmen übernommen.
+The developmental phases according to Lewicki & Bunker (calculus-, knowledge- and identification-based trust) and initial formation according to McKnight, Cummings & Chervany (1998) are adopted as a frame of reference.
 
-### 2.4 Dimensionen der Vertrauenswürdigkeit
+### 2.4 Dimensions of trustworthiness
 
-Vertrauenswürdigkeit wird oft über viele Einzelmerkmale beschrieben, etwa Ehrlichkeit, Verlässlichkeit, Offenheit, Respekt und Verantwortung. Diese Merkmale sind nicht unabhängig. Das Modell führt vier Kerndimensionen.
+Trustworthiness is often described through many individual traits, such as honesty, reliability, openness, respect and responsibility. These traits are not independent. The model uses four core dimensions.
 
-| Kerndimension | Leitfrage | Zugeordnete Einzelmerkmale |
+| Core dimension | Guiding question | Assigned individual traits |
 | --- | --- | --- |
-| Kompetenz (Ability) | Kann B es? | Kompetenz |
-| Wohlwollen (Benevolence) | Will B mir Gutes? | Wohlwollen, Respekt |
-| Integrität (Integrity) | Hält B sich an Regeln und Wahrheit? | Ehrlichkeit, Integrität, Verantwortung, Offenheit |
-| Vorhersagbarkeit (Predictability) | Verhält B sich konsistent? | Verlässlichkeit |
+| Ability (competence) | Can B do it? | competence |
+| Benevolence | Does B wish me well? | benevolence, respect |
+| Integrity | Does B adhere to rules and truth? | honesty, integrity, responsibility, openness |
+| Predictability | Does B behave consistently? | reliability |
 
-Die Zuordnung folgt Mayer et al. (1995) und McKnight, Choudhury & Kacmar (2002). Die ABI-Faktoren korrelieren hoch, wirken aber eigenständig (Colquitt, Scott & LePine 2007). Die Faktorstruktur ist per konfirmatorischer Faktorenanalyse zu prüfen.
+The assignment follows Mayer et al. (1995) and McKnight, Choudhury & Kacmar (2002). The ABI factors correlate highly but each has a distinct effect (Colquitt, Scott & LePine 2007). The factor structure is to be tested by confirmatory factor analysis.
 
-**Kompetenz und Integrität müssen mindestens getrennt bleiben, weil Verletzungen verschieden wirken** (Abschnitt 4.4). Für Maschinen und Agenten entsprechen die Dimensionen performance, purpose und process nach Lee & See (2004).
+**Competence and integrity must at least remain separate, because violations act differently** (Section 4.4). For machines and agents, the dimensions correspond to performance, purpose and process according to Lee & See (2004).
 
-### 2.5 Einordnung: Trust-Engineering bei Chen (2021)
+### 2.5 Positioning: trust engineering in Chen (2021)
 
-Den Begriff Trust-Engineering verwendet bereits Chen (2021), allerdings mit anderem Ziel. **Chen gestaltet den Vertrauensnehmer, dieses Modell gestaltet die Vertrauensentscheidung.** Beide Ansätze ergänzen sich.
+The term trust engineering is already used by Chen (2021), though with a different goal. **Chen designs the trustee; this model designs the trust decision.** The two approaches complement each other.
 
-Chen beschreibt Vertrauen als vierstellige Relation R(A, B, φ, G): A vertraut B in Bezug auf eine Handlung φ, die einem Ziel G dient. Das erweitert die dreistellige Relation aus Abschnitt 2.1 um das Ziel. In diesem Modell steckt das Ziel in Nutzen N und Schaden L der Handlung (Abschnitt 6.2).
+Chen describes trust as a four-place relation R(A, B, φ, G): A trusts B with respect to an action φ that serves a goal G. This extends the three-place relation from Section 2.1 by the goal. In this model, the goal is contained in the benefit N and loss L of the action (Section 6.2).
 
-| Aussage bei Chen (2021) | Entsprechung in diesem Modell |
+| Statement in Chen (2021) | Counterpart in this model |
 | --- | --- |
-| Schwellenbedingung: Vertrauen besteht, wenn die zugeschriebene Wahrscheinlichkeit m eine Schwelle n erreicht | Schwellenregel in 6.2; die Schwelle folgt hier aus Schaden und Nutzen der Handlung |
-| Der Wert 0,5 steht in solchen Ansätzen für Unsicherheit | b, d und u trennen Unwissen von Ambivalenz (2.2) |
-| Sich-Verlassen ist noch kein Vertrauen: Auf Fehlfunktion folgt Enttäuschung, auf Vertrauensbruch das Gefühl von Verrat; Vertrauen setzt eine normative Erwartung voraus | nur teilweise abgebildet: Integritätsverletzungen mit Täuschung wiegen schwerer (4.4) |
-| Misstrauen kann die angemessene Ausgangshaltung sein, abhängig von Umfeld, Domäne und Folgen | Basisrate a je Kontext; neue Agenten starten mit u = 1 (10.2) |
-| Vertrauensnehmer ist eher ein KI-Ökosystem aus Entwicklern, Betreibern und Nutzern als ein einzelnes System | Anbieter, Modell und Betreiber als eigene Knoten; Attestierung (10.2, 10.3) |
-| Vertrauenssignale über das äußere Erscheinungsbild nutzen Urteilsschwächen aus und machen das System nicht vertrauenswürdiger | Signale ohne Diagnostizität (q nahe 0) erhöhen nur das deskriptive Konto und vergrößern Γ (4.8, 8.4) |
-| Wertschätzung der Vertrauenden als Teil der Belohnungsfunktion lernender Agenten | keine Entsprechung; solche Bewertungen wären hier Evidenz, die nach Unabhängigkeit D zu gewichten ist (4.7) |
+| Threshold condition: trust exists when the attributed probability m reaches a threshold n | threshold rule in 6.2; here the threshold follows from the loss and benefit of the action |
+| In such approaches, the value 0.5 stands for uncertainty | b, d and u separate ignorance from ambivalence (2.2) |
+| Reliance is not yet trust: malfunction is followed by disappointment, a breach of trust by a feeling of betrayal; trust presupposes a normative expectation | only partly represented: integrity violations with deception weigh more heavily (4.4) |
+| Distrust can be the appropriate default stance, depending on environment, domain and consequences | base rate a per context; new agents start with u = 1 (10.2) |
+| The trustee is more an AI ecosystem of developers, operators and users than a single system | provider, model and operator as separate nodes; attestation (10.2, 10.3) |
+| Trust signals via outward appearance exploit weaknesses of judgment and do not make the system more trustworthy | signals without diagnosticity (q close to 0) only raise the descriptive account and enlarge Γ (4.8, 8.4) |
+| Appreciation by trustors as part of the reward function of learning agents | no counterpart; such ratings would here be evidence to be weighted by independence D (4.7) |
 
-Daraus folgt eine Grenze. In Chens Begriffen beschreibt dieses Modell vor allem kalibriertes Sich-Verlassen und die daraus abgeleitete Berechtigung. Normative Erwartungen und Reaktionen wie das Gefühl, verraten worden zu sein, bildet es nicht eigens ab. Ob Agenten Vertrauensnehmer im vollen Sinn sein können, lässt es offen.
+This implies a limit. In Chen's terms, this model mainly describes calibrated reliance and the permission derived from it. It does not specifically represent normative expectations and reactions such as the feeling of having been betrayed. It leaves open whether agents can be trustees in the full sense.
 
-## 3. Vertrauen als gerichteter, kontextabhängiger Graph
+## 3. Trust as a directed, context-dependent graph
 
-### 3.1 Grundmodell
+### 3.1 Basic model
 
-Vertrauen wird als gerichteter Graph G = (V, E) modelliert. V ist die Menge der Entitäten, E die Menge gerichteter Beziehungen. Entitäten sind Personen, Gruppen, Organisationen, Institutionen, technische Systeme und KI-Agenten.
+Trust is modeled as a directed graph G = (V, E). V is the set of entities, E the set of directed relationships. Entities are persons, groups, organizations, institutions, technical systems and AI agents.
 
-**Die Beziehung ist gerichtet, nicht symmetrisch und zeitlich veränderlich.** A kann B stark vertrauen, während B A wenig vertraut. Bei technischen Objekten ohne eigene Bewertung ist die Beziehung einseitig. Agenten, die selbst Berechtigungen prüfen, führen eigene Kanten.
+**The relationship is directed, not symmetric, and changes over time.** A can trust B strongly while B trusts A little. For technical objects without an assessment of their own, the relationship is one-sided. Agents that verify permissions themselves maintain edges of their own.
 
-![Vertrauen ist gerichtet und gilt je Kontext](figures/fig-02-graph.png)
+![Trust is directed and holds per context](figures/fig-02-graph.png)
 
-*Abbildung 2: Beispielgraph · vier Entitäten, gerichtete Kanten je Kontext*
+*Figure 2: Example graph · four entities, directed edges per context*
 
-Zwischen denselben zwei Entitäten bestehen mehrere Kanten: je Richtung und je Kontext eine. Mitgliedschaft ist ein eigener Kantentyp.
+Between the same two entities there are several edges: one per direction and per context. Membership is an edge type of its own.
 
-Jede Kante trägt pro Kontext c und Dimension k eine Meinung statt eines Skalars:
+Each edge carries, per context c and dimension k, an opinion instead of a scalar:
 
 ```math
 \omega_{A\to B,c,k} = (b,\; d,\; u,\; a), \qquad b + d + u = 1
 ```
 
-b ist Vertrauen, d Misstrauen, u Unsicherheit, a die Basisrate (Prior). Die Darstellung folgt der Subjective Logic (Jøsang 2016).
+b is trust, d distrust, u uncertainty, a the base rate (prior). The representation follows Subjective Logic (Jøsang 2016).
 
-### 3.2 Kontext
+### 3.2 Context
 
-**Vertrauen ist nicht universell**: Ich kann dem Fachurteil einer Person vertrauen, ihr aber kein Geld leihen. Der Kontext wird als Tripel definiert:
+**Trust is not universal**: I can trust a person's professional judgment but not lend them money. The context is defined as a triple:
 
 ```math
-c = (\text{Aufgabendomäne},\; \text{Verwundbarkeitstyp},\; \text{Beziehungstyp})
+c = (\text{task domain},\; \text{vulnerability type},\; \text{relationship type})
 ```
 
-| Komponente | Ausprägungen (Beispiele) |
+| Component | Values (examples) |
 | --- | --- |
-| Aufgabendomäne | Fachurteil, Zahlungsfreigabe, Datenzugriff, Codeausführung, Pflege |
-| Verwundbarkeitstyp | finanziell, informationell, körperlich, reputativ, emotional |
-| Beziehungstyp | partikular (bekannt), generalisiert (fremd), institutionell, technisch |
+| Task domain | professional judgment, payment approval, data access, code execution, care |
+| Vulnerability type | financial, informational, physical, reputational, emotional |
+| Relationship type | particular (known), generalized (stranger), institutional, technical |
 
-Die Unterscheidung partikular, generalisiert und institutionell ist empirisch belegt (Delhey, Newton & Welzel 2011; Freitag & Bauer 2013). Die Feingliederung der Aufgabendomänen ist eine Modellannahme.
+The distinction between particular, generalized and institutional is empirically supported (Delhey, Newton & Welzel 2011; Freitag & Bauer 2013). The finer breakdown of task domains is a model assumption.
 
-### 3.3 Gruppen als Entitäten und als Prior
+### 3.3 Groups as entities and as prior
 
-Gruppen sind eigene Knoten. Mitgliedschaft ist ein eigener Kantentyp und von Vertrauen getrennt.
+Groups are nodes of their own. Membership is an edge type of its own and separate from trust.
 
-Gruppenzugehörigkeit setzt die Basisrate a und eine kleine Priorstärke W einer neuen Kante. Der Effekt ist belegt: Menschen kooperieren stärker mit der Eigengruppe, d ≈ 0,32 über 212 Studien (Balliet, Wu & De Dreu 2014). Der Prior verliert mit jeder individuellen Beobachtung an Gewicht (Kunda & Thagard 1996).
+Group membership sets the base rate a and a small prior strength W of a new edge. The effect is supported: people cooperate more with the in-group, d ≈ 0.32 across 212 studies (Balliet, Wu & De Dreu 2014). The prior loses weight with every individual observation (Kunda & Thagard 1996).
 
-Gruppenwissen sagt Aggregate oft brauchbar, Einzelpersonen aber schwach voraus, weil die Streuung innerhalb von Gruppen groß ist (Jussim 2012). **Ein gruppenbasierter Prior darf deshalb nie allein eine Berechtigung begründen oder verweigern.** Davon unberührt bleibt, dass Gruppen stark auf die Evidenzaufnahme und das Prüfverhalten ihrer Mitglieder wirken (Kapitel 7); schwach ist nur die Vorhersage einzelner Vertrauenswürdigkeit aus der Zugehörigkeit.
+Group knowledge often predicts aggregates usefully but individuals weakly, because the variance within groups is large (Jussim 2012). **A group-based prior must therefore never by itself justify or deny a permission.** This leaves unaffected the fact that groups act strongly on their members' uptake of evidence and verification behavior (Chapter 7); only the prediction of individual trustworthiness from membership is weak.
 
-### 3.4 Gruppen als Träger gemeinsamer Überzeugungen
+### 3.4 Groups as carriers of shared convictions
 
-Gruppen entwickeln Normen und Narrative, etwa „Unsere Informationsquellen sind glaubwürdiger als andere“. Diese wirken auf die Basisraten ihrer Mitglieder. Individuelle und gruppenbezogene Überzeugungen bleiben getrennt: Eine Person kann einer Gruppe angehören, ohne deren Überzeugungen zu teilen.
+Groups develop norms and narratives, such as “Our information sources are more credible than others”. These act on the base rates of their members. Individual and group-related convictions remain separate: a person can belong to a group without sharing its convictions.
 
-Formal lässt sich die Verankerung an Gruppenüberzeugungen mit dem Friedkin-Johnsen-Modell abbilden (Friedkin & Johnsen 1990). *Offen bleibt, unter welchen Bedingungen Gruppen individuelle Glaubenssätze verstärken oder verändern.*
+Formally, anchoring to group convictions can be represented with the Friedkin-Johnsen model (Friedkin & Johnsen 1990). *It remains open under which conditions groups reinforce or change individual beliefs.*
 
-## 4. Dynamische Vertrauensentwicklung
+## 4. Dynamic trust development
 
-### 4.1 Evidenzmodell statt Skalar
+### 4.1 Evidence model instead of scalar
 
-Jede Kante führt pro Kontext und Dimension zwei Evidenzkonten: r für positive, s für negative Evidenz. Dazu kommen die Basisrate a und die Priorstärke W. Daraus ergibt sich die Meinung:
+Each edge maintains, per context and dimension, two evidence accounts: r for positive, s for negative evidence. Added to these are the base rate a and the prior strength W. The opinion follows from them:
 
 ```math
 b = \frac{r}{r+s+W}, \qquad d = \frac{s}{r+s+W}, \qquad u = \frac{W}{r+s+W}, \qquad E = b + a\,u
 ```
 
-E ist die erwartete Vertrauenswürdigkeit. u ist die Evidenzsicherheit in umgekehrter Lesart: Viel Evidenz ergibt kleines u. Das Modell entspricht dem Beta Reputation System (Jøsang & Ismail 2002).
+E is the expected trustworthiness. u is evidential certainty read inversely: much evidence yields a small u. The model corresponds to the Beta Reputation System (Jøsang & Ismail 2002).
 
-Der Vorteil gegenüber einem einzelnen Vertrauenswert: **E = 0,5 ohne jede Beobachtung (u = 1) ist unterscheidbar von E = 0,5 nach tausend gemischten Beobachtungen (u nahe 0).**
+The advantage over a single trust value: **E = 0.5 without any observation (u = 1) is distinguishable from E = 0.5 after a thousand mixed observations (u close to 0).**
 
-### 4.2 Initiales Vertrauen
+### 4.2 Initial trust
 
-Eine neue Kante startet mit r = s = 0, also u = 1 und E = a. Die Basisrate a entsteht aus drei Quellen:
+A new edge starts with r = s = 0, i.e. u = 1 and E = a. The base rate a arises from three sources:
 
 ```math
 a_{A\to B,c} = w_1\,U_A + w_2\,P_{A,c} + w_3\,G_{A,B,c}, \qquad w_1+w_2+w_3 = 1
 ```
 
-U ist die generelle Vertrauensneigung von A, P die kontextspezifische Erwartung, G der Gruppen- oder Kategorienprior. Die Priorstärke W bestimmt, wie viel Evidenz nötig ist, um a zu überstimmen. Glaubenssätze wirken auf a und W (Abschnitt 5.3).
+U is A's general propensity to trust, P the context-specific expectation, G the group or category prior. The prior strength W determines how much evidence is needed to override a. Beliefs act on a and W (Section 5.3).
 
-Initiales Vertrauen entsteht außerdem durch Empfehlungen, Identitäts- und Kompetenznachweise, bekannte Kanäle, begrenzte Zusammenarbeit und verbindliche Regeln. Plattformen und Institutionen wirken als Gatekeeper. **Eine Plattformgarantie ist selbst nur eine Evidenzquelle mit eigener Unsicherheit und kein Ersatz für unabhängige Evidenz.**
+Initial trust also arises from recommendations, proofs of identity and competence, known channels, limited collaboration and binding rules. Platforms and institutions act as gatekeepers. **A platform guarantee is itself only a source of evidence with its own uncertainty and no substitute for independent evidence.**
 
-### 4.3 Aktualisierung und Zeitverfall
+### 4.3 Updating and temporal decay
 
-Ein Ereignis e zum Zeitabstand Δt aktualisiert beide Konten:
+An event e at time interval Δt updates both accounts:
 
 ```math
 r \leftarrow \lambda^{\Delta t}\,r + g^{+}, \qquad s \leftarrow \lambda^{\Delta t}\,s + g^{-}
@@ -233,1122 +235,1122 @@ r \leftarrow \lambda^{\Delta t}\,r + g^{+}, \qquad s \leftarrow \lambda^{\Delta 
 g^{\pm} = \varrho_e \cdot q_e \cdot w^{\pm}_{k} \cdot r_{e,c} \cdot \max(\pm v_e,\,0)
 ```
 
-| Größe | Bedeutung | Bereich |
+| Quantity | Meaning | Range |
 | --- | --- | --- |
-| λ | Vergessensfaktor pro Zeiteinheit | (0, 1] |
-| ϱ | Unabhängigkeitsgewicht der Quelle | [0, 1] |
-| q | Diagnostizität: Wie teuer wäre das Signal für einen Täuschenden? | [0, 1] |
-| w± | Dimensionsgewicht für positive bzw. negative Evidenz | > 0 |
-| r(e,c) | Relevanz des Ereignisses für Kontext c | [0, 1] |
-| v | Valenz des Ereignisses | [−1, 1] |
+| λ | forgetting factor per unit of time | (0, 1] |
+| ϱ | independence weight of the source | [0, 1] |
+| q | diagnosticity: How costly would the signal be for a deceiver? | [0, 1] |
+| w± | dimension weight for positive or negative evidence | > 0 |
+| r(e,c) | relevance of the event for context c | [0, 1] |
+| v | valence of the event | [−1, 1] |
 
-Ohne Vergessen (λ = 1) ist das Ergebnis unabhängig von der Reihenfolge der Ereignisse. Mit λ < 1 zählt Aktuelles bewusst stärker.
+Without forgetting (λ = 1), the result is independent of the order of events. With λ < 1, recent events deliberately count more.
 
-Ohne neue Evidenz schrumpfen r und s. Die Unsicherheit u steigt gegen 1, und E kehrt zur Basisrate a zurück. **Vertrauen zerfällt also nicht zu null, sondern zu Unwissen.** Die Halbwertszeit der Evidenz ist:
+Without new evidence, r and s shrink. The uncertainty u rises toward 1, and E returns to the base rate a. **Trust therefore does not decay to zero, but to ignorance.** The half-life of evidence is:
 
 ```math
 t_{1/2} = \frac{\ln 2}{-\ln \lambda}
 ```
 
-Bei konstanter Evidenzrate g pro Zeiteinheit sättigt das Konto bei g / (1 − λ). Vollständige Sicherheit ist damit unerreichbar:
+At a constant evidence rate g per unit of time, the account saturates at g / (1 − λ). Complete certainty is therefore unattainable:
 
 ```math
 u_{\min} = \frac{W}{W + \dfrac{g}{1-\lambda}}
 ```
 
-![Ohne neue Evidenz kehrt Vertrauen zur Basisrate zurück, die Unsicherheit steigt](figures/fig-03-zeitverfall.png)
+![Without new evidence, trust returns to the base rate and uncertainty rises](figures/fig-03-temporal-decay.png)
 
-*Abbildung 3: Zeitverfall nach Abschnitt 4.3 · illustrative Parameter, 60 Tage*
+*Figure 3: Temporal decay according to Section 4.3 · illustrative parameters, 60 days*
 
-Das erwartete Vertrauen sinkt nicht auf null, sondern nähert sich der Basisrate. Was verloren geht, ist die Sicherheit der Einschätzung.
+Expected trust does not fall to zero but approaches the base rate. What is lost is the certainty of the assessment.
 
-### 4.4 Bedingte Asymmetrie
+### 4.4 Conditional asymmetry
 
-Die Wirkung eines einzelnen Ereignisses der Stärke g auf E bei bisheriger Evidenzmenge n = r + s + W ist:
+The effect of a single event of strength g on E, given a prior amount of evidence n = r + s + W, is:
 
 ```math
 \Delta E^{+} = (1-E)\,\frac{g}{n+g}, \qquad \Delta E^{-} = -E\,\frac{g}{n+g}
 ```
 
-Das entspricht der Lernregel nach Bush-Mosteller und Rescorla-Wagner mit einer Lernrate g / (n + g), die mit wachsender Evidenz sinkt. Die klassische Regel mit konstanter Lernrate ist ein Spezialfall. Drei Folgen:
+This corresponds to the Bush-Mosteller and Rescorla-Wagner learning rule with a learning rate g / (n + g) that decreases as evidence grows. The classic rule with a constant learning rate is a special case. Three consequences:
 
-- **Pufferung.** Ein Fehltritt wiegt bei langer positiver Historie weniger. Das deckt sich mit Befunden, dass bestehendes Vertrauen negative Ereignisse abfedert (Cvetkovich et al. 2002; White et al. 2003).
-- **Strukturelle Asymmetrie.** Bei hohem E ist der mögliche Verlust größer als der mögliche Gewinn, auch bei gleichen Gewichten.
-- **Dimensionsabhängigkeit.** Die Gewichte w+ und w− hängen von der Dimension ab.
+- **Buffering.** A misstep weighs less after a long positive history. This is consistent with findings that existing trust cushions negative events (Cvetkovich et al. 2002; White et al. 2003).
+- **Structural asymmetry.** At high E, the possible loss is larger than the possible gain, even with equal weights.
+- **Dimension dependence.** The weights w+ and w− depend on the dimension.
 
-| Ereignistyp | Verhältnis w− zu w+ | Beleg |
+| Event type | Ratio of w− to w+ | Evidence |
 | --- | --- | --- |
-| Integritätsverletzung mit Täuschung | deutlich größer 1 | Schweitzer, Hershey & Bradlow 2006 |
-| Integritätsverletzung ohne Täuschung | größer 1 | Skowronski & Carlston 1989 |
-| Kompetenzfehler | kleiner oder gleich 1 | Reeder & Brewer 1979; Kim et al. 2004 |
-| Unzuverlässigkeit | nahe 1, reparierbar | Schweitzer et al. 2006 |
+| Integrity violation with deception | clearly greater than 1 | Schweitzer, Hershey & Bradlow 2006 |
+| Integrity violation without deception | greater than 1 | Skowronski & Carlston 1989 |
+| Competence error | less than or equal to 1 | Reeder & Brewer 1979; Kim et al. 2004 |
+| Unreliability | close to 1, repairable | Schweitzer et al. 2006 |
 
-Eine feste Annahme, dass negative Erfahrungen stets stärker wirken als positive, ist damit nicht nötig. **Das Asymmetrieprinzip (Slovic 1993; Baumeister et al. 2001) gilt als Tendenz für Integrität, nicht generell.**
+A fixed assumption that negative experiences always act more strongly than positive ones is therefore unnecessary. **The asymmetry principle (Slovic 1993; Baumeister et al. 2001) holds as a tendency for integrity, not in general.**
 
-### 4.5 Kontextübertragung
+### 4.5 Context transfer
 
-Ein Ereignis wirkt über r(e,c) auf mehrere Kontexte. Ein nicht zurückgezahltes Darlehen trifft stark den Kontext Geldleihen, teilweise die Integrität allgemein, kaum die Fachkompetenz.
+An event acts on several contexts via r(e,c). An unrepaid loan strongly affects the context of lending money, partly integrity in general, and hardly professional competence.
 
-Modellannahme: **Integritätsevidenz überträgt sich breit über Kontexte, Kompetenzevidenz schmal.** Ein Ereignis darf nicht über Domäne und Tags mehrfach als unabhängige Evidenz gezählt werden.
+Model assumption: **integrity evidence transfers broadly across contexts, competence evidence narrowly.** An event must not be counted several times as independent evidence via domain and tags.
 
-### 4.6 Ausbreitung im Graphen
+### 4.6 Propagation in the graph
 
-Vertrauensinformationen breiten sich über Dritte aus. Der Effekt ist belegt und für Misstrauen stärker (Burt & Knez 1995; Sommerfeld et al. 2007). Normativ ist Vertrauen aber nicht transitiv (Christianson & Harbison 1997).
+Trust information propagates via third parties. The effect is supported and stronger for distrust (Burt & Knez 1995; Sommerfeld et al. 2007). Normatively, however, trust is not transitive (Christianson & Harbison 1997).
 
-Das Modell trennt funktionales Vertrauen (B kann die Aufgabe) von Empfehlungsvertrauen (C urteilt gut über andere). Eine Empfehlung von C über B wird mit dem Empfehlungsvertrauen von A in C abgezinst:
+The model separates functional trust (B can do the task) from referral trust (C judges others well). A recommendation by C about B is discounted by A's referral trust in C:
 
 ```math
 b_{A:B} = b_{A\to C}\,b_{C\to B}, \quad d_{A:B} = b_{A\to C}\,d_{C\to B}, \quad u_{A:B} = d_{A\to C} + u_{A\to C} + b_{A\to C}\,u_{C\to B}
 ```
 
-Das ist der Abzinsungsoperator der Subjective Logic. **Entlang einer Kette kann Vertrauen nur sinken und Unsicherheit nur steigen.** Eigene Erfahrung, fremde Aussage und unabhängig verifizierte Information bleiben getrennte Evidenzarten. Deskriptiv wird am wenigsten abgezinst, wenn C zur Eigengruppe gehört (H4a, Abschnitt 7.6).
+This is the discounting operator of Subjective Logic. **Along a chain, trust can only decrease and uncertainty can only increase.** Own experience, another's statement and independently verified information remain separate kinds of evidence. Descriptively, the least discounting occurs when C belongs to the in-group (H4a, Section 7.6).
 
-### 4.7 Wiederholung, Familiarität und Quellenabhängigkeit
+### 4.7 Repetition, familiarity and source dependence
 
-Wiederholte Aussagen werden eher für wahr gehalten, auch ohne neue Evidenz (Illusory Truth Effect; Hasher et al. 1977). Der Effekt ist klein und robust: g = 0,37 nach Korrektur für Publikationsbias über 182 Studien (Ye et al. 2026). Er wächst logarithmisch mit der Zahl der Wiederholungen (Hassan & Barber 2021).
+Repeated statements are more likely to be considered true, even without new evidence (Illusory Truth Effect; Hasher et al. 1977). The effect is small and robust: g = 0.37 after correction for publication bias across 182 studies (Ye et al. 2026). It grows logarithmically with the number of repetitions (Hassan & Barber 2021).
 
-Das Modell führt deshalb zwei parallele Konten.
+The model therefore maintains two parallel accounts.
 
-**Normatives Konto.** n Wiederholungen aus Quellen mit Abhängigkeit D zählen nur als effektive Stichprobe:
+**Normative account.** n repetitions from sources with dependence D count only as an effective sample:
 
 ```math
 n_{\text{eff}} = \frac{n}{1 + (n-1)\,D}, \qquad \lim_{n\to\infty} n_{\text{eff}} = \frac{1}{D}
 ```
 
-Bei D = 1 (eine Ursprungsquelle) bleibt n_eff = 1, gleich wie oft die Aussage erscheint. Bei D = 0,5 erreichen beliebig viele Wiederholungen höchstens den Wert zweier unabhängiger Quellen.
+At D = 1 (one original source), n_eff = 1, no matter how often the statement appears. At D = 0.5, any number of repetitions reaches at most the value of two independent sources.
 
-![Bei D = 0,5 zählen beliebig viele Wiederholungen höchstens wie zwei Quellen](figures/fig-04-quellenabhaengigkeit.png)
+![At D = 0.5, any number of repetitions counts at most as two sources](figures/fig-04-source-dependence.png)
 
-*Abbildung 4: Effektive Stichprobe nach Abschnitt 4.7 · vier Abhängigkeitsgrade, 1 bis 10 Wiederholungen*
+*Figure 4: Effective sample according to Section 4.7 · four degrees of dependence, 1 to 10 repetitions*
 
-Nur bei unabhängigen Quellen wächst die Evidenz mit jeder Wiederholung. Schon bei geringer Abhängigkeit flacht die Kurve früh ab.
+Only with independent sources does evidence grow with each repetition. Even at low dependence, the curve flattens early.
 
-**Deskriptives Konto.** Es enthält zusätzlich einen Familiaritätsterm:
-
-```math
-r^{\text{desk}} = r^{\text{norm}} + \varphi\,(1-m)\,\ln(1+R)
-```
-
-R ist die Zahl wahrgenommener Wiederholungen, φ die individuelle Anfälligkeit, m der Grad des Genauigkeitsfokus. Ein Genauigkeitsfokus beim Erstkontakt dämpft den Effekt (Brashier, Eliseev & Marsh 2020). Sehr häufige Wiederholung kann die Glaubwürdigkeit wieder senken (Koch & Zerback 2013). Der Term braucht daher eine Sättigung.
-
-**Menschen unterscheiden echten und scheinbaren Konsens schlecht** (Yousif, Aboody & Keil 2019) und vernachlässigen korrelierte Quellen (Enke & Zimmermann 2019). Wiederholung erhöht auch die Glaubwürdigkeit der Quelle selbst (Mattavelli, Brambilla & Unkelbach 2025). Dieser Befund ist präregistriert, eine unabhängige Replikation steht aus.
-
-### 4.8 Die Kalibrierungslücke
-
-Die Differenz beider Konten ist die zentrale abgeleitete Größe:
+**Descriptive account.** It additionally contains a familiarity term:
 
 ```math
-\Gamma_{A\to B,c} = E^{\text{desk}} - E^{\text{norm}}
+r^{\text{desc}} = r^{\text{norm}} + \varphi\,(1-m)\,\ln(1+R)
 ```
 
-Γ > 0 bedeutet ungerechtfertigtes Vertrauen (False Trust), Γ < 0 ungerechtfertigtes Misstrauen (False Distrust). **Γ ist die Angriffsfläche für Social Engineering und zugleich die Zielgröße für Schulung.**
+R is the number of perceived repetitions, φ the individual susceptibility, m the degree of accuracy focus. An accuracy focus at first contact dampens the effect (Brashier, Eliseev & Marsh 2020). Very frequent repetition can lower credibility again (Koch & Zerback 2013). The term therefore needs saturation.
 
-## 5. Psychologische Einflussgrößen
+**People distinguish genuine from apparent consensus poorly** (Yousif, Aboody & Keil 2019) and neglect correlated sources (Enke & Zimmermann 2019). Repetition also increases the credibility of the source itself (Mattavelli, Brambilla & Unkelbach 2025). This finding is preregistered; an independent replication has yet to be carried out.
 
-Menschen beginnen Beziehungen nicht ohne Vorerfahrung. Das Modell ordnet die Einflussgrößen vier Ebenen mit eigener Zeitskala zu, damit derselbe Mechanismus nicht doppelt modelliert wird.
+### 4.8 The calibration gap
 
-| Ebene | Modellgröße | Veränderung | Wirkt auf |
+The difference between the two accounts is the central derived quantity:
+
+```math
+\Gamma_{A\to B,c} = E^{\text{desc}} - E^{\text{norm}}
+```
+
+Γ > 0 means unjustified trust (False Trust), Γ < 0 unjustified distrust (False Distrust). **Γ is the attack surface for social engineering and at the same time the target quantity for training.**
+
+## 5. Psychological Factors
+
+People do not begin relationships without prior experience. The model assigns the factors to four levels, each with its own time scale, so that the same mechanism is not modeled twice.
+
+| Level | Model variable | Change | Acts on |
 | --- | --- | --- | --- |
-| Disposition | Vertrauensneigung U | sehr langsam | Basisrate a |
-| Überzeugungen | Glaubenssätze, Kontextprior P | langsam | a, W, Valenz v |
-| Lernparameter | λ, w+, w−, Priorstärke W | mittel | Aktualisierung |
-| Momentaner Zustand | Aktivierung H | schnell | Handlungsbereitschaft, Prüfaufwand |
+| Disposition | propensity to trust U | very slow | base rate a |
+| Beliefs | beliefs, context prior P | slow | a, W, valence v |
+| Learning parameters | λ, w+, w−, prior strength W | medium | updating |
+| Momentary state | activation H | fast | willingness to act, verification effort |
 
-### 5.1 Disposition statt Urvertrauen
+### 5.1 Disposition instead of basic trust
 
-Statt des Begriffs Urvertrauen (Erikson) verwendet das Modell die messbare Vertrauensneigung (Propensity to Trust). **Sie sagt Vertrauen eigenständig vorher, vor allem bei wenig Information über das Gegenüber** (Colquitt, Scott & LePine 2007).
+Instead of the term basic trust (Erikson), the model uses the measurable propensity to trust. **It predicts trust independently, above all when little information about the counterpart is available** (Colquitt, Scott & LePine 2007).
 
-Die Neigung ist teils dispositionell. Zwillingsstudien schätzen die Erblichkeit des Vertrauensverhaltens auf etwa 10 bis 20 Prozent (Cesarini et al. 2008). Andere Arbeiten finden kaum genetischen Einfluss (Van Lange, Vinkhuyzen & Posthuma 2014). Generalisiertes Vertrauen gilt bei Uslaner (2002) als weitgehend erfahrungsresistent.
+The propensity is partly dispositional. Twin studies estimate the heritability of trust behavior at about 10 to 20 percent (Cesarini et al. 2008). Other work finds hardly any genetic influence (Van Lange, Vinkhuyzen & Posthuma 2014). Uslaner (2002) regards generalized trust as largely resistant to experience.
 
-### 5.2 Prägende Erfahrungen und Lernparameter
+### 5.2 Formative experiences and learning parameters
 
-**Prägende Erfahrungen verändern nach dem Modell weniger die Disposition als die kontextspezifischen Prioren und die Lernparameter.** Belege für erfahrungsabhängige Prioren liefern Alesina & La Ferrara (2002) und Dohmen et al. (2012). Dagegen findet Bauer (2015) in Paneldaten keinen konsistenten Effekt von Viktimisierung auf generalisiertes Vertrauen. Resilienz ist der häufigste Verlauf nach belastenden Ereignissen (Bonanno 2004).
+**According to the model, formative experiences change the disposition less than the context-specific priors and the learning parameters.** Evidence for experience-dependent priors comes from Alesina & La Ferrara (2002) and Dohmen et al. (2012). By contrast, Bauer (2015) finds no consistent effect of victimization on generalized trust in panel data. Resilience is the most common trajectory after stressful events (Bonanno 2004).
 
-Die Aktivierung H wird als Schätzung der Umweltvolatilität gelesen. In einer als unberechenbar erlebten Umwelt ist eine höhere Lernrate angemessen (Behrens et al. 2007). Im Modell bedeutet das: kleineres λ und kleineres W. Abweichende Volatilitätsschätzung ist bei Ängstlichkeit beschrieben (Browning et al. 2015).
+The activation H is read as an estimate of environmental volatility. In an environment experienced as unpredictable, a higher learning rate is appropriate (Behrens et al. 2007). In the model this means a smaller λ and a smaller W. Deviating volatility estimation has been described in anxiety (Browning et al. 2015).
 
-H ist kein klinischer Traumawert und darf nicht zur Diagnose dienen. Traumatische Erfahrungen führen nicht bei allen Menschen zu denselben Reaktionen.
+H is not a clinical trauma score and must not be used for diagnosis. Traumatic experiences do not lead to the same reactions in all people.
 
-### 5.3 Glaubenssätze
+### 5.3 Beliefs
 
-Glaubenssätze sind relativ stabile Überzeugungen einer Entität über sich, andere oder die Welt. Sie sind Eigenschaften des bewertenden Knotens:
+Beliefs are relatively stable convictions of an entity about itself, others or the world. They are properties of the evaluating node:
 
 ```math
 \mathcal{B}_A = \{b_1,\ldots,b_n\}, \qquad b_i = (p_i,\; q_i,\; C_i)
 ```
 
-p ist der Inhalt, q die Stärke in [0,1], C die Menge betroffener Kontexte. Glaubenssätze wirken an drei Stellen.
+p is the content, q the strength in [0,1], C the set of affected contexts. Beliefs act at three points.
 
-| Wirkung | Modellgröße | Beispiel |
+| Effect | Model variable | Example |
 | --- | --- | --- |
-| Vorschuss | Basisrate a | „Menschen sind grundsätzlich ehrlich“ erhöht a |
-| Beharrung | Priorstärke W | „Ich kann Menschen gut einschätzen“ erhöht W: Evidenz wirkt schwächer |
-| Deutung | Valenz v und Gewichte w± | „Wer einmal lügt, lügt immer“ erhöht w− für Integrität |
+| Advance trust | base rate a | “People are basically honest” raises a |
+| Persistence | prior strength W | “I am good at judging people” raises W: evidence has a weaker effect |
+| Interpretation | valence v and weights w± | “Once a liar, always a liar” raises w− for integrity |
 
-Die Deutungsfunktion lautet:
+The interpretation function is:
 
 ```math
 v_{A,e,c} = f(e,\,c,\,\mathcal{B}_A) \in [-1,\,1]
 ```
 
-Beispiel: Ein Kollege widerspricht einer Führungskraft öffentlich. Wer Widerspruch als Integrität liest, bewertet positiv. Wer Loyalität als Schweigen versteht, bewertet negativ.
+Example: A colleague publicly contradicts a manager. Someone who reads contradiction as integrity evaluates it positively. Someone who understands loyalty as silence evaluates it negatively.
 
-**Gegenläufige Aktualisierung ist aber die Ausnahme.** Über 52 Themen fanden Wood & Porter (2019) kaum Backfire-Effekte. Gruppen aktualisieren meist parallel in dieselbe Richtung (Coppock 2022). Das Modell erwartet Vorzeichenwechsel nur bei mehrdeutigen Ereignissen. Bei eindeutigen Ereignissen unterscheiden sich Personen in a, W und Stärke, nicht in der Richtung.
+**Opposite-direction updating, however, is the exception.** Across 52 topics, Wood & Porter (2019) found hardly any backfire effects. Groups mostly update in parallel in the same direction (Coppock 2022). The model expects sign reversals only for ambiguous events. For unambiguous events, people differ in a, W and strength, not in direction.
 
-Messbare Kandidaten für Glaubenssätze sind Primal World Beliefs (Clifton et al. 2019), implizite Theorien über Veränderbarkeit (Haselhuhn, Schweitzer & Wood 2010) und der Hostile Attribution Bias (Crick & Dodge 1994).
+Measurable candidates for beliefs are Primal World Beliefs (Clifton et al. 2019), implicit theories about changeability (Haselhuhn, Schweitzer & Wood 2010) and the Hostile Attribution Bias (Crick & Dodge 1994).
 
-### 5.4 Rückkopplung und Lernfalle
+### 5.4 Feedback loop and learning trap
 
-Glaubenssätze, Deutung und Erfahrung bilden einen Kreis: Glaubenssatz, Deutung, Vertrauensänderung, Verhalten, neue Erfahrung, Bestätigung oder Revision.
+Beliefs, interpretation and experience form a cycle: belief, interpretation, change in trust, behavior, new experience, confirmation or revision.
 
-Der Kreis ist asymmetrisch. **Wer nicht vertraut, interagiert nicht und erhält keine korrigierende Evidenz** (Denrell 2005). Menschen unterschätzen deshalb die Vertrauenswürdigkeit anderer, und symmetrisches Feedback reduziert diesen Zynismus (Fetchenhauer & Dunning 2010). Erwartungen können sich zudem selbst erfüllen (Kelley & Stahelski 1970).
+The cycle is asymmetric. **Someone who does not trust does not interact and receives no corrective evidence** (Denrell 2005). People therefore underestimate the trustworthiness of others, and symmetric feedback reduces this cynicism (Fetchenhauer & Dunning 2010). Expectations can also be self-fulfilling (Kelley & Stahelski 1970).
 
-Im Modell heißt das: Sinkt E unter die Schwelle für Interaktion, kommt keine Evidenz mehr an. Nur der Zeitverfall λ führt die Kante dann zur Basisrate zurück.
+In the model this means: if E falls below the threshold for interaction, no more evidence arrives. Only the temporal decay λ then returns the edge to the base rate.
 
-![Misstrauen stabilisiert sich selbst: Ohne Interaktion entsteht keine Evidenz](figures/fig-05-lernfalle.png)
+![Distrust stabilizes itself: without interaction no evidence arises](figures/fig-05-learning-trap.png)
 
-*Abbildung 5: Rückkopplung nach Abschnitt 5.4 · Lernschleife und Lernfalle*
+*Figure 5: Feedback loop according to Section 5.4 · learning loop and learning trap*
 
-Oberhalb der Schwelle läuft die Schleife und korrigiert sich. Unterhalb endet sie in einer Sackgasse: Das Urteil bleibt bestehen, weil nichts mehr dagegen sprechen kann. Die Lernfalle hat eine kollektive Form: Eine Gruppe, die Außenquellen vorab diskreditiert, erhält als Ganze keine korrigierende Evidenz (7.8).
+Above the threshold the loop runs and corrects itself. Below it, it ends in a dead end: the judgment persists because nothing can contradict it any longer. The learning trap has a collective form: a group that discredits outside sources in advance receives, as a whole, no corrective evidence (7.8).
 
-Ob Erfahrungen generalisiertes Vertrauen verändern, ist umstritten. Im Labor verschiebt es sich in Richtung der Erfahrung (Paxton & Glanville 2015). In Paneldaten wirken Erfahrungen teilweise, etwa Arbeitslosigkeit (Mewes et al. 2021).
+Whether experiences change generalized trust is contested. In the laboratory it shifts in the direction of the experience (Paxton & Glanville 2015). In panel data, some experiences have an effect, for example unemployment (Mewes et al. 2021).
 
-### 5.5 Momentaner Zustand
+### 5.5 Momentary state
 
-**Stress und Zeitdruck verändern nicht die Bewertung E, sondern Handlungsbereitschaft und Prüfaufwand.** Eine Person kann einer anderen grundsätzlich vertrauen und sich in einer Situation trotzdem nicht sicher genug fühlen. Vertrauensbewertung und Handlungsbereitschaft bleiben getrennte Größen.
+**Stress and time pressure do not change the evaluation E, but the willingness to act and the verification effort.** A person can trust another in principle and still not feel sure enough in a particular situation. Trust evaluation and willingness to act remain separate variables.
 
-## 6. Entscheidungsschicht und Modellarchitektur
+## 6. Decision Layer and Model Architecture
 
-### 6.1 Drei getrennte Fragen
+### 6.1 Three separate questions
 
-Eine Vertrauensentscheidung zerfällt in drei Prüfungen, die nicht füreinander einstehen:
+A trust decision breaks down into three checks that do not substitute for one another:
 
-| Frage | Prüft | Modellgröße |
+| Question | Checks | Model variable |
 | --- | --- | --- |
-| Identität | Wer ist die Entität? | Evidenz zur Kantenzuordnung |
-| Autorisierung | Darf sie diese Handlung auslösen? | Berechtigung P |
-| Sachliche Richtigkeit | Stimmt die konkrete Aussage oder Anforderung? | Evidenz zum Ereignis selbst |
+| Identity | Who is the entity? | evidence on edge attribution |
+| Authorization | May it trigger this action? | permission P |
+| Factual correctness | Is the specific statement or request correct? | evidence on the event itself |
 
-**Eine bestätigte Identität beweist weder Berechtigung noch Richtigkeit.** Vertrauen in die Person beweist keines der drei.
+**A confirmed identity proves neither permission nor correctness.** Trust in the person proves none of the three.
 
-### 6.2 Schwellenregel für Berechtigungen
+### 6.2 Threshold rule for permissions
 
-Eine Handlung x bringt bei legitimer Anfrage den Nutzen N und bei Missbrauch den Schaden L. Sie ist erst lohnend, wenn die Wahrscheinlichkeit der Legitimität die Schwelle θ übersteigt:
+An action x yields the benefit N for a legitimate request and the loss L in case of abuse. It is only worthwhile if the probability of legitimacy exceeds the threshold θ:
 
 ```math
 \theta_x = \frac{L_x}{L_x + N_x}
 ```
 
-Die Berechtigung wird erteilt, wenn das normative Vertrauen abzüglich eines Unsicherheitsabschlags die Schwelle erreicht:
+The permission is granted if the normative trust minus an uncertainty penalty reaches the threshold:
 
 ```math
 E^{\text{norm}} - \kappa\,u \;\ge\; \theta_x
 ```
 
-κ ist die Risikoaversion. Zwei Folgen: **Die Schwelle hängt nur von der Handlung ab, nicht von der Person.** Und hohe Unsicherheit senkt die Berechtigung auch bei hohem Erwartungswert.
+κ is the risk aversion. Two consequences: **The threshold depends only on the action, not on the person.** And high uncertainty lowers the permission even when the expected value is high.
 
-Beispiel: Eine Überweisung mit L = 50.000 Euro und N = 500 Euro ergibt θ ≈ 0,99. Kein realistisch erreichbares persönliches Vertrauen genügt allein. Die Handlung braucht zusätzliche unabhängige Evidenz.
+Example: A bank transfer with L = EUR 50,000 and N = EUR 500 yields θ ≈ 0.99. No realistically attainable personal trust suffices on its own. The action needs additional independent evidence.
 
-### 6.3 Prüfregel
+### 6.3 Verification rule
 
-Eine zusätzliche Prüfung mit Kosten K und Erkennungswahrscheinlichkeit τ lohnt sich, wenn gilt:
+An additional verification with cost K and detection probability τ is worthwhile if:
 
 ```math
 K \;<\; \tau \cdot (1 - E^{\text{norm}}) \cdot L_x
 ```
 
-**Prüfungen müssen also billig sein, damit sie bei kleinem Restzweifel noch ausgelöst werden.** Das begründet die Forderung nach aufwandsarmen Verfahren in Kapitel 9. K und τ werden in Organisationen nicht individuell, sondern durch Norm, Rolle und vermutete Prüfung anderer gesetzt (7.3 bis 7.5).
+**Verifications must therefore be cheap so that they are still triggered when residual doubt is small.** This justifies the requirement for low-effort procedures in Chapter 9. In organizations, K and τ are not set individually but by norm, role and the presumed verification by others (7.3 to 7.5).
 
-### 6.4 Modellgrößen im Überblick
+### 6.4 Overview of model variables
 
-| Größe | Symbol | Funktion |
+| Variable | Symbol | Function |
 | --- | --- | --- |
-| Vertrauen, Misstrauen, Unsicherheit | b, d, u | Meinung pro Kante, Kontext, Dimension |
-| Erwartete Vertrauenswürdigkeit | E | b + a·u |
-| Evidenzkonten | r, s | positive und negative Evidenz |
-| Basisrate und Priorstärke | a, W | Vorschuss und Beharrung |
-| Vergessensfaktor | λ | Zeitverfall der Evidenz |
-| Quellenabhängigkeit | D | Korrelation der Quellen |
-| Diagnostizität | q | Fälschungskosten eines Signals |
-| Wiederholung | R | wahrgenommene Häufigkeit |
-| Kalibrierungslücke | Γ | deskriptiv minus normativ |
-| Verwundbarkeit | L | Schaden bei Missbrauch |
-| Zuordnungsstärke | μ | Wirkung einer Dimension auf ein Schutzziel (13.2) |
-| Prüfdeckung | C | abgeleitet: Anteil der Fälle mit mindestens einer Prüfung in einer Gruppe (7.3) |
-| Angenommene Erkennungsrate | τ_I | abgeleitet: unterstellte Filterleistung einer Institution (7.4) |
-| Berechtigung | P | eingeräumter Handlungsspielraum |
-| Glaubenssätze | B | Filter für a, W, v |
-| Aktivierung | H | momentaner Zustand |
+| Trust, distrust, uncertainty | b, d, u | opinion per edge, context, dimension |
+| Expected trustworthiness | E | b + a·u |
+| Evidence accounts | r, s | positive and negative evidence |
+| Base rate and prior strength | a, W | advance trust and persistence |
+| Forgetting factor | λ | temporal decay of evidence |
+| Source dependence | D | correlation of sources |
+| Diagnosticity | q | cost of faking a signal |
+| Repetition | R | perceived frequency |
+| Calibration gap | Γ | descriptive minus normative |
+| Vulnerability | L | loss in case of abuse |
+| Mapping strength | μ | effect of a dimension on a security objective (13.2) |
+| Verification coverage | C | derived: share of cases with at least one verification in a group (7.3) |
+| Assumed detection rate | τ_I | derived: filtering performance attributed to an institution (7.4) |
+| Permission | P | granted scope of action |
+| Beliefs | B | filter for a, W, v |
+| Activation | H | momentary state |
 
-### 6.5 Architektur und Verarbeitungsschritte
+### 6.5 Architecture and processing steps
 
-Das Modell besteht aus sechs Schichten: Entitäten, Beziehungen, Erfahrungen, Überzeugungen, psychologischer Zustand und Entscheidung. Jedes Ereignis durchläuft sieben Schritte:
+The model consists of six layers: entities, relationships, experiences, beliefs, psychological state and decision. Each event passes through seven steps:
 
-1. Ereignis erfassen.
-2. Kontext und Dimension bestimmen.
-3. Quelle bewerten: Unabhängigkeit D und Diagnostizität q.
-4. Deuten: Valenz v, im deskriptiven Konto durch Glaubenssätze gefärbt.
-5. Beide Evidenzkonten aktualisieren, mit Zeitverfall.
-6. Langsame Größen anpassen: Prioren und Glaubenssätze.
-7. Entscheiden: Schwellenregel und Prüfregel anwenden.
+1. Record the event.
+2. Determine context and dimension.
+3. Evaluate the source: independence D and diagnosticity q.
+4. Interpret: valence v, colored by beliefs in the descriptive account.
+5. Update both evidence accounts, with temporal decay.
+6. Adjust slow variables: priors and beliefs.
+7. Decide: apply the threshold rule and the verification rule.
 
-![Die Lücke zwischen gefühltem und begründetem Vertrauen ist die Angriffsfläche](figures/fig-06-architektur.png)
+![The gap between felt and justified trust is the attack surface](figures/fig-06-architecture.png)
 
-*Abbildung 6: Verarbeitung eines Ereignisses · zwei Evidenzkonten, eine Entscheidung*
+*Figure 6: Processing of an event · two evidence accounts, one decision*
 
-Jedes Ereignis speist zwei Konten. **Entschieden wird nur auf Basis des normativen Kontos**; die Differenz zum deskriptiven Konto ist die Kalibrierungslücke Γ. Der Zeitverfall λ wirkt auf beide Konten.
+Each event feeds two accounts. **Decisions are made only on the basis of the normative account**; the difference from the descriptive account is the calibration gap Γ. The temporal decay λ acts on both accounts.
 
-Diese Prozessbeschreibung ist eine Architekturhypothese.
+This process description is an architectural hypothesis.
 
-## 7. Gruppen und Organisation
+## 7. Groups and Organization
 
-Die Kapitel 3 bis 6 beschreiben Vertrauen als Kante A→B. Informationssicherheit wird aber in Teams, Abteilungen und Firmen gelebt. Dort entscheidet nicht nur, wie A die Evidenz über B bewertet, sondern welche Evidenz A überhaupt erreicht, wie die Gruppe sie deutet und ob A die Prüfung selbst durchführt oder sie stillschweigend anderen überlässt. **Gruppen wirken auf allen drei Stufen, und sie wirken vor allem auf die Prüfung, nicht auf die Bewertung.** Das erklärt, warum individuelle Awareness-Schulung so wenig bewirkt (Abschnitt 9.1): Sie adressiert die Bewertung des Einzelnen, während das Prüfverhalten von Rolle, Norm und wahrgenommener Deckung durch andere bestimmt wird. Dieses Kapitel ist eine Ableitung aus dem Modell und aus sozialpsychologischer Literatur, die überwiegend nicht in Sicherheitskontexten erhoben wurde. Es führt keinen neuen Parameter ein.
+Chapters 3 to 6 describe trust as an edge A→B. Information security, however, is lived in teams, departments and companies. There, what matters is not only how A evaluates the evidence about B, but which evidence reaches A at all, how the group interprets it, and whether A carries out the verification personally or tacitly leaves it to others. **Groups act at all three stages, and they act above all on verification, not on evaluation.** This explains why individual awareness training achieves so little (Section 9.1): it addresses the individual's evaluation, while verification behavior is determined by role, norm and perceived coverage by others. This chapter is a derivation from the model and from social-psychological literature that was mostly not collected in security contexts. It introduces no new parameter.
 
-### 7.1 Drei Ebenen
+### 7.1 Three levels
 
-Abschnitt 1.1 nennt die Makro- und die Mikroebene. Dazwischen liegt die Ebene, auf der Sicherheitsentscheidungen tatsächlich fallen:
+Section 1.1 names the macro and the micro level. Between them lies the level at which security decisions are actually made:
 
-| Ebene | Einheit | Typische Handlung | Wo im Modell |
+| Level | Unit | Typical action | Where in the model |
 | --- | --- | --- | --- |
-| Mikro | Kante A→B | Zahlung, Freigabe, Datenweitergabe | Kapitel 3 bis 6, 9 |
-| Meso | Team, Abteilung, Organisation | Prüfen, Melden, Normen befolgen oder umgehen | dieses Kapitel |
-| Makro | Öffentlichkeit, Kategorien | Zustimmung, Weitergabe, Abwendung | Abschnitt 12.4, Fallstudie 1 |
+| Micro | edge A→B | payment, approval, data disclosure | Chapters 3 to 6, 9 |
+| Meso | team, department, organization | verifying, reporting, following or circumventing norms | this chapter |
+| Macro | public, categories | assent, sharing, turning away | Section 12.4, Case Study 1 |
 
-### 7.2 Drei Stufen, auf denen Gruppen wirken
+### 7.2 Three stages at which groups act
 
-| Stufe | Frage | Modellgrößen | Leitbefund |
+| Stage | Question | Model variables | Key finding |
 | --- | --- | --- | --- |
-| Evidenzaufnahme | Welche Evidenz erreicht A? | D, R, n_eff | Gruppen teilen Quellen; D innerhalb der Gruppe ist hoch (4.7) |
-| Deutung | Wie bewertet A sie? | B, a, W, v, w± | Gruppenüberzeugungen färben Valenz und Dimension (3.4, 5.3) |
-| Prüfung | Prüft A, oder jemand anderes? | K, τ, Prüfdeckung C | Prüfung ist in Gruppen ein öffentliches Gut und wird unterversorgt |
+| Evidence intake | Which evidence reaches A? | D, R, n_eff | Groups share sources; D within the group is high (4.7) |
+| Interpretation | How does A evaluate it? | B, a, W, v, w± | Group beliefs color valence and dimension (3.4, 5.3) |
+| Verification | Does A verify, or someone else? | K, τ, verification coverage C | In groups, verification is a public good and is undersupplied |
 
-Die ersten beiden Stufen sind im Modell angelegt; neu ist hier nur der Bezug auf Gruppen. Die dritte Stufe ist neu und für Informationssicherheit die wichtigste.
+The first two stages are already part of the model; the only new element here is the reference to groups. The third stage is new and the most important one for information security.
 
-Drei Befunde gelten als gesichert und bilden Grundannahme G4 (Abschnitt 11.1): Sichtbare Urteile anderer verschieben eigene Urteile, selbst bei eindeutiger Evidenz (Asch 1951; Bond & Smith 1996). Entscheidungen anderer werden als Evidenz übernommen, auch wenn sie ihrerseits nur auf Nachahmung beruhen (Informationskaskade; Bikhchandani, Hirshleifer & Welch 1992). Und die Bereitschaft zu handeln sinkt mit der Zahl möglicher Handelnder (Darley & Latané 1968; Fischer et al. 2011).
+Three findings are considered established and form core assumption G4 (Section 11.1): Visible judgments of others shift one's own judgments, even when the evidence is unambiguous (Asch 1951; Bond & Smith 1996). Decisions of others are adopted as evidence, even if they in turn are based only on imitation (information cascade; Bikhchandani, Hirshleifer & Welch 1992). And the willingness to act decreases with the number of possible actors (Darley & Latané 1968; Fischer et al. 2011).
 
-### 7.3 Prüfung als öffentliches Gut
+### 7.3 Verification as a public good
 
-Kann eine Handlung von n Personen geprüft werden und prüft jede mit Wahrscheinlichkeit c_n, ist die Prüfdeckung:
+If an action can be verified by n persons and each verifies with probability c_n, the verification coverage is:
 
 ```math
 C = 1 - (1 - c_n)^n
 ```
 
-Empirisch sinkt c_n mit n schneller, als der Exponent gewinnt. Jeder Einzelne wendet die Prüfregel aus 6.3 nicht auf (1−E), sondern auf das Restrisiko nach der vermuteten Prüfung der anderen an. Vermuten alle dasselbe, prüft niemand. **Zwei mögliche Prüfer ohne zugewiesene Zuständigkeit sind oft weniger als eine Prüfung.**
+Empirically, c_n decreases with n faster than the larger exponent compensates. Each individual applies the verification rule from 6.3 not to (1−E), but to the residual risk after the presumed verification by the others. If everyone presumes the same, nobody verifies. **Two possible verifiers without assigned responsibility often amount to less than one verification.**
 
-Das Vier-Augen-Prinzip schützt deshalb nur unter zwei Bedingungen: Beide Prüfer sind ausdrücklich zuständig, und sie prüfen unabhängig. Sehen beide dieselbe Begründung und dieselbe Anfrage über denselben Kanal, ist ihre Abhängigkeit D nahe 1 und die zweite Prüfung nach 4.7 fast ohne Evidenzwert. Das ist Abschnitt 10.7 (korrelierte Prüfer bei Agenten), übertragen auf Menschen.
+The four-eyes principle therefore protects only under two conditions: both verifiers are explicitly responsible, and they verify independently. If both see the same justification and the same request via the same channel, their dependence D is close to 1 and, according to 4.7, the second verification has almost no evidential value. This is Section 10.7 (correlated verifiers in agents), transferred to humans.
 
-### 7.4 Schutzdelegation: „Das ist Aufgabe der IT“
+### 7.4 Protection delegation: “That's IT's job”
 
-A hält eine Kante zur Sicherheitsinstitution I (IT, Security, Compliance) im Kontext „Abwehr von Angriffen“. Diese Kante hat drei Eigenschaften:
+A holds an edge to the security institution I (IT, security, compliance) in the context “defense against attacks”. This edge has three properties:
 
-1. **Hohe Basisrate a**, institutionell begründet (Beziehungstyp institutionell, 3.2).
-2. **u nahe 1**, weil erfolgreiche Abwehr unsichtbar ist. A sieht nur, was durchkommt, und hält es für geprüft. Das ist eine Überlebensverzerrung auf der Evidenzseite.
-3. **Keine Rückmeldung bei Fehlern**, solange nichts passiert.
+1. **High base rate a**, institutionally grounded (relationship type institutional, 3.2).
+2. **u close to 1**, because successful defense is invisible. A sees only what gets through and assumes it has been checked. This is a survivorship bias on the evidence side.
+3. **No feedback on errors**, as long as nothing happens.
 
-In der Prüfregel rechnet A nicht mit E_norm(B), sondern mit dem Wert nach vermuteter Filterung:
+In the verification rule, A does not calculate with E_norm(B), but with the value after presumed filtering:
 
 ```math
 E' = 1 - (1 - E)\,(1 - \tau_I)
 ```
 
-τ_I ist die von A angenommene Erkennungsrate der Institution. Bei τ_I nahe 1 geht (1−E′) gegen 0, und **keine eigene Prüfung lohnt sich mehr, bei beliebigem Schaden L.** Tatsächlich liegt τ_I unter 1; Filter lassen einen Teil der Angriffe durch, und genau dieser Teil erreicht A.
+τ_I is the detection rate of the institution as assumed by A. With τ_I close to 1, (1−E′) tends to 0, and **no verification of one's own is worthwhile any longer, for any loss L.** In fact, τ_I is below 1; filters let part of the attacks through, and precisely this part reaches A.
 
-Die Kalibrierungslücke liegt hier nicht auf A→B, sondern auf A→I: Γ_{A→I} > 0. **Sie wirkt als Multiplikator auf alle Kanten A→B im Zuständigkeitsbereich der Institution.** Der Satz „Das ist Aufgabe der IT, uns zu schützen“ ist im Modell kein Einstellungsproblem, sondern eine rational angewandte Prüfregel mit falsch kalibriertem τ_I. Verwandt ist die Risikokompensation: Wahrgenommener Schutz erhöht das Risikoverhalten (Peltzman 1975; Wilde 1982). Abschnitt 4.2 formuliert dasselbe für Plattformen: Eine Plattformgarantie ist selbst nur eine Evidenzquelle mit eigener Unsicherheit. Für Mitarbeitende ist die IT die Plattform.
+The calibration gap here lies not on A→B but on A→I: Γ_{A→I} > 0. **It acts as a multiplier on all edges A→B within the institution's area of responsibility.** In the model, the sentence “It's IT's job to protect us” is not an attitude problem, but a rationally applied verification rule with a miscalibrated τ_I. A related phenomenon is risk compensation: perceived protection increases risk behavior (Peltzman 1975; Wilde 1982). Section 4.2 formulates the same for platforms: a platform guarantee is itself only a source of evidence with its own uncertainty. For employees, IT is the platform.
 
-Zwei Folgen nach ΔE = u·Δa (12.4): Weil u auf A→I hoch ist, trifft ein einziger sichtbarer Vorfall die Kante voll. Nach dem ersten erfolgreichen Angriff kippt „Die IT schützt uns“ in „Die IT taugt nichts“, ohne dass dazwischen eine kalibrierte Einschätzung läge. Beide Zustände sind Fehlkalibrierungen; die zweite erzeugt Security Fatigue und Umgehung (Stanton et al. 2016). Gegenmittel ist nicht mehr Vertrauen in die Institution, sondern sichtbare Evidenz über ihre Fehlerquote (Regel S22).
+Two consequences follow from ΔE = u·Δa (12.4): Because u is high on A→I, a single visible incident hits the edge in full. After the first successful attack, “IT protects us” flips to “IT is useless”, without any calibrated assessment in between. Both states are miscalibrations; the second produces security fatigue and circumvention (Stanton et al. 2016). The remedy is not more trust in the institution, but visible evidence about its error rate (Rule S22).
 
-### 7.5 Normen schlagen Wissen
+### 7.5 Norms beat knowledge
 
-Ob A prüft, hängt stärker davon ab, was A für üblich hält (deskriptive Norm), als davon, was A weiß oder was vorgeschrieben ist (Cialdini, Reno & Kallgren 1990). Im Modell setzt die deskriptive Norm die Prüfkosten K. Eine Prüfung, die im Team als Misstrauen gilt, ist sozial teuer; eine, die als selbstverständlich gilt, ist billig. **K ist eine Gruppengröße, keine individuelle.** Das präzisiert Regel S14: Billig heißt vor allem sozial billig. Herley (2009) zeigt die Kehrseite: Wo Sicherheitsregeln den Einzelnen Aufwand kosten, aber den Nutzen anderen bringen, ist ihre Ablehnung individuell rational.
+Whether A verifies depends more on what A considers usual (descriptive norm) than on what A knows or what is prescribed (Cialdini, Reno & Kallgren 1990). In the model, the descriptive norm sets the verification cost K. A verification that counts as distrust in the team is socially expensive; one that counts as a matter of course is cheap. **K is a group variable, not an individual one.** This refines Rule S14: cheap means above all socially cheap. Herley (2009) shows the flip side: where security rules cost the individual effort but bring the benefit to others, rejecting them is individually rational.
 
-Angriffsform: Normalisierung („Das machen hier alle so“, „Der Chef will das immer schnell“). Sie senkt τ und hebt K, ohne eine einzige Bewertung zu verändern. Sie ist ein Kalibrierungsangriff (8.2) auf die Prüfstufe statt auf die Bewertungsstufe.
+Attack form: normalization (“Everyone here does it this way”, “The boss always wants this done quickly”). It lowers τ and raises K without changing a single evaluation. It is a calibration attack (8.2) on the verification stage instead of the evaluation stage.
 
-### 7.6 Gruppen als Angriffsfläche
+### 7.6 Groups as an attack surface
 
-| Angriff | Gruppeneffekt | Modellgröße |
+| Attack | Group effect | Model variable |
 | --- | --- | --- |
-| Kompromittiertes Kollegenkonto | Eigengruppenprior, geringe Abzinsung innerhalb der Gruppe | G, H4 |
-| CEO-Fraud | Autorität in der Gruppe plus Verantwortungsdiffusion („Die Buchhaltung prüft das schon“) | a, C |
-| Lieferanten- und Projektbetrug | Swift Trust: hohe Basisrate bei u nahe 1 in temporären Teams (Meyerson, Weick & Kramer 1996) | a, u, V9 |
-| Normalisierung von Regelverstößen | deskriptive Norm | K, τ |
-| Interner Konsens („Wir haben das alle gesehen“) | Kaskade, D nahe 1 | n_eff |
-| Schuldzuweisung nach Vorfall | Black-Sheep-Effekt (Marques, Yzerbyt & Leyens 1988): Abweichler aus der eigenen Gruppe werden härter bewertet; Meldung unterbleibt | s, S17 |
+| Compromised colleague account | in-group prior, little discounting within the group | G, H4 |
+| CEO fraud | authority in the group plus diffusion of responsibility (“Accounting will check it”) | a, C |
+| Supplier and project fraud | swift trust: high base rate with u close to 1 in temporary teams (Meyerson, Weick & Kramer 1996) | a, u, V9 |
+| Normalization of rule violations | descriptive norm | K, τ |
+| Internal consensus (“We all saw it”) | cascade, D close to 1 | n_eff |
+| Blame after an incident | black sheep effect (Marques, Yzerbyt & Leyens 1988): deviants from one's own group are judged more harshly; reporting does not happen | s, S17 |
 
-### 7.7 Gruppen als Schutzfaktor
+### 7.7 Groups as a protective factor
 
-Dieselben Mechanismen wirken kalibrierend, wenn die Quellen unabhängig sind (D niedrig) und die Signale etwas kosten (q hoch). Ob ein Gruppeneffekt die Kalibrierung verbessert oder verschlechtert, hängt an D und q, nicht am Effekt selbst.
+The same mechanisms have a calibrating effect when the sources are independent (D low) and the signals cost something (q high). Whether a group effect improves or worsens calibration depends on D and q, not on the effect itself.
 
-| Effekt | Modellgröße | Bedingung |
+| Effect | Model variable | Condition |
 | --- | --- | --- |
-| Zugewiesene Prüfrolle | C, c_n | eine benannte Person je Handlungsklasse, kein „jemand“ |
-| Unabhängige zweite Prüfung | D der Prüfer | anderer Kanal, andere Information, eigene Zuständigkeit |
-| Psychologische Sicherheit (Edmondson 1999) | s wird gemeldet | Fehler ohne Sanktion (S17) |
-| Strukturierter Dissens, Red Team (Janis 1972 als Gegenbild) | erzwungenes s | Gruppenvariante von Consider the Opposite |
-| Weisheit der Vielen | n_eff | nur ohne gegenseitige Beeinflussung (Lorenz et al. 2011) |
-| Klatsch als Reputationssystem | G2 | D niedrig (Sommerfeld et al. 2007) |
-| Kontakt über Gruppengrenzen (Allport 1954; Pettigrew & Tropp 2006) | G durch individuelle Evidenz ersetzt | bricht die Lernfalle aus 5.4 |
+| Assigned verification role | C, c_n | one named person per action class, no “someone” |
+| Independent second verification | D of the verifiers | different channel, different information, own responsibility |
+| Psychological safety (Edmondson 1999) | s is reported | errors without sanction (S17) |
+| Structured dissent, red team (Janis 1972 as the negative example) | enforced s | group variant of Consider the Opposite |
+| Wisdom of crowds | n_eff | only without mutual influence (Lorenz et al. 2011) |
+| Gossip as a reputation system | G2 | D low (Sommerfeld et al. 2007) |
+| Contact across group boundaries (Allport 1954; Pettigrew & Tropp 2006) | G replaced by individual evidence | breaks the learning trap from 5.4 |
 
-### 7.8 Echokammer und Blase
+### 7.8 Echo chamber and bubble
 
-Nguyen (2020) unterscheidet die epistemische Blase, in der andere Quellen schlicht fehlen, von der Echokammer, in der Außenquellen vorab diskreditiert werden. Im Modell ist die Blase ein u-Zustand gegenüber Außenquellen, die Kammer ein d-Zustand. Sie verlangen entgegengesetzte Gegenmaßnahmen: Kontakt mit Außenquellen löst die Blase auf und bestätigt die Kammer. **Ein einzelner Vertrauenswert könnte beide nicht unterscheiden.** Das ist das stärkste Alltagsbeispiel für die Trennung aus 2.2 und zugleich die kollektive Form der Lernfalle aus 5.4: Groupthink (Janis 1972) ist eine Gruppe unterhalb der Interaktionsschwelle gegenüber allem, was von außen kommt.
+Nguyen (2020) distinguishes the epistemic bubble, in which other sources are simply absent, from the echo chamber, in which outside sources are discredited in advance. In the model, the bubble is a u-state towards outside sources, the chamber a d-state. They call for opposite countermeasures: contact with outside sources dissolves the bubble and confirms the chamber. **A single trust value could not distinguish between the two.** This is the strongest everyday example of the separation from 2.2 and at the same time the collective form of the learning trap from 5.4: groupthink (Janis 1972) is a group below the interaction threshold towards everything that comes from outside.
 
-### 7.9 Grenzen
+### 7.9 Limitations
 
-- **Übertragung.** Konformität, Kaskaden und Verantwortungsdiffusion sind in Labor und Feld gut belegt, aber kaum in Sicherheitskontexten gemessen. H16 bis H19 sind Übertragungen.
-- **Messbarkeit.** τ_I, c_n und die deskriptive Norm sind nur in Feldstudien schätzbar. In Simulationen sind sie Annahmen (15.2).
-- **Prüfquoten je Person sind Leistungskontrolle.** Die Messgrößen dieses Kapitels gelten je Team und Handlungsklasse, nie je Person (15.4, Regel S23).
-- **Organisation ist nicht nur Gruppe.** Hierarchie, Anreize und formale Prozesse wirken zusätzlich. Das Kapitel bildet nur den Teil ab, der sich auf Evidenz, Deutung und Prüfung zurückführen lässt.
+- **Transfer.** Conformity, cascades and diffusion of responsibility are well supported in the laboratory and in the field, but have hardly been measured in security contexts. H16 to H19 are transfers.
+- **Measurability.** τ_I, c_n and the descriptive norm can only be estimated in field studies. In simulations they are assumptions (15.2).
+- **Verification rates per person are performance monitoring.** The metrics of this chapter apply per team and action class, never per person (15.4, Rule S23).
+- **An organization is not just a group.** Hierarchy, incentives and formal processes have additional effects. The chapter covers only the part that can be traced back to evidence, interpretation and verification.
 
-## 8. Vertrauen aus der Perspektive eines Angreifers
+## 8. Trust from an Attacker's Perspective
 
-### 8.1 Vertrauen und Verwundbarkeit
+### 8.1 Trust and vulnerability
 
-Vertrauen erzeugt keine Sicherheitslücke. **Eine Verwundbarkeit entsteht, wenn eine positive Erwartung mit einem ausnutzbaren Handlungsspielraum verbunden ist.** Der Schaden hängt von der Berechtigung P und der Schadenshöhe L ab, nicht von der Höhe des Vertrauens.
+Trust does not create a security gap. **A vulnerability arises when a positive expectation is combined with an exploitable scope of action.** The loss depends on the permission P and the size of the loss L, not on the level of trust.
 
-Daten zu internem Betrug stützen das: Eigentümer und Vorstände verursachten im Median 500.000 USD Schaden, einfache Angestellte 60.000 USD (ACFE 2024). Die Daten sind korrelativ.
+Data on internal fraud support this: owners and executives caused a median loss of USD 500,000, regular employees USD 60,000 (ACFE 2024). The data are correlational.
 
-### 8.2 Vertrauensmissbrauch
+### 8.2 Abuse of trust
 
-Vertrauensmissbrauch liegt vor, wenn ein Akteur eine positive Erwartung gezielt nutzt, um gegen die Interessen oder vereinbarten Grenzen der vertrauenden Entität einen Vorteil zu erzielen.
+Abuse of trust occurs when an actor deliberately uses a positive expectation to gain an advantage against the interests or agreed limits of the trusting entity.
 
-**Eine enttäuschte Erwartung beweist keine feindliche Absicht.** Fehler, Überforderung, Missverständnisse und Interessenkonflikte erzeugen ebenfalls negative Erfahrungen. Im Modell zählt ein Kompetenzfehler deshalb anders als eine Täuschung (Abschnitt 4.4).
+**A disappointed expectation does not prove hostile intent.** Errors, overload, misunderstandings and conflicts of interest also produce negative experiences. In the model, a competence error therefore counts differently from a deception (Section 4.4).
 
-**Zwei Angriffsklassen.** Missbrauchsangriffe nutzen einen bereits eingeräumten Handlungsspielraum P aus; ihr Schaden folgt G1. Kalibrierungsangriffe verschieben stattdessen die Bewertung selbst: Sie vergrößern die Kalibrierungslücke Γ, ohne eine Berechtigung zu berühren. Social Engineering verbindet meist beide Stufen, erst kalibrieren, dann missbrauchen. Die Techniken in 8.4 wirken überwiegend als Kalibrierungsangriffe; der Missbrauch ist die anschließende Handlung. Auf der Makroebene können Kalibrierungsangriffe auch ohne Missbrauchsstufe Schaden anrichten, etwa als dauerhafte Fehlkalibrierung einer Öffentlichkeit ([Fallstudie 1](fallstudie-01-populistische-techniken.md)).
+**Two classes of attack.** Abuse attacks exploit a scope of action P that has already been granted; their loss follows G1. Calibration attacks instead shift the evaluation itself: they enlarge the calibration gap Γ without touching any permission. Social engineering usually combines both stages: first calibrate, then abuse. The techniques in 8.4 act predominantly as calibration attacks; the abuse is the subsequent action. At the macro level, calibration attacks can cause harm even without an abuse stage, for example as a lasting miscalibration of a public ([Case Study 1](case-study-01-populist-techniques.md)).
 
-### 8.3 Drei Ebenen der Analyse
+### 8.3 Three levels of analysis
 
-| Ebene | Leitfrage |
+| Level | Guiding question |
 | --- | --- |
-| Motivation | Welchen Vorteil will der Akteur erreichen? |
-| Gelegenheit | Welche Beziehung oder Berechtigung öffnet die Möglichkeit? |
-| Vorgehen | Wie lässt sich diese Beziehung missbrauchen? |
+| Motivation | What advantage does the actor want to gain? |
+| Opportunity | Which relationship or permission opens up the possibility? |
+| Approach | How can this relationship be abused? |
 
-Die Ebenen entsprechen dem Fraud Triangle (Cressey 1953). Die vermutete Motivation dient der Hypothesenbildung, nicht der Schuldzuweisung.
+The levels correspond to the Fraud Triangle (Cressey 1953). The presumed motivation serves to form hypotheses, not to assign blame.
 
-### 8.4 Angriffe als Operationen auf Modellgrößen
+### 8.4 Attacks as operations on model variables
 
-**Jede Social-Engineering-Technik lässt sich als Eingriff in eine bestimmte Modellgröße lesen.** Damit wird sichtbar, welche Gegenmaßnahme an welcher Stelle wirkt.
+**Every social engineering technique can be read as an intervention in a specific model variable.** This makes visible which countermeasure acts at which point.
 
-| Technik | Manipulierte Größe | Wirkung im Modell | Gegenmaßnahme |
+| Technique | Manipulated variable | Effect in the model | Countermeasure |
 | --- | --- | --- | --- |
-| Identitätsanmaßung, Deepfake-Stimme | Kantenzuordnung | Angreifer erbt die Evidenz r eines anderen Knotens | Identität über unabhängigen Kanal prüfen |
-| Autoritäts- oder Gruppensignal | Basisrate a | hoher Vorschuss ohne Evidenz | Berechtigung getrennt von Status prüfen |
-| Sockenpuppen, gefälschte Bewertungen | Wiederholung R, verdeckte Abhängigkeit D | deskriptives Konto wächst, normatives nicht | unabhängige Ursprünge zählen |
-| Langer Vertrauensaufbau | Konto r über billige Ereignisse | hohes E aus Evidenz mit geringer Diagnostizität q | Evidenz nach Einsatzhöhe gewichten |
-| Kontextwechsel | Übertragung r(e,c) | Vertrauen aus harmloser Domäne wird für riskante genutzt | Kontexte getrennt führen |
-| Zeitdruck, Geheimhaltung | Prüfkosten K, Genauigkeitsfokus m | Prüfung unterbleibt, Familiarität wirkt stärker | Prüfung zur Pflicht je Handlungsklasse machen |
-| Ansprache von Glaubenssätzen | Valenz v | Ereignis wird günstig gedeutet | Kontrollfragen zur eigenen Deutung |
-| Pauschales Bestreiten echter Belege | Misstrauen d gegen wahre Evidenz | Liar's Dividend (Chesney & Citron 2019) | Herkunftsnachweise, Faktenprüfung |
-| Normalisierung („Das machen hier alle so“) | deskriptive Norm, Prüfkosten K | Prüfung gilt als unüblich und unterbleibt | Prüfung als Teamnorm sichtbar machen (S23) |
-| Ausnutzen der Schutzdelegation | angenommene Erkennungsrate τ_I | A hält Durchgelassenes für geprüft | Fehlerquote der Institution sichtbar machen (S22) |
-| Kompromittiertes Kollegenkonto, Insider | Gruppenprior G, Abzinsung | Eigengruppe wird kaum abgezinst, Anfrage gilt als intern | Handlungsklasse prüfen, nicht Absendergruppe (S1) |
-| Manipulierte Reputationswerte | das Modell selbst | falsche Evidenz im normativen Konto | Evidenzherkunft protokollieren |
+| Impersonation, deepfake voice | edge attribution | attacker inherits the evidence r of another node | verify identity via an independent channel |
+| Authority or group signal | base rate a | high advance trust without evidence | verify permission separately from status |
+| Sock puppets, fake reviews | repetition R, hidden dependence D | descriptive account grows, normative does not | count independent origins |
+| Long trust-building | account r via cheap events | high E from evidence with low diagnosticity q | weight evidence by stakes |
+| Context switch | transfer r(e,c) | trust from a harmless domain is used for a risky one | keep contexts separate |
+| Time pressure, secrecy | verification cost K, accuracy focus m | verification does not happen, familiarity has a stronger effect | make verification mandatory per action class |
+| Appeal to beliefs | valence v | event is interpreted favorably | check questions on one's own interpretation |
+| Blanket denial of genuine evidence | distrust d against true evidence | Liar's Dividend (Chesney & Citron 2019) | provenance records, fact-checking |
+| Normalization (“Everyone here does it this way”) | descriptive norm, verification cost K | verification counts as unusual and does not happen | make verification visible as a team norm (S23) |
+| Exploiting protection delegation | assumed detection rate τ_I | A assumes that what got through has been checked | make the institution's error rate visible (S22) |
+| Compromised colleague account, insider | group prior G, discounting | in-group is hardly discounted, request counts as internal | verify the action class, not the sender group (S1) |
+| Manipulated reputation scores | the model itself | false evidence in the normative account | log evidence provenance |
 
-Die Techniken treten kombiniert auf. Beispiel: Eine betrügerische Identität ist monatelang auf mehreren Plattformen sichtbar, sammelt scheinbar unabhängige Empfehlungen und stellt dann unter Zeitdruck eine Zahlungsanforderung. R ist hoch, D nahe 1, q niedrig, K künstlich erhöht.
+The techniques occur in combination. Example: a fraudulent identity is visible on several platforms for months, collects seemingly independent recommendations and then makes a payment request under time pressure. R is high, D close to 1, q low, K artificially raised.
 
-## 9. Anwendung A: Vertrauensmissbrauch aufwandsarm erkennen
+## 9. Application A: Detecting Abuse of Trust with Little Effort
 
-**Das Ziel ist kalibriertes Vertrauen, weder maximales Vertrauen noch maximales Misstrauen.** Schulung soll die Kalibrierungslücke Γ in beide Richtungen verkleinern.
+**The goal is calibrated trust, neither maximum trust nor maximum distrust.** Training is meant to reduce the calibration gap Γ in both directions.
 
-### 9.1 Was die Evidenz über Schulung sagt
+### 9.1 What the evidence says about training
 
-- Menschen erkennen Lügen mit etwa 54 Prozent Trefferquote, kaum über Zufall (Bond & DePaulo 2006). Training verbessert das nur wenig (Hauch et al. 2016).
-- Jährliches Phishing-Training zeigte in einem randomisierten Versuch mit rund 19.500 Beschäftigten keinen messbaren Effekt, eingebettetes Training nur einen minimalen (Ho et al. 2025). Das Modell erklärt das so: Training wirkt auf die Bewertung des Einzelnen, das Prüfverhalten wird aber von Rolle, Norm und vermuteter Prüfung anderer bestimmt (Kapitel 7).
-- Skepsis-Spiele verschieben vor allem die Antworttendenz: Teilnehmende lehnen mehr ab, auch Wahres (Modirrousta-Galian & Higham 2023; Hoes et al. 2024).
-- Strukturierte Techniken wirken: Premortem (Mitchell, Russo & Pennington 1989), Consider the Opposite (Lord, Lepper & Preston 1984), Lateral Reading (Wineburg & McGrew 2019).
-- Debiasing-Training mit Feedback überträgt sich in Einzelstudien ins Feld (Morewedge et al. 2015; Sellier, Scopelliti & Morewedge 2019).
-- Feedback ist im Alltag einseitig: Wer ablehnt, erfährt nie, ob die Anfrage legitim war (Hogarth 2001; Fetchenhauer & Dunning 2010).
+- People detect lies with a hit rate of about 54 percent, barely above chance (Bond & DePaulo 2006). Training improves this only slightly (Hauch et al. 2016).
+- In a randomized trial with about 19,500 employees, annual phishing training showed no measurable effect, and embedded training only a minimal one (Ho et al. 2025). The model explains this as follows: training acts on the individual's evaluation, but verification behavior is determined by role, norm and the presumed verification by others (Chapter 7).
+- Skepticism games mainly shift the response bias: participants reject more, including what is true (Modirrousta-Galian & Higham 2023; Hoes et al. 2024).
+- Structured techniques work: premortem (Mitchell, Russo & Pennington 1989), Consider the Opposite (Lord, Lepper & Preston 1984), Lateral Reading (Wineburg & McGrew 2019).
+- Debiasing training with feedback transfers to the field in individual studies (Morewedge et al. 2015; Sellier, Scopelliti & Morewedge 2019).
+- In everyday life, feedback is one-sided: someone who declines never learns whether the request was legitimate (Hogarth 2001; Fetchenhauer & Dunning 2010).
 
-### 9.2 Folgerung: Handlung prüfen, nicht Täuschung erkennen
+### 9.2 Conclusion: verify the action, do not detect deception
 
-Inhaltliche Merkmale wie Rechtschreibung, Tonfall oder Bildqualität verlieren durch generative KI ihre Diagnostizität (q gegen 0). Schulung, die auf solche Merkmale zielt, veraltet.
+Content features such as spelling, tone or image quality lose their diagnosticity through generative AI (q towards 0). Training that targets such features becomes outdated.
 
-Das Modell legt eine andere Regel nahe: **Die Prüfung hängt an der Handlungsklasse, nicht am Bauchgefühl gegenüber dem Absender.** Die Schwelle θ aus Abschnitt 6.2 ist personenunabhängig. Deshalb lässt sich die Regel ohne Einschätzung der Person anwenden.
+The model suggests a different rule: **Verification depends on the action class, not on one's gut feeling about the sender.** The threshold θ from Section 6.2 is independent of the person. The rule can therefore be applied without assessing the person.
 
-| Auslöser (Handlungsklasse) | Feste Reaktion |
+| Trigger (action class) | Fixed response |
 | --- | --- |
-| Zahlung, Kontoänderung, Gutscheinkauf | Rückruf über eine selbst gewählte, bekannte Nummer |
-| Zugangsdaten, MFA-Code, Passwort-Reset | nie weitergeben; Portal selbst aufrufen |
-| Rechte- oder Rollenänderung | Freigabe durch zweite Person |
-| Herausgabe vertraulicher Daten | Berechtigung beim Dateneigner prüfen |
-| Software installieren, Fernzugriff gewähren | nur über den offiziellen IT-Kanal |
-| Kanalwechsel, Geheimhaltung, Eile | als Anlass zur Prüfung behandeln, nicht als Beweis |
+| Payment, account change, gift card purchase | call-back to a self-chosen, known number |
+| Credentials, MFA code, password reset | never pass on; open the portal oneself |
+| Change of rights or roles | approval by a second person |
+| Disclosure of confidential data | verify permission with the data owner |
+| Installing software, granting remote access | only via the official IT channel |
+| Channel switch, secrecy, urgency | treat as a reason to verify, not as proof |
 
-Die Tabelle ist ein Entwurf. Die konkreten Klassen sind je Organisation festzulegen.
+The table is a draft. The specific classes are to be defined per organization.
 
-### 9.3 Das Kurzverfahren unter Zeitdruck
+### 9.3 The quick procedure under time pressure
 
-Anliegen konkretisieren, Schaden abschätzen, unabhängig prüfen, Handlungsspielraum begrenzen.
+Make the request concrete, estimate the loss, verify independently, limit the scope of action.
 
-Beispiel: Eine vermeintliche Führungskraft fordert dringend eine Zahlung. Die Frage lautet nicht „Vertraue ich dieser Person?“, sondern:
+Example: A supposed manager urgently requests a payment. The question is not “Do I trust this person?”, but:
 
-1. Identität über einen bekannten Kanal prüfen.
-2. Berechtigung zur Zahlungsanforderung prüfen.
-3. Sachliche Richtigkeit der Zahlung verifizieren.
-4. Bei unzureichender Evidenz zurückstellen oder weitere Freigaben einholen.
+1. Verify identity via a known channel.
+2. Verify permission for the payment request.
+3. Verify the factual correctness of the payment.
+4. If the evidence is insufficient, postpone or obtain further approvals.
 
-**Zeitdruck ist ein Anlass zu erhöhter Sorgfalt, kein Beweis für einen Angriff.**
+**Time pressure is a reason for increased care, not proof of an attack.**
 
-![Die Handlung löst die Prüfung aus, nicht das Bauchgefühl](figures/fig-07-kurzverfahren.png)
+![The action triggers the verification, not the gut feeling](figures/fig-07-quick-procedure.png)
 
-*Abbildung 7: Kurzverfahren nach Abschnitt 9.3 · zwei Entscheidungen, drei Ausgänge*
+*Figure 7: Quick procedure according to Section 9.3 · two decisions, three outcomes*
 
-Die erste Entscheidung fragt nur nach der Art der Handlung. Wie vertrauenswürdig der Absender wirkt, spielt an dieser Stelle keine Rolle.
+The first decision asks only about the type of action. How trustworthy the sender appears plays no role at this point.
 
-### 9.4 Die fünf Leitfragen für Entscheidungen ohne Zeitdruck
+### 9.4 The five guiding questions for decisions without time pressure
 
-| Frage | Erkenntnisziel | Modellgröße |
+| Question | Aim of inquiry | Model variable |
 | --- | --- | --- |
-| Was genau soll ich glauben oder erlauben? | konkrete Handlung und Kontext | x, c |
-| Wer gewinnt dadurch was? | Anreize und Interessenkonflikte | Motivation |
-| Was könnte schiefgehen? | Schaden und Umkehrbarkeit | L |
-| Welche unabhängige Evidenz existiert? | Belastbarkeit | D, q, u |
-| Was ist der kleinste vertretbare nächste Schritt? | Begrenzung des Spielraums | P |
+| What exactly am I supposed to believe or allow? | specific action and context | x, c |
+| Who gains what from it? | incentives and conflicts of interest | motivation |
+| What could go wrong? | loss and reversibility | L |
+| What independent evidence exists? | robustness | D, q, u |
+| What is the smallest justifiable next step? | limiting the scope | P |
 
-Die Fragen sind eine Synthese aus Premortem, Lateral Reading und Least Privilege, keine neue Erfindung.
+The questions are a synthesis of premortem, Lateral Reading and Least Privilege, not a new invention.
 
-### 9.5 Kontrollfragen gegen falsches Misstrauen
+### 9.5 Check questions against false distrust
 
-- Welche harmlose Erklärung gibt es?
-- Welche Beobachtung würde meinen Verdacht widerlegen?
-- Würde ich dieselben Hinweise bei einer sympathischen Person genauso bewerten?
-- Kenne ich die Behauptung aus mehreren unabhängigen Quellen oder nur oft?
-- Welche meiner Überzeugungen färbt diese Einschätzung?
+- What harmless explanation is there?
+- Which observation would refute my suspicion?
+- Would I evaluate the same cues in the same way for a likeable person?
+- Do I know the claim from several independent sources, or have I just heard it often?
+- Which of my beliefs colors this assessment?
 
-### 9.6 Gestaltungsprinzipien für die Schulung
+### 9.6 Design principles for training
 
-1. **Wenige Auslöser, feste Reaktion.** Wenn-dann-Regeln statt allgemeiner Wachsamkeit.
-2. **Prüfung billig machen.** Die Prüfregel aus 6.3 greift nur bei kleinen Kosten K. Ein Rückruf muss in unter einer Minute möglich und sozial akzeptiert sein.
-3. **Symmetrisch üben.** Übungen enthalten legitime und bösartige Fälle, mit Rückmeldung zu beiden Fehlerarten.
-4. **Unterscheidung messen.** Erfolgsmaß ist die Trennschärfe, nicht die Ablehnungsquote.
-5. **Struktur vor Wachsamkeit.** Wo ein Fehler teuer ist, schützt eine technische oder organisatorische Kontrolle, nicht die Aufmerksamkeit einer Person.
-6. **Reibung begrenzen.** Jede Regel verbraucht Compliance-Budget (Beautement, Sasse & Wonham 2008). Zu viele Regeln erzeugen Umgehung und Security Fatigue (Stanton et al. 2016).
-7. **Rolle und Norm statt Appell.** Jede Handlungsklasse hat eine benannte Prüfrolle, und die Prüfquote des Teams ist sichtbar. Ohne beides bleibt die Prüfung ein öffentliches Gut, das niemand bereitstellt (7.3, 7.5).
+1. **Few triggers, fixed response.** If-then rules instead of general vigilance.
+2. **Make verification cheap.** The verification rule from 6.3 only applies when the cost K is small. A call-back must be possible in under a minute and be socially accepted.
+3. **Practice symmetrically.** Exercises contain legitimate and malicious cases, with feedback on both types of error.
+4. **Measure discrimination.** The measure of success is discriminability, not the rejection rate.
+5. **Structure before vigilance.** Where an error is expensive, a technical or organizational control protects, not a person's attention.
+6. **Limit friction.** Every rule consumes compliance budget (Beautement, Sasse & Wonham 2008). Too many rules produce circumvention and security fatigue (Stanton et al. 2016).
+7. **Role and norm instead of appeal.** Every action class has a named verification role, and the team's verification rate is visible. Without both, verification remains a public good that nobody provides (7.3, 7.5).
 
-Diese Prinzipien sind aus Modell und Literatur abgeleitet. Ihre Wirksamkeit als Paket ist ungeprüft (Hypothese H12).
+These principles are derived from the model and the literature. Their effectiveness as a package is untested (hypothesis H12).
 
-### 9.7 Messgrößen
+### 9.7 Metrics
 
-| Messgröße | Bedeutung |
+| Metric | Meaning |
 | --- | --- |
-| Trennschärfe d′ | Unterscheidung legitimer und bösartiger Anfragen |
-| Kriterium c | generelle Neigung zum Ablehnen |
-| Meldequote und Meldezeit | Anteil und Geschwindigkeit gemeldeter Angriffe |
-| Prüfquote je Handlungsklasse | Anteil ausgelöster Fälle mit tatsächlicher Prüfung |
-| Zeitaufwand je Prüfung | Reibung |
-| Kalibrierung (Brier-Score) | Übereinstimmung von Sicherheit und Trefferquote |
-| Prüfdeckung C je Handlungsklasse | Anteil der Fälle mit mindestens einer unabhängigen Prüfung, gemessen je Team (7.3) |
-| Angenommene Erkennungsrate τ_I | wie stark Mitarbeitende der Institution die Prüfung überlassen (7.4) |
+| Discriminability d′ | distinguishing legitimate from malicious requests |
+| Criterion c | general tendency to reject |
+| Reporting rate and reporting time | share and speed of reported attacks |
+| Verification rate per action class | share of triggered cases with actual verification |
+| Time spent per verification | friction |
+| Calibration (Brier score) | agreement between confidence and hit rate |
+| Verification coverage C per action class | share of cases with at least one independent verification, measured per team (7.3) |
+| Assumed detection rate τ_I | how strongly employees leave verification to the institution (7.4) |
 
-### 9.8 Entscheidungsprotokolle
+### 9.8 Decision logs
 
-Für seltene, folgenreiche Entscheidungen hilft ein kurzes Protokoll.
+For rare, consequential decisions, a short log helps.
 
-- **Vorher:** Erwartung, vorliegende Evidenz, eigene Sicherheit in Prozent, mögliche Glaubenssätze.
-- **Bei der Entscheidung:** gewährte Rechte, akzeptiertes Risiko.
-- **Nachher:** tatsächlicher Verlauf, relevante Hinweise, falsche Annahmen, wirklich unabhängige Informationen.
-- **Lernen:** War die Entscheidung methodisch gut, unabhängig vom Ergebnis? Hat Wiederholung die Einschätzung beeinflusst?
+- **Before:** expectation, available evidence, own confidence in percent, possible beliefs.
+- **At the decision:** rights granted, risk accepted.
+- **After:** actual course of events, relevant cues, false assumptions, truly independent information.
+- **Learning:** Was the decision methodologically sound, regardless of the outcome? Did repetition influence the assessment?
 
-Das Protokoll sollte auch abgelehnte Fälle nachverfolgen, um die Lernfalle aus 5.4 zu umgehen. **Eine gute Entscheidung kann schlecht ausgehen. Ein gutes Ergebnis beweist keine gute Entscheidung.**
+The log should also track declined cases in order to avoid the learning trap from 5.4. **A good decision can turn out badly. A good outcome does not prove a good decision.**
 
-## 10. Anwendung B: Mensch-Agent- und Maschine-Maschine-Vertrauen
+## 10. Application B: Human-agent and machine-machine trust
 
-Dasselbe Modell gilt für technische Knoten. Der Unterschied: **Bei Maschinen lassen sich Evidenz, Zeitverfall und Berechtigung explizit implementieren statt nur beschreiben.** Dieses Kapitel ist eine Ableitung aus dem Modell und noch nicht empirisch geprüft.
+The same model applies to technical nodes. The difference: **With machines, evidence, temporal decay and permission can be implemented explicitly instead of only described.** This chapter is a derivation from the model and has not yet been empirically tested.
 
-### 10.1 Drei Richtungen
+### 10.1 Three directions
 
-| Richtung | Kernproblem | Hauptrisiko |
+| Direction | Core problem | Main risk |
 | --- | --- | --- |
-| Mensch vertraut Agent | Kalibrierung | Übervertrauen in flüssige Ausgaben, Untervertrauen nach Einzelfehlern |
-| Agent vertraut Mensch oder Inhalt | Autorität einer Anweisung | eingeschleuste Anweisungen in gelesenen Inhalten, gefälschte Auftraggeber |
-| Maschine vertraut Maschine | Identität, Delegation, Ketten | zu weite Rechte, transitive Ketten, korrelierte Prüfer |
+| Human trusts agent | Calibration | Overtrust in fluent outputs, undertrust after individual errors |
+| Agent trusts human or content | Authority of an instruction | injected instructions in content read, forged principals |
+| Machine trusts machine | Identity, delegation, chains | overly broad rights, transitive chains, correlated verifiers |
 
-### 10.2 Vertrauen etablieren
+### 10.2 Establishing trust
 
-Vertrauen in eine technische Entität entsteht in sechs Schritten:
+Trust in a technical entity arises in six steps:
 
-1. Identität unabhängig prüfen, kryptografisch statt über Selbstauskunft.
-2. Zugangsmittel eindeutig zuordnen.
-3. Aktuellen Besitz oder Kontrolle nachweisen.
-4. Herkunft und Zustand belegen: welches Modell, welche Version, welche Werkzeuge, welche Konfiguration.
-5. Berechtigungen zunächst eng begrenzen.
-6. Vertrauen anhand verifizierten Verhaltens anpassen.
+1. Verify identity independently, cryptographically rather than via self-disclosure.
+2. Attribute credentials unambiguously.
+3. Prove current possession or control.
+4. Document provenance and state: which model, which version, which tools, which configuration.
+5. Initially restrict permissions narrowly.
+6. Adjust trust on the basis of verified behavior.
 
-Schritt 1 bis 4 setzen nur die Basisrate a. Evidenz r entsteht erst aus geprüften Ergebnissen. **Ein korrekt ausgewiesener Agent startet mit u = 1.**
+Steps 1 to 4 set only the base rate a. Evidence r arises only from verified results. **A correctly identified agent starts with u = 1.**
 
-### 10.3 Zuordnung der Modellgrößen zu technischen Mechanismen
+### 10.3 Mapping the model variables to technical mechanisms
 
-| Modellgröße | Technische Entsprechung (Beispiele) |
+| Model variable | Technical counterpart (examples) |
 | --- | --- |
-| Kantenzuordnung (Identität) | gegenseitige Authentifizierung, Workload-Identitäten, signierte Anfragen |
-| Basisrate a | Attestierung von Anbieter, Modell und Laufzeitumgebung |
-| Evidenzkonten r, s | protokollierte, nachgeprüfte Aufgabenergebnisse je Aufgabentyp |
-| Diagnostizität q | schwer fälschbare Belege: Signaturen, reproduzierbare Ergebnisse, bestandene Tests |
-| Vergessensfaktor λ | Gültigkeitsdauer von Zugangsmitteln, Intervall der erneuten Attestierung |
-| Kontext c | Aufgabentyp und Datenklasse; Evidenz gilt nicht kontextübergreifend |
-| Berechtigung P | eng geschnittene, kurzlebige Tokens und Fähigkeiten |
-| Schwelle θ | Freigaberichtlinie je Handlungsklasse |
-| Quellenabhängigkeit D | Verschiedenheit der Prüfer: anderes Modell, anderer Anbieter, Mensch |
-| Abzinsung in Ketten | Delegation darf Rechte nur einengen, nie erweitern |
+| Edge attribution (identity) | mutual authentication, workload identities, signed requests |
+| Base rate a | attestation of provider, model and runtime environment |
+| Evidence accounts r, s | logged, verified task results per task type |
+| Diagnosticity q | hard-to-forge evidence: signatures, reproducible results, passed tests |
+| Forgetting factor λ | validity period of credentials, interval of re-attestation |
+| Context c | task type and data class; evidence does not apply across contexts |
+| Permission P | narrowly scoped, short-lived tokens and capabilities |
+| Threshold θ | approval policy per action class |
+| Source dependence D | diversity of verifiers: different model, different provider, human |
+| Discounting in chains | delegation may only narrow rights, never extend them |
 
-Die Grundsätze entsprechen Least Privilege (Saltzer & Schroeder 1975) und Zero Trust (NIST SP 800-207). Neu ist die Kopplung an ein Evidenzkonto mit Zeitverfall.
+The principles correspond to Least Privilege (Saltzer & Schroeder 1975) and Zero Trust (NIST SP 800-207). What is new is the coupling to an evidence account with temporal decay.
 
-### 10.4 Wiederkehrend verifizieren
+### 10.4 Verifying recurrently
 
-Ohne neue Evidenz wächst die Unsicherheit. Hat eine Kante zum Zeitpunkt der letzten Prüfung die Evidenzmenge n₀ = r + s, gilt danach:
+Without new evidence, uncertainty grows. If an edge has the amount of evidence n₀ = r + s at the time of the last verification, the following holds afterwards:
 
 ```math
 u(t) = \frac{W}{W + n_0\,\lambda^{t}}
 ```
 
-Verlangt eine Handlungsklasse höchstens die Unsicherheit u_max, folgt das späteste Prüfintervall:
+If an action class tolerates at most uncertainty u_max, the latest re-verification interval follows:
 
 ```math
 t^{*} = \frac{\ln\!\left(\dfrac{W\,(1-u_{\max})}{u_{\max}\,n_0}\right)}{\ln \lambda}
 ```
 
-Rechenbeispiel mit illustrativen Werten W = 2, n₀ = 40, λ = 0,9 pro Tag:
+Worked example with illustrative values W = 2, n₀ = 40, λ = 0.9 per day:
 
-| Handlungsklasse | u_max | Prüfintervall t* |
+| Action class | u_max | Re-verification interval t* |
 | --- | --- | --- |
-| niedriges Risiko | 0,2 | rund 15 Tage |
-| hohes Risiko | 0,1 | rund 8 Tage |
+| low risk | 0.2 | about 15 days |
+| high risk | 0.1 | about 8 days |
 
-![Riskante Rechte müssen etwa doppelt so oft neu geprüft werden](figures/fig-08-pruefintervall.png)
+![Risky rights must be re-verified about twice as often](figures/fig-08-reverification-interval.png)
 
-*Abbildung 8: Prüfintervall nach Abschnitt 10.4 · illustrative Parameter, zwei Risikoklassen*
+*Figure 8: Re-verification interval according to Section 10.4 · illustrative parameters, two risk classes*
 
-Die Kurve zeigt, wie die Unsicherheit ohne neue Evidenz wächst. Jede Risikoklasse schneidet sie an einer anderen Stelle; dort ist die nächste Prüfung fällig.
+The curve shows how uncertainty grows without new evidence. Each risk class intersects it at a different point; that is where the next verification is due.
 
-Drei Regeln folgen:
+Three rules follow:
 
-- **Riskantere Berechtigungen brauchen kürzere Prüfintervalle.**
-- Mehr geprüfte Evidenz verlängert das Intervall, aber nur logarithmisch.
-- Ein Versions- oder Konfigurationswechsel macht aus dem Agenten einen teilweise neuen Knoten. Die alte Evidenz ist abzuwerten, bis neue vorliegt.
+- **Riskier permissions need shorter re-verification intervals.**
+- More verified evidence lengthens the interval, but only logarithmically.
+- A change of version or configuration turns the agent into a partly new node. The old evidence is to be devalued until new evidence is available.
 
-### 10.5 Mensch vertraut Agent
+### 10.5 Human trusts agent
 
-Menschen nutzen Automation zu viel oder zu wenig (Parasuraman & Riley 1997). Auch bei zuverlässigen Systemen lässt die Überwachung nach (Parasuraman & Manzey 2010). Angemessenes Vertrauen braucht Information über Leistung, Arbeitsweise und Zweck des Systems (Lee & See 2004).
+People use automation too much or too little (Parasuraman & Riley 1997). Even with reliable systems, monitoring declines (Parasuraman & Manzey 2010). Appropriate trust needs information about the performance, process and purpose of the system (Lee & See 2004).
 
-Flüssige, sichere Formulierung kostet ein Sprachmodell nichts. **Sie hat die Diagnostizität q nahe 0 und darf kein Vertrauen begründen.** Daraus folgt für die Gestaltung:
+Fluent, confident wording costs a language model nothing. **It has a diagnosticity q close to 0 and must not justify trust.** For design, this means:
 
-- Vertrauen je Aufgabentyp führen, nicht je Agent.
-- Evidenz nur aus nachgeprüften Ergebnissen bilden.
-- Unsicherheit und Belege sichtbar machen: Quellen, Tests, Zwischenschritte.
-- Freigaben nach Schadenshöhe staffeln: umkehrbare Handlungen mit kleinem L autonom, unumkehrbare mit großem L nur mit menschlicher Freigabe.
+- Keep trust per task type, not per agent.
+- Form evidence only from verified results.
+- Make uncertainty and evidence visible: sources, tests, intermediate steps.
+- Stagger approvals by size of the loss: reversible actions with small L autonomously, irreversible ones with large L only with human approval.
 
-### 10.6 Agent vertraut Mensch oder Inhalt
+### 10.6 Agent trusts human or content
 
-Für einen Agenten ist jede gelesene Webseite, E-Mail oder Datei eine Quelle mit unbekannter Absicht. Die Trennung aus 6.1 gilt streng:
+For an agent, every web page, email or file it reads is a source with unknown intent. The separation from 6.1 applies strictly:
 
-- **Identität:** Anweisungen gelten nur vom authentifizierten Auftraggeber über den vorgesehenen Kanal.
-- **Autorisierung:** **Inhalte aus Werkzeugen sind Daten und tragen keine Weisungsbefugnis.**
-- **Richtigkeit:** Auch eine berechtigte Anweisung wird gegen Handlungsklasse und Schwelle geprüft.
+- **Identity:** Instructions are valid only from the authenticated principal via the designated channel.
+- **Authorization:** **Content from tools is data and carries no authority to instruct.**
+- **Correctness:** Even an authorized instruction is checked against action class and threshold.
 
-Eine eingeschleuste Anweisung ist im Modell eine Identitätsanmaßung nach 8.4: Der Inhalt beansprucht die Kante des Auftraggebers.
+In the model, an injected instruction is an impersonation according to 8.4: The content claims the principal's edge.
 
-### 10.7 Maschine vertraut Maschine
+### 10.7 Machine trusts machine
 
-- **Keine Transitivität.** Vertraut A dem Dienst B, gilt das nicht für dessen Unterauftragnehmer C. Der Abzinsungsoperator aus 4.6 lässt Unsicherheit mit jedem Kettenglied wachsen. Praktisch begrenzt das die zulässige Delegationstiefe.
-- **Einengende Delegation.** Weitergegebene Rechte sind höchstens so weit wie die eigenen und zeitlich kürzer.
-- **Unabhängige Prüfer.** Zwei Instanzen desselben Modells sind korrelierte Quellen mit D nahe 1. Eine Gegenprüfung zählt nur bei verschiedenem Modell, anderer Datenbasis oder menschlichem Prüfer als zweite Evidenz. Für menschliche Prüfer gilt dasselbe (7.3).
-- **Sybil-Resistenz.** Viele zustimmende Agenten gleichen Ursprungs zählen als eine Quelle (Douceur 2002).
-- **Widerruf.** Negative Evidenz zur Integrität entzieht Berechtigungen sofort und kontextübergreifend.
-- **Evidenzherkunft.** Jeder Eintrag im Evidenzkonto trägt Quelle und Prüfart, damit das Konto selbst prüfbar bleibt.
+- **No transitivity.** If A trusts service B, this does not apply to B's subcontractor C. The discounting operator from 4.6 makes uncertainty grow with each link in the chain. In practice, this limits the permissible delegation depth.
+- **Narrowing delegation.** Rights passed on are at most as broad as one's own and shorter in time.
+- **Independent verifiers.** Two instances of the same model are correlated sources with D close to 1. A cross-check counts as second evidence only with a different model, a different data basis or a human verifier. The same applies to human verifiers (7.3).
+- **Sybil resistance.** Many agreeing agents of the same origin count as one source (Douceur 2002).
+- **Revocation.** Negative evidence on integrity withdraws permissions immediately and across contexts.
+- **Evidence provenance.** Every entry in the evidence account carries source and type of verification, so that the account itself remains verifiable.
 
-### 10.8 Agenten als kritische Mitdenker
+### 10.8 Agents as critical co-thinkers
 
-Ein Agent kann für Menschen das normative Konto führen: unabhängige Ursprünge zählen, Handlungsklassen erkennen, die Prüfregel anwenden. **Er bewertet dabei die Evidenzlage einer Anfrage, nicht den Wert einer Person.** Diese Grenze ist auch rechtlich geboten (Abschnitt 15.4).
+An agent can keep the normative account for people: count independent origins, recognize action classes, apply the verification rule. **In doing so, it assesses the evidential situation of a request, not the worth of a person.** This boundary is also legally required (Section 15.4).
 
-## 11. Grundannahmen und Hypothesen
+## 11. Core assumptions and hypotheses
 
-Vier Aussagen gelten nach der Literaturprüfung als gesichert und sind Grundannahmen. Elf Hypothesen betreffen das Modell selbst, acht die beiden Anwendungsprobleme, die Informationssicherheit und die Organisation.
+After the literature review, four statements are considered established and are core assumptions. Eleven hypotheses concern the model itself, eight the two application problems, information security and the organization.
 
-### 11.1 Grundannahmen
+### 11.1 Core assumptions
 
-| ID | Grundannahme | Bezug im Modell | Zentrale Belege |
+| ID | Core assumption | Reference in the model | Key evidence |
 | --- | --- | --- | --- |
-| G1 | Der Schaden eines Vertrauensmissbrauchs hängt vom eingeräumten Handlungsspielraum und der Verwundbarkeit ab, nicht von der Höhe des Vertrauens. | Abschnitte 6.2 und 8.1 | Mayer et al. 1995; Saltzer & Schroeder 1975; ACFE 2024 |
-| G2 | Vertrauensinformationen breiten sich über soziale Beziehungen aus, Misstrauen stärker als Vertrauen. | Abschnitt 4.6 | Burt & Knez 1995; Sommerfeld et al. 2007 |
-| G3 | Wiederholung erhöht die wahrgenommene Wahrheit von Aussagen ohne neue Evidenz. | Abschnitt 4.7 | Hasher et al. 1977; Ye et al. 2026 |
-| G4 | In Gruppen werden Evidenzaufnahme, Deutung und Prüfverhalten sozial gebildet: Sichtbare Urteile anderer verschieben eigene Urteile, Entscheidungen anderer werden als Evidenz übernommen, und die Bereitschaft zu handeln sinkt mit der Zahl möglicher Handelnder. | Kapitel 7 | Asch 1951; Bond & Smith 1996; Bikhchandani et al. 1992; Darley & Latané 1968; Fischer et al. 2011 |
+| G1 | The loss from an abuse of trust depends on the scope of action granted and the vulnerability, not on the level of trust. | Sections 6.2 and 8.1 | Mayer et al. 1995; Saltzer & Schroeder 1975; ACFE 2024 |
+| G2 | Trust information propagates through social relationships, distrust more strongly than trust. | Section 4.6 | Burt & Knez 1995; Sommerfeld et al. 2007 |
+| G3 | Repetition increases the perceived truth of statements without new evidence. | Section 4.7 | Hasher et al. 1977; Ye et al. 2026 |
+| G4 | In groups, evidence intake, interpretation and verification behavior are formed socially: Visible judgments of others shift one's own judgments, decisions of others are adopted as evidence, and the willingness to act decreases with the number of possible actors. | Chapter 7 | Asch 1951; Bond & Smith 1996; Bikhchandani et al. 1992; Darley & Latané 1968; Fischer et al. 2011 |
 
-### 11.2 Hypothesen zum Modell
+### 11.2 Hypotheses on the model
 
-**H1 – Diagnostizität und Herkunftsnachweise.** Sinken die Kosten, ein überzeugendes Ergebnis zu erzeugen, verlieren Ergebnismerkmale ihre Aussagekraft für Vertrauenswürdigkeit. Herkunfts- und Prozessnachweise gewinnen nur dann an Gewicht, wenn sie für Täuschende teuer und für Empfänger verständlich sind. Pauschale KI-Kennzeichnung senkt auch die Glaubwürdigkeit wahrer Inhalte.
+**H1 – Diagnosticity and provenance evidence.** If the cost of producing a convincing result falls, features of the result lose their informative value for trustworthiness. Provenance and process evidence gain weight only if they are expensive for deceivers and understandable for recipients. Blanket AI labeling also lowers the credibility of true content.
 
-**H2 – Gruppen als schwacher Prior.** Gruppenzugehörigkeit bestimmt die Basisrate einer neuen Vertrauenskante. Ihr Einfluss sinkt mit jeder individuellen Beobachtung und sagt das Verhalten Einzelner nur schwach vorher. Das betrifft die Bewertung; auf Evidenzaufnahme und Prüfverhalten wirken Gruppen stark (G4, Kapitel 7).
+**H2 – Groups as a weak prior.** Group membership determines the base rate of a new trust edge. Its influence decreases with each individual observation and predicts the behavior of individuals only weakly. This concerns the assessment; on evidence intake and verification behavior, groups have a strong effect (G4, Chapter 7).
 
-**H4 – Abgezinste Ausbreitung.** Entlang einer Empfehlungskette sinkt gerechtfertigtes Vertrauen und wächst die Unsicherheit. Menschen zinsen Empfehlungen weniger stark ab, als es die Abhängigkeit der Quellen verlangt.
+**H4 – Discounted propagation.** Along a referral chain, justified trust decreases and uncertainty grows. People discount referrals less strongly than the dependence of the sources requires.
 
-- **H4a – Eigengruppe.** Die Abzinsung ist am geringsten, wenn der Empfehlende zur Eigengruppe gehört. Kompromittierte Kollegenkonten und interne Weiterleitungen werden deshalb kaum geprüft.
+- **H4a – In-group.** Discounting is lowest when the referrer belongs to the in-group. Compromised colleague accounts and internal forwards are therefore hardly verified.
 
-**H5 – Erfahrung wirkt auf Prioren und Lernparameter.** Prägende Erfahrungen verändern kontextspezifische Prioren und Lernparameter stärker als die generalisierte Vertrauensneigung. Als unberechenbar erlebte Umwelten erhöhen die Lernrate.
+**H5 – Experience acts on priors and learning parameters.** Formative experiences change context-specific priors and learning parameters more strongly than the generalized propensity to trust. Environments experienced as unpredictable increase the learning rate.
 
-**H5a – Bedingte Asymmetrie.** Negative Evidenz wiegt schwerer als positive bei Integritätsverletzungen, besonders mit Täuschung. Bei Kompetenzfehlern gilt das nicht. Umfangreiche positive Vorevidenz puffert einzelne negative Ereignisse.
+**H5a – Conditional asymmetry.** Negative evidence weighs more heavily than positive evidence in integrity violations, especially with deception. This does not apply to competence errors. Extensive positive prior evidence buffers individual negative events.
 
-**H6 – Getrennte Prüfungen.** Wer Identität, Autorisierung und sachliche Richtigkeit getrennt prüft und Berechtigungen an die Schadenshöhe statt an das Vertrauen in die Person bindet, trifft weniger riskante Fehlentscheidungen bei vertretbarem Zusatzaufwand.
+**H6 – Separate verifications.** Anyone who verifies identity, authorization and factual correctness separately and ties permissions to the size of the loss instead of to trust in the person makes fewer risky wrong decisions at a justifiable additional effort.
 
-**H7 – Handlungsgebundenes adversariales Denken.** Strukturiertes, an Handlungsklassen gebundenes adversariales Denken verbessert die Trennschärfe bei riskanten Entscheidungen. Allgemein gesteigerte Skepsis verschiebt nur die Antworttendenz und erhöht falsches Misstrauen.
+**H7 – Action-bound adversarial thinking.** Structured adversarial thinking bound to action classes improves discriminability in risky decisions. Generally increased skepticism only shifts the response bias and increases false distrust.
 
-**H8 – Trainierbarkeit unter Bedingungen.** Vertrauenskompetenz ist trainierbar, wenn das Training explizite Regeln vermittelt, beide Fehlerarten zeitnah rückmeldet und realitätsnah wiederholt wird. Ohne diese Bedingungen bleiben Effekte klein und kurzlebig. Zusätzliche Bedingung: Die Gruppennorm trägt die Prüfung (7.5); gegen die Norm bleibt individuelles Training wirkungslos.
+**H8 – Trainability under conditions.** Trust competence is trainable if the training conveys explicit rules, gives prompt feedback on both types of error and is repeated realistically. Without these conditions, effects remain small and short-lived. Additional condition: The group norm supports verification (7.5); against the norm, individual training remains ineffective.
 
-**H9 – Übertragung von Familiarität auf Entitäten.** Wiederholte Begegnung mit einer Quelle, Organisation oder einem Agenten erhöht deren subjektive Vertrauensbewertung ohne neue unabhängige Evidenz. Der Effekt wächst abnehmend mit der Häufigkeit, sinkt bei Genauigkeitsfokus und kehrt sich bei Übersättigung um.
+**H9 – Transfer of familiarity to entities.** Repeated encounters with a source, organization or agent increase its subjective trust rating without new independent evidence. The effect grows with diminishing returns as frequency increases, decreases with accuracy focus and reverses with oversaturation.
 
-**H10 – Glaubenssätze als Prior und Deutungsfilter.** Glaubenssätze bestimmen Basisrate und Priorstärke und färben die Deutung mehrdeutiger Ereignisse. Bei eindeutigen Ereignissen aktualisieren Personen mit verschiedenen Glaubenssätzen in dieselbe Richtung, aber verschieden stark.
+**H10 – Beliefs as prior and interpretive filter.** Beliefs determine base rate and prior strength and color the interpretation of ambiguous events. With unambiguous events, people with different beliefs update in the same direction, but to different degrees.
 
-**H11 – Asymmetrische Rückkopplung.** Misstrauen stabilisiert sich selbst, weil es korrigierende Erfahrungen verhindert. Vertrauen wird leichter korrigiert, weil Enttäuschungen beobachtet werden. Kanten ändern sich schneller als Kontextprioren, diese schneller als Glaubenssätze. Die Rückkopplung gilt auch kollektiv: Gruppen, die Außenquellen diskreditieren, stabilisieren ihr Misstrauen als Ganze (7.8).
+**H11 – Asymmetric feedback loop.** Distrust stabilizes itself because it prevents corrective experiences. Trust is corrected more easily because disappointments are observed. Edges change faster than context priors, these faster than beliefs. The feedback loop also applies collectively: Groups that discredit outside sources stabilize their distrust as a whole (7.8).
 
-### 11.3 Hypothesen zu den Anwendungen
+### 11.3 Hypotheses on the applications
 
-**H12 – Auslöserbasierte Schulung.** Eine Schulung mit wenigen Handlungsauslösern und fester, aufwandsarmer Prüfreaktion senkt die Erfolgsquote von Social-Engineering-Angriffen stärker als merkmalbasiertes Awareness-Training, ohne die Ablehnung legitimer Anfragen zu erhöhen. Der Effekt tritt nur in Verbindung mit zugewiesenen Prüfrollen und einer sichtbaren Teamnorm ein; als reine Individualschulung bleibt er klein (Kapitel 7).
+**H12 – Trigger-based training.** Training with only a few action triggers and a fixed, low-effort verification response lowers the success rate of social engineering attacks more than feature-based awareness training, without increasing the rejection of legitimate requests. The effect occurs only in combination with assigned verification roles and a visible team norm; as purely individual training it remains small (Chapter 7).
 
-**H13 – Zeitverfall und Wiederverifikation.** Vertrauen ohne neue Evidenz kehrt zur Basisrate zurück, während die Unsicherheit wächst. Systeme, die Berechtigungen an gealterte Evidenz koppeln und nach Risiko gestaffelt neu prüfen, begrenzen Schäden besser als Systeme mit einmaliger Vertrauensvergabe.
+**H13 – Temporal decay and re-verification.** Trust without new evidence returns to the base rate while uncertainty grows. Systems that couple permissions to aged evidence and re-verify staggered by risk limit losses better than systems with one-time granting of trust.
 
-**H14 – Kalibriertes Agentenvertrauen.** Menschen kalibrieren ihr Vertrauen in Agenten besser, wenn Evidenz je Aufgabentyp aus geprüften Ergebnissen sichtbar ist, als wenn sie nur die Ausgabe sehen. Gegenprüfung durch korrelierte Agenten verbessert die Fehlererkennung kaum.
+**H14 – Calibrated agent trust.** People calibrate their trust in agents better when evidence per task type from verified results is visible than when they see only the output. Cross-checking by correlated agents hardly improves error detection.
 
-**H15 – Vertrauensdimensionen und Schutzziele.** Die vier Vertrauensdimensionen und die Schutzziele der Informationssicherheit beschreiben dasselbe Risiko von zwei Seiten: Die Dimensionen sind Eigenschaften des Akteurs B und bestimmen die Eintrittswahrscheinlichkeit, die Schutzziele sind Eigenschaften des Assets und bestimmen die Schadensart. Sie bilden eine Matrix, keine Abbildung aufeinander.
+**H15 – Trust dimensions and security objectives.** The four trust dimensions and the security objectives of information security describe the same risk from two sides: The dimensions are properties of actor B and determine the probability of occurrence, the security objectives are properties of the asset and determine the type of loss. They form a matrix, not a mapping onto each other.
 
-- **H15a – Drei Paare, eine Lücke.** Wohlwollen und Vertraulichkeit, Integrität und Datenintegrität sowie Vorhersagbarkeit und Verfügbarkeit sind starke Zuordnungen. Kompetenz wirkt schwach auf alle drei, hat in der CIA-Triade aber kein Gegenstück.
-- **H15b – Authentizität als Anker.** Authentizität ist kein Gegenstück zu einer Dimension, sondern die Bedingung, unter der das Vertrauensprofil B zugerechnet wird. Identitätsanmaßung macht die Zurechnung aller Zeilen der Matrix zugleich ungültig; ob daraus ein Schaden entsteht, hängt weiterhin von Handlungsspielraum P und Schaden L ab (G1).
-- **H15c – Nützlichkeit bei Agenten.** Für KI-Agenten wird Nützlichkeit zur eigenständigen Risikodimension, weil das Erreichen des Soll-Zustands probabilistisch ist. Unbrauchbare, aber verfügbare und unveränderte Ergebnisse gibt es auch bei klassischer IT; dort werden sie vor Inbetriebnahme als Qualitäts- oder Projektrisiko behandelt. Bei Agenten treten sie je Ausführung auf, häufiger und schwerer erkennbar, und werden damit zum Betriebsrisiko, das sich weder auf Verfügbarkeit noch auf Datenintegrität abbilden lässt.
+- **H15a – Three pairs, one gap.** Benevolence and confidentiality, integrity and data integrity, and predictability and availability are strong mappings. Competence has a weak effect on all three but has no counterpart in the CIA triad.
+- **H15b – Authenticity as anchor.** Authenticity is not a counterpart to a dimension but the condition under which the trust profile is attributed to B. Impersonation invalidates the attribution of all rows of the matrix at once; whether a loss results still depends on scope of action P and loss L (G1).
+- **H15c – Utility for agents.** For AI agents, utility becomes an independent risk dimension because reaching the target state is probabilistic. Unusable but available and unaltered results also exist in classical IT; there they are treated as a quality or project risk before going into operation. With agents they occur per execution, more frequently and harder to detect, and thus become an operational risk that can be mapped neither to availability nor to data integrity.
 
-**H16 – Schutzdelegation.** Je höher die wahrgenommene Erkennungsrate τ_I der Sicherheitsinstitution, desto seltener prüfen Mitarbeitende selbst, unabhängig von ihrem Wissen über Angriffsmerkmale. Die Kalibrierungslücke auf der Kante zur Institution sagt Klickraten in Phishing-Simulationen besser voraus als Ergebnisse von Awareness-Tests.
+**H16 – Protection delegation.** The higher the perceived detection rate τ_I of the security institution, the less often employees carry out verification themselves, regardless of their knowledge of attack features. The calibration gap on the edge to the institution predicts click rates in phishing simulations better than results of awareness tests.
 
-**H17 – Verantwortungsdiffusion bei Prüfungen.** Die Prüfdeckung C je Handlungsklasse sinkt mit der Zahl möglicher Prüfer, sofern keine Rolle zugewiesen ist. Eine benannte Prüfrolle erreicht höhere Deckung als zwei unbenannte.
+**H17 – Diffusion of responsibility in verifications.** Verification coverage C per action class decreases with the number of possible verifiers, provided no role is assigned. One named verification role achieves higher coverage than two unnamed ones.
 
-**H18 – Normen vor Wissen.** Die deskriptive Norm im Team (wahrgenommene Prüfquote der Kollegen) sagt das eigene Prüfverhalten besser voraus als individuelles Wissen und als die vorgeschriebene Regel.
+**H18 – Norms before knowledge.** The descriptive norm in the team (perceived verification rate of colleagues) predicts one's own verification behavior better than individual knowledge and than the prescribed rule.
 
-**H19 – Sichtbare Lücke statt Appell.** Macht die Sicherheitsinstitution ihre Fehlerquote sichtbar, sinkt τ_I, und die Prüfquote steigt stärker als nach allgemeiner Awareness-Kommunikation.
+**H19 – Visible gap instead of appeal.** If the security institution makes its error rate visible, τ_I decreases, and the verification rate rises more than after general awareness communication.
 
-### 11.4 Evidenzstatus
+### 11.4 Evidence status
 
-| ID | Status | Stützende Quellen | Einschränkende Quellen |
+| ID | Status | Supporting sources | Limiting sources |
 | --- | --- | --- | --- |
-| H1 | teilweise belegt | Chesney & Citron 2019; Schiff et al. 2025; Nightingale & Farid 2022; Spence 1973 | Altay & Gilardi 2024; Wang et al. 2026; fehlende Nutzerstudien zu Content Credentials |
-| H2 | gut belegt | Balliet et al. 2014; Foddy et al. 2009; Kunda & Thagard 1996 | Jussim 2012 |
-| H4 | normativ begründet, deskriptiv teilweise belegt | Jøsang 2016; Enke & Zimmermann 2019 | Christianson & Harbison 1997 |
-| H5 | teilweise belegt | Dohmen et al. 2012; Behrens et al. 2007; Reimann et al. 2017 | Cesarini et al. 2008; Uslaner 2002; Bauer 2015 |
-| H5a | teilweise belegt | Kim et al. 2004; Schweitzer et al. 2006; Skowronski & Carlston 1989 | Gal & Rucker 2018 |
-| H6 | konzeptionell stark, Individualebene ungeprüft | Lee & See 2004; ACFE 2024; FBI IC3 2024 | Beautement et al. 2008; Parasuraman & Manzey 2010 |
-| H7 | umstritten | Mitchell et al. 1989; Lord et al. 1984 | Modirrousta-Galian & Higham 2023; Hoes et al. 2024; Levine 2014 |
-| H8 | teilweise belegt | Morewedge et al. 2015; Mellers et al. 2014; Fetchenhauer & Dunning 2010 | Hauch et al. 2016; Hogarth 2001; Ho et al. 2025 |
-| H9 | erste präregistrierte Evidenz | Mattavelli et al. 2025; Montoya et al. 2017 | Brashier et al. 2020; Koch & Zerback 2013 |
-| H10 | teilweise belegt | Lord, Ross & Lepper 1979; Delgado et al. 2005; Haselhuhn et al. 2010 | Wood & Porter 2019; Coppock 2022 |
-| H11 | teilweise belegt | Denrell 2005; Fetchenhauer & Dunning 2010; Paxton & Glanville 2015 | Uslaner 2002; Bauer 2015; Mewes et al. 2021 |
-| H12 | ungeprüft | abgeleitet aus H6 bis H8 | Ho et al. 2025 zeigt geringe Wirkung bisheriger Trainings |
-| H13 | ungeprüft | abgeleitet aus Abschnitt 4.3; NIST SP 800-207 | Kosten häufiger Prüfung |
-| H14 | ungeprüft | Lee & See 2004; Glikson & Woolley 2020 | Automation Complacency |
-| H15 | konzeptionell begründet, ungeprüft | Mayer et al. 1995; Parker 1998; NIST AI 100-1 2023; OWASP 2025 | Nützlichkeit außerhalb Parker nicht etabliert; Abgrenzung zur Datenintegrität empirisch unscharf |
-| H16 | ungeprüft; Übertragung | Peltzman 1975; Wilde 1982; Herley 2009 | keine Messung von τ_I in Sicherheitskontexten bekannt |
-| H17 | Mechanismus gut belegt, Übertragung ungeprüft | Darley & Latané 1968; Fischer et al. 2011 | Bystander-Effekt schwächer bei hoher Gefahr (Fischer et al. 2011) |
-| H18 | Mechanismus gut belegt, Übertragung ungeprüft | Cialdini et al. 1990; Beautement et al. 2008 | Normeffekte sind kontextabhängig |
-| H19 | ungeprüft | abgeleitet aus H16 und ΔE = u·Δa | Risiko des Kippens in Untervertrauen (V22) |
+| H1 | partly supported | Chesney & Citron 2019; Schiff et al. 2025; Nightingale & Farid 2022; Spence 1973 | Altay & Gilardi 2024; Wang et al. 2026; lack of user studies on Content Credentials |
+| H2 | well supported | Balliet et al. 2014; Foddy et al. 2009; Kunda & Thagard 1996 | Jussim 2012 |
+| H4 | normatively grounded, descriptively partly supported | Jøsang 2016; Enke & Zimmermann 2019 | Christianson & Harbison 1997 |
+| H5 | partly supported | Dohmen et al. 2012; Behrens et al. 2007; Reimann et al. 2017 | Cesarini et al. 2008; Uslaner 2002; Bauer 2015 |
+| H5a | partly supported | Kim et al. 2004; Schweitzer et al. 2006; Skowronski & Carlston 1989 | Gal & Rucker 2018 |
+| H6 | conceptually strong, untested at the individual level | Lee & See 2004; ACFE 2024; FBI IC3 2024 | Beautement et al. 2008; Parasuraman & Manzey 2010 |
+| H7 | contested | Mitchell et al. 1989; Lord et al. 1984 | Modirrousta-Galian & Higham 2023; Hoes et al. 2024; Levine 2014 |
+| H8 | partly supported | Morewedge et al. 2015; Mellers et al. 2014; Fetchenhauer & Dunning 2010 | Hauch et al. 2016; Hogarth 2001; Ho et al. 2025 |
+| H9 | first preregistered evidence | Mattavelli et al. 2025; Montoya et al. 2017 | Brashier et al. 2020; Koch & Zerback 2013 |
+| H10 | partly supported | Lord, Ross & Lepper 1979; Delgado et al. 2005; Haselhuhn et al. 2010 | Wood & Porter 2019; Coppock 2022 |
+| H11 | partly supported | Denrell 2005; Fetchenhauer & Dunning 2010; Paxton & Glanville 2015 | Uslaner 2002; Bauer 2015; Mewes et al. 2021 |
+| H12 | untested | derived from H6 to H8 | Ho et al. 2025 shows low effect of previous trainings |
+| H13 | untested | derived from Section 4.3; NIST SP 800-207 | cost of frequent verification |
+| H14 | untested | Lee & See 2004; Glikson & Woolley 2020 | automation complacency |
+| H15 | conceptually grounded, untested | Mayer et al. 1995; Parker 1998; NIST AI 100-1 2023; OWASP 2025 | utility not established outside Parker; distinction from data integrity empirically blurred |
+| H16 | untested; transfer | Peltzman 1975; Wilde 1982; Herley 2009 | no measurement of τ_I in security contexts known |
+| H17 | mechanism well supported, transfer untested | Darley & Latané 1968; Fischer et al. 2011 | bystander effect weaker under high danger (Fischer et al. 2011) |
+| H18 | mechanism well supported, transfer untested | Cialdini et al. 1990; Beautement et al. 2008 | norm effects are context-dependent |
+| H19 | untested | derived from H16 and ΔE = u·Δa | risk of tipping into undertrust (V22) |
 
-### 11.5 Operationalisierung
+### 11.5 Operationalization
 
-Für jede Hypothese sind vor einer Prüfung festzulegen: unabhängige und abhängige Variablen, Störfaktoren, Messverfahren, erwartete Richtung und Kriterien für Bestätigung oder Widerlegung. Psychologische Hypothesen (H2, H5, H9 bis H11) und Wirksamkeitshypothesen (H6 bis H8, H12 bis H14) brauchen verschiedene Designs. H15 ist eine Strukturhypothese: Sie wird durch Kodierung realer Vorfälle nach Dimension und Schutzziel geprüft, nicht durch ein Experiment. H16 bis H19 sind Feldhypothesen auf Teamebene; abhängige Variable ist die Prüfdeckung C, nie das Verhalten Einzelner. Wirksamkeit wird immer über Trennschärfe und Antworttendenz getrennt gemessen.
+For each hypothesis, the following must be specified before testing: independent and dependent variables, confounders, measurement methods, expected direction and criteria for confirmation or refutation. Psychological hypotheses (H2, H5, H9 to H11) and effectiveness hypotheses (H6 to H8, H12 to H14) need different designs. H15 is a structural hypothesis: It is tested by coding real incidents by dimension and security objective, not by an experiment. H16 to H19 are field hypotheses at team level; the dependent variable is verification coverage C, never the behavior of individuals. Effectiveness is always measured separately via discriminability and response bias.
 
-## 12. Was das Modell vorhersagt
+## 12. What the model predicts
 
-Ja: **Aus dem Evidenzmodell folgen prüfbare Aussagen zu Misstrauen, Kontexten, Zeitverlauf und globalen Ereignissen.** Alle Aussagen in diesem Kapitel sind Ableitungen aus den Gleichungen in Kapitel 4 und 6. Sie sind Vorhersagen, keine Befunde. Wo die Literatur bereits passt, ist das vermerkt.
+Yes: **Testable statements on distrust, contexts, course over time and global events follow from the evidence model.** All statements in this chapter are derivations from the equations in Chapters 4 and 6. They are predictions, not findings. Where the literature already fits, this is noted.
 
-### 12.1 Vertrauen und Misstrauen
+### 12.1 Trust and distrust
 
-| Nr. | Vorhersage | Herleitung | Prüfbar durch |
+| No. | Prediction | Derivation | Testable by |
 | --- | --- | --- | --- |
-| V1 | Junge Beziehungen reagieren stark auf Einzelereignisse, alte kaum. | Lernrate g / (n + g) sinkt mit Evidenzmenge | Vertrauensspiel mit variierter Vorgeschichte |
-| V2 | Ambivalente Beziehungen sind stabil, unbekannte volatil, obwohl beide E nahe 0,5 haben. | gleiches E, verschiedenes u | getrennte Skalen für Vertrauen und Misstrauen |
-| V3 | Ein Fehltritt kostet bei hohem Vertrauen absolut mehr als bei mittlerem. | ΔE− ist proportional zu E | deckt sich mit dem Asymmetrieprinzip (Slovic 1993) |
-| V4 | Misstrauen erholt sich langsamer, als Vertrauen fällt, auch bei gleichen Gewichten. | unter der Interaktionsschwelle kommt keine Evidenz; nur Zeitverfall wirkt | Feedback symmetrisch vs. asymmetrisch (Fetchenhauer & Dunning 2010) |
-| V5 | Viele kleine positive Erfahrungen erzeugen subjektiv hohes Vertrauen, das riskante Handlungen normativ nicht trägt. | deskriptiv zählt jedes Ereignis, normativ gewichtet q nach Einsatzhöhe | Simulation des langen Vertrauensaufbaus |
+| V1 | Young relationships react strongly to individual events, old ones hardly at all. | learning rate g / (n + g) decreases with amount of evidence | trust game with varied history |
+| V2 | Ambivalent relationships are stable, unknown ones volatile, although both have E close to 0.5. | same E, different u | separate scales for trust and distrust |
+| V3 | A misstep costs more in absolute terms at high trust than at medium trust. | ΔE− is proportional to E | consistent with the asymmetry principle (Slovic 1993) |
+| V4 | Distrust recovers more slowly than trust falls, even with equal weights. | below the interaction threshold no evidence arrives; only temporal decay acts | symmetric vs. asymmetric feedback (Fetchenhauer & Dunning 2010) |
+| V5 | Many small positive experiences produce subjectively high trust that normatively does not support risky actions. | descriptively every event counts, normatively q weights evidence by stakes | simulation of long trust building |
 
-V5 beschreibt das Muster des Anlage- und Liebesbetrugs: lange Phase billiger Bestätigungen, dann eine Anforderung mit hohem Schaden.
+V5 describes the pattern of investment fraud and romance scams: a long phase of cheap confirmations, then a request with high loss.
 
-### 12.2 Kontexte
+### 12.2 Contexts
 
-| Nr. | Vorhersage | Herleitung | Prüfbar durch |
+| No. | Prediction | Derivation | Testable by |
 | --- | --- | --- | --- |
-| V6 | Eine entdeckte Täuschung senkt Vertrauen in allen Kontexten, ein Kompetenzfehler nur in seiner Domäne. | Integritätsevidenz überträgt breit, Kompetenzevidenz schmal | Vignettenstudie mit Kontextvariation |
-| V7 | Angriffe gelingen bevorzugt in Kontexten mit wenig Evidenz, aber vertrauter Beziehung. | u ist kontextspezifisch, Familiarität nicht | Auswertung realer Vorfälle nach Kontextwechsel |
-| V8 | Gruppen- und Statussignale dominieren Erstkontakte und verlieren mit Evidenz an Einfluss. | Einfluss der Basisrate auf E ist a·u | belegt für Kategorien (Kunda & Thagard 1996) |
-| V9 | In Einmalkontakten, etwa auf Plattformen, bleiben Kategorien- und Plattformsignale dauerhaft bestimmend. | u bleibt nahe 1, weil nie individuelle Evidenz entsteht | Feldexperimente auf Marktplätzen |
+| V6 | A discovered deception lowers trust in all contexts, a competence error only in its domain. | integrity evidence transfers broadly, competence evidence narrowly | vignette study with context variation |
+| V7 | Attacks succeed preferentially in contexts with little evidence but a familiar relationship. | u is context-specific, familiarity is not | analysis of real incidents by context switch |
+| V8 | Group and status signals dominate first contacts and lose influence with evidence. | influence of the base rate on E is a·u | supported for categories (Kunda & Thagard 1996) |
+| V9 | In one-off contacts, for example on platforms, category and platform signals remain permanently decisive. | u stays close to 1 because individual evidence never arises | field experiments on marketplaces |
 
-### 12.3 Verlust über Zeit
+### 12.3 Loss over time
 
-| Nr. | Vorhersage | Herleitung | Prüfbar durch |
+| No. | Prediction | Derivation | Testable by |
 | --- | --- | --- | --- |
-| V10 | Ohne Kontakt fällt Vertrauen nicht auf null, sondern kehrt zur Basisrate zurück. | r und s schrumpfen, E geht gegen a | Längsschnitt ruhender Beziehungen |
-| V11 | Nach langer Pause fühlt sich eine Beziehung intakt an, trägt aber keine riskanten Handlungen. | E nahe a bei hoher Basisrate, aber u hoch | Vergleich von Bewertung und Handlungsbereitschaft |
-| V12 | Seltener Kontakt begrenzt die erreichbare Sicherheit dauerhaft. | u_min hängt von der Evidenzrate g ab | Simulation mit variierter Kontaktfrequenz |
-| V13 | Ein Bruch verblasst mit der Halbwertszeit der Evidenz, sofern nichts an ihn erinnert. | s zerfällt mit λ | Erinnerungsreize als experimentelle Bedingung |
-| V14 | Kompetenzevidenz altert in schnell veränderlichen Domänen schneller als Integritätsevidenz. | Zusatzannahme: λ ist dimensionsabhängig | offen; als Annahme zu prüfen |
+| V10 | Without contact, trust does not fall to zero but returns to the base rate. | r and s shrink, E tends towards a | longitudinal study of dormant relationships |
+| V11 | After a long break, a relationship feels intact but does not support risky actions. | E close to a with a high base rate, but u high | comparison of assessment and willingness to act |
+| V12 | Infrequent contact permanently limits the achievable certainty. | u_min depends on the evidence rate g | simulation with varied contact frequency |
+| V13 | A breach fades with the half-life of the evidence, provided nothing recalls it. | s decays with λ | reminder cues as an experimental condition |
+| V14 | Competence evidence ages faster than integrity evidence in rapidly changing domains. | additional assumption: λ is dimension-dependent | open; to be tested as an assumption |
 
-### 12.4 Nachrichten und globale Effekte
+### 12.4 News and global effects
 
-Eine Nachricht über eine Kategorie, etwa Banken, Behörden, Fremde im Netz oder KI-Inhalte, verschiebt die Basisrate a dieser Kategorie. Die Wirkung auf eine einzelne Kante ist:
+A news item about a category, for example banks, authorities, strangers online or AI content, shifts the base rate a of that category. The effect on an individual edge is:
 
 ```math
 \Delta E = u \cdot \Delta a
 ```
 
-**Globale Ereignisse treffen also Kanten mit wenig Evidenz voll und gut belegte Kanten kaum.**
+**Global events therefore hit edges with little evidence fully and well-evidenced edges hardly at all.**
 
-![Ein globaler Schock trifft schwach belegte Beziehungen zwanzigmal stärker](figures/fig-09-globaler-schock.png)
+![A global shock hits weakly evidenced relationships twenty times more strongly](figures/fig-09-global-shock.png)
 
-*Abbildung 9: Wirkung einer Basisratenverschiebung nach Abschnitt 12.4 · fünf Beispielkanten, illustrative Werte*
+*Figure 9: Effect of a base rate shift according to Section 12.4 · five example edges, illustrative values*
 
-Dieselbe Nachricht wirkt je nach Evidenzlage verschieden stark. Gut belegte Beziehungen bleiben fast unberührt.
+The same news item has effects of different strength depending on the evidential situation. Well-evidenced relationships remain almost unaffected.
 
-| Nr. | Vorhersage | Herleitung | Prüfbar durch |
+| No. | Prediction | Derivation | Testable by |
 | --- | --- | --- | --- |
-| V15 | Skandale und Betrugswellen senken Vertrauen in Fremde und Institutionen stärker als in Bekannte. | ΔE = u·Δa | Paneldaten vor und nach Ereignissen |
-| V16 | Nach Schocks ziehen sich Menschen auf bekannte Beziehungen zurück. | nur Kanten mit kleinem u bleiben über der Schwelle | Veränderung des Vertrauensradius (Delhey et al. 2011) |
-| V17 | Intensive Berichterstattung über ein Einzelereignis entkoppelt gefühltes von tatsächlichem Risiko. | deskriptiv wächst mit ln(1 + R), normativ bleibt n_eff = 1 | Medienintensität gegen Ereignishäufigkeit |
-| V18 | Öffentliches Misstrauen hält an, solange berichtet wird, und zerfällt danach mit der Halbwertszeit. | Wiederholung gleicht den Zeitverfall aus | Zeitreihen nach Ende der Berichterstattung |
-| V19 | Sinkt die Basisrate für die Echtheit von Inhalten, sammeln alle langsamer Evidenz, und verifizierte Kanäle gewinnen an Wert. | q sinkt für Inhaltsevidenz; u bleibt im ganzen Graphen hoch | Nutzung verifizierter Kanäle über Zeit |
-| V20 | Gruppen mit gemeinsamen, voneinander abhängigen Quellen überschätzen ihre Sicherheit. | hohe Abhängigkeit D wird als Unabhängigkeit gelesen | Quellenüberlappung gegen Urteilssicherheit |
-| V21 | Auf Netzwerkebene erholt sich Vertrauen nach einem Schock langsamer, als es fiel. | Misstrauen breitet sich stärker aus (G2) und stabilisiert sich selbst (H11) | agentenbasierte Simulation, Vergleich mit Umfragereihen |
+| V15 | Scandals and waves of fraud lower trust in strangers and institutions more than in acquaintances. | ΔE = u·Δa | panel data before and after events |
+| V16 | After shocks, people withdraw to known relationships. | only edges with small u remain above the threshold | change in the radius of trust (Delhey et al. 2011) |
+| V17 | Intensive reporting on a single event decouples perceived from actual risk. | the descriptive account grows with ln(1 + R); normatively, n_eff stays 1 | media intensity against event frequency |
+| V18 | Public distrust persists as long as reporting continues and then decays with the half-life. | repetition offsets temporal decay | time series after the end of reporting |
+| V19 | If the base rate for the authenticity of content falls, everyone accumulates evidence more slowly, and verified channels gain value. | q decreases for content evidence; u remains high throughout the graph | use of verified channels over time |
+| V20 | Groups with shared, mutually dependent sources overestimate their certainty. | high dependence D is read as independence | source overlap against confidence of judgment |
+| V21 | At network level, trust recovers more slowly after a shock than it fell. | distrust propagates more strongly (G2) and stabilizes itself (H11) | agent-based simulation, comparison with survey series |
 
-V15 und V19 passen zu vorhandenen Befunden: Pauschale KI-Kennzeichnung senkt auch die Glaubwürdigkeit wahrer Schlagzeilen (Altay & Gilardi 2024), und der Verweis auf mögliche Fälschung nützt Beschuldigten (Schiff et al. 2025).
+V15 and V19 fit existing findings: Blanket AI labeling also lowers the credibility of true headlines (Altay & Gilardi 2024), and pointing to possible forgery benefits the accused (Schiff et al. 2025).
 
-### 12.5 Gruppen und Organisation
+### 12.5 Groups and organization
 
-| Nr. | Vorhersage | Herleitung | Prüfbar durch |
+| No. | Prediction | Derivation | Testable by |
 | --- | --- | --- | --- |
-| V22 | Nach dem ersten sichtbaren Sicherheitsvorfall kippt das Vertrauen in die IT von Übervertrauen in Untervertrauen, ohne Zwischenzustand. | u auf A→I hoch, ΔE = u·Δa (7.4) | Befragung zu τ_I vor und nach Vorfällen |
-| V23 | Teams mit hoher Quellenabhängigkeit melden Angriffe seltener, obwohl mehr Personen sie sehen. | Kaskade: „Wenn es gefährlich wäre, hätte jemand gemeldet“ | Meldequote gegen Teamgröße und Quellenüberlappung |
-| V24 | Vier-Augen-Freigaben mit demselben Informationsstand senken die Fehlerrate kaum gegenüber einer Einzelfreigabe. | D der Prüfer nahe 1 (7.3) | Vergleich korrelierter und unabhängiger Zweitfreigaben |
-| V25 | Neue Projekt- und Lieferantenbeziehungen sind in Vorfallsdaten überrepräsentiert. | Swift Trust, V9 | Vorfälle nach Beziehungsalter |
-| V26 | Kontakt mit Außenquellen verbessert die Kalibrierung in Blasen und verschlechtert sie in Echokammern. | u gegen d (7.8) | getrennte Messung von u und d gegenüber Außenquellen vor Kontakt |
-| V27 | Awareness-Training ohne Rollen- und Normänderung verändert Testergebnisse, nicht Prüfquoten. | H12, H18 | Testwerte gegen gemessene Prüfdeckung |
+| V22 | After the first visible security incident, trust in IT tips from overtrust into undertrust, without an intermediate state. | u on A→I high, ΔE = u·Δa (7.4) | survey on τ_I before and after incidents |
+| V23 | Teams with high source dependence report attacks less often, although more people see them. | cascade: “If it were dangerous, someone would have reported it” | reporting rate against team size and source overlap |
+| V24 | Four-eyes approvals with the same level of information hardly lower the error rate compared with a single approval. | D of the verifiers close to 1 (7.3) | comparison of correlated and independent second approvals |
+| V25 | New project and supplier relationships are overrepresented in incident data. | Swift Trust, V9 | incidents by relationship age |
+| V26 | Contact with outside sources improves calibration in bubbles and worsens it in echo chambers. | u against d (7.8) | separate measurement of u and d towards outside sources before contact |
+| V27 | Awareness training without changes in roles and norms changes test results, not verification rates. | H12, H18 | test scores against measured verification coverage |
 
-### 12.6 Grenzen der Vorhersagen
+### 12.6 Limits of the predictions
 
-Die Vorhersagen sind qualitativ. Quantitative Aussagen brauchen geschätzte Parameter λ, W, w± und φ je Population und Kontext. Die Formel ΔE = u·Δa nimmt an, dass Nachrichten nur die Basisrate verschieben. Betrifft eine Nachricht eine konkrete Entität, ist sie Evidenz auf deren Kante.
+The predictions are qualitative. Quantitative statements need estimated parameters λ, W, w± and φ per population and context. The formula ΔE = u·Δa assumes that news items only shift the base rate. If a news item concerns a specific entity, it is evidence on that entity's edge.
 
-## 13. Vertrauensdimensionen und Schutzziele der Informationssicherheit
+## 13. Trust dimensions and the security objectives of information security
 
-Nur teilweise: **Die vier Vertrauensdimensionen decken die Schutzziele Vertraulichkeit, Integrität und Verfügbarkeit nicht ab, sondern ergänzen sie.** Beide Modelle zerlegen dasselbe Risiko, aber an verschiedenen Stellen: Die Dimensionen beschreiben den Akteur B, die Schutzziele das Asset. Drei Dimensionen haben trotzdem ein enges Gegenstück. Kompetenz hat keines, und genau diese Lücke wird bei KI-Agenten praktisch relevant. Dieses Kapitel ist eine Ableitung aus dem Modell und noch nicht empirisch geprüft (Hypothese H15).
+Only partly: **The four trust dimensions do not cover the security objectives confidentiality, integrity and availability; they complement them.** Both models decompose the same risk, but at different points: the dimensions describe the actor B, the security objectives describe the asset. Three dimensions nevertheless have a close counterpart. Competence has none, and precisely this gap becomes practically relevant with AI agents. This chapter is a derivation from the model and has not yet been empirically tested (hypothesis H15).
 
-### 13.1 Schutzziele als Schadensarten
+### 13.1 Security objectives as types of loss
 
-Die Informationssicherheit beschreibt Schutzbedarf über drei klassische Schutzziele. ISO/IEC 27000:2018 definiert Vertraulichkeit als Eigenschaft, dass Information unbefugten Personen, Entitäten oder Prozessen nicht zugänglich gemacht wird, Integrität als Richtigkeit und Vollständigkeit und Verfügbarkeit als Zugänglichkeit und Nutzbarkeit auf Anforderung einer befugten Entität. FIPS 199 und das BSI-IT-Grundschutz-Kompendium verwenden dieselben drei Grundwerte. Alle drei Quellen lassen weitere Schutzziele zu: ISO/IEC 27000 nennt Authentizität, Zurechenbarkeit, Nichtabstreitbarkeit und Zuverlässigkeit, das BSI fasst Authentizität und Nichtabstreitbarkeit unter Verbindlichkeit zusammen und ordnet Angaben zu Autor und Erstellungszeit der Integrität zu. FIPS 199 geht am weitesten: Authentizität und Nichtabstreitbarkeit gelten dort als Teil der Integrität. **Ob Authentizität ein eigenes Schutzziel ist, beantworten die Normen nicht einheitlich** (Abschnitt 13.5).
+Information security describes protection requirements through three classic security objectives. ISO/IEC 27000:2018 defines confidentiality as the property that information is not made available or disclosed to unauthorized individuals, entities or processes, integrity as accuracy and completeness, and availability as being accessible and usable on demand by an authorized entity. FIPS 199 and the BSI IT-Grundschutz Compendium use the same three basic values. All three sources allow further security objectives: ISO/IEC 27000 names authenticity, accountability, non-repudiation and reliability; the BSI groups authenticity and non-repudiation under *Verbindlichkeit* and assigns information on author and time of creation to integrity. FIPS 199 goes furthest: there, authenticity and non-repudiation count as part of integrity. **Whether authenticity is a security objective in its own right is not answered consistently by the standards** (Section 13.5).
 
-Parker (1998) hielt die Triade für unvollständig und erweiterte sie auf sechs Elemente: Vertraulichkeit und Besitz, Integrität und Authentizität, Verfügbarkeit und Nützlichkeit (Utility). Sein Beispiel für Nützlichkeit: Daten werden verschlüsselt, danach geht der Schlüssel verloren. Die Daten sind vorhanden, unverändert und vertraulich, aber unbrauchbar. Integrität bedeute nicht Gültigkeit und Verfügbarkeit nicht Brauchbarkeit.
+Parker (1998) considered the triad incomplete and extended it to six elements: confidentiality and possession, integrity and authenticity, availability and utility. His example for utility: data are encrypted, and afterwards the key is lost. The data are present, unchanged and confidential, but unusable. Integrity, he argued, does not mean validity, and availability does not mean usefulness.
 
-Entscheidend für den Vergleich ist, wo Schutzziele im Risikobegriff liegen. Risiko ist die Kombination aus Eintrittswahrscheinlichkeit und Schadenshöhe. FIPS 199 kategorisiert ausdrücklich nach dem erwarteten Schaden bei Verlust eines Schutzziels, nicht nach der Wahrscheinlichkeit eines Angriffs. Die Schutzbedarfsfeststellung des IT-Grundschutzes fragt ebenfalls nach dem Schaden. **Schutzziele beschreiben die Schadensseite.** Die Wahrscheinlichkeitsseite, also wer angreift, mit welcher Absicht und welcher Fähigkeit, liegt in der Bedrohungsmodellierung. Dort ist Absicht verortet, nicht in den Schutzzielen.
+What matters for the comparison is where security objectives sit within the concept of risk. Risk is the combination of probability of occurrence and size of the loss. FIPS 199 explicitly categorizes by the expected loss if a security objective is lost, not by the probability of an attack. The protection requirements assessment of IT-Grundschutz likewise asks about the loss. **Security objectives describe the loss side.** The probability side, that is, who attacks, with what intent and what capability, lies in threat modeling. That is where intent is located, not in the security objectives.
 
-### 13.2 Zwei Achsen statt einer Deckung
+### 13.2 Two axes instead of one coverage
 
-Daraus folgt der Kategorienunterschied. Die Vertrauensdimensionen aus Abschnitt 2.4 sind Merkmale von B. Sie bestimmen, wie wahrscheinlich B eine Erwartung erfüllt, und liegen damit auf der Akteursseite des Risikos. Die Schutzziele sind Merkmale eines Assets. Sie sagen nichts über B, sondern benennen, in welcher Hinsicht das Asset beschädigt werden kann. Die Verwundbarkeit, die Rousseau et al. (1998) und Mayer et al. (1995) als Kern des Vertrauens beschreiben, wird im Asset-Management nicht als Bereitschaft geführt, sondern als Schaden L.
+This yields the categorical difference. The trust dimensions from Section 2.4 are characteristics of B. They determine how likely B is to meet an expectation, and thus lie on the actor side of risk. The security objectives are characteristics of an asset. They say nothing about B; they name the respects in which the asset can be damaged. The vulnerability that Rousseau et al. (1998) and Mayer et al. (1995) describe as the core of trust is recorded in asset management not as willingness but as loss L.
 
-Das Modell enthält diese Trennung bereits. Grundannahme G1 bindet den Schaden an Handlungsspielraum P und Verwundbarkeit L, nicht an die Höhe des Vertrauens. Abschnitt 8.1 formuliert es so: Eine Verwundbarkeit entsteht, wenn eine positive Erwartung auf einen ausnutzbaren Handlungsspielraum trifft. Die Erwartung ist die Dimensionsachse, der Spielraum mit seinem Schaden die Schutzzielachse. Der Verwundbarkeitstyp „informationell“ im Kontext c (Abschnitt 3.2) lässt sich damit nach Schutzziel ausdifferenzieren.
+The model already contains this separation. Core assumption G1 ties the loss to scope of action P and vulnerability L, not to the level of trust. Section 8.1 puts it this way: a vulnerability arises when a positive expectation meets an exploitable scope of action. The expectation is the dimension axis; the scope of action with its loss is the security-objective axis. The vulnerability type “informational” in context c (Section 3.2) can thus be differentiated by security objective.
 
-Beide Modelle spannen eine Matrix auf. Die Zeilen sind die Dimensionen k, die Spalten die Schutzziele z. In einer Zelle liegt das Risiko, dass B in Dimension k versagt und dadurch Schutzziel z verletzt wird:
+Both models together span a matrix. The rows are the dimensions k, the columns the security objectives z. A cell holds the risk that B fails in dimension k and that security objective z is violated as a result:
 
 ```math
-\text{Risiko}_{k,z} \approx \left(1 - E^{\text{norm}}_{k}\right)\cdot \mu_{k,z}\cdot L_{z}(P)
+\text{Risk}_{k,z} \approx \left(1 - E^{\text{norm}}_{k}\right)\cdot \mu_{k,z}\cdot L_{z}(P)
 ```
 
-E ist das erwartete Vertrauen in Dimension k, μ(k,z) die Stärke der Zuordnung aus Abschnitt 13.7 und L(P) der Schaden am Schutzziel z, den B mit dem eingeräumten Handlungsspielraum P höchstens anrichten kann. **Ohne Handlungsspielraum ist L(P) = 0, und das Risiko verschwindet, gleich wie gering das Vertrauen ist.** Das ist G1 in Zellform: Der Schaden hängt an P und L, das Vertrauen bestimmt nur, wie wahrscheinlich er eintritt. **„B ist wohlwollend, aber unfähig im Umgang mit Schlüsseln“ ist eine andere Zelle als „B ist fähig, aber nicht wohlwollend, und gibt Daten weiter.“** Beide verletzen die Vertraulichkeit, brauchen aber verschiedene Gegenmaßnahmen. Die Formel ist dieselbe Struktur wie die Prüfregel in 6.3, aufgelöst nach Dimension und Schutzziel.
+E is the expected trust in dimension k, μ(k,z) the mapping strength from Section 13.7, and L(P) the maximum loss to security objective z that B can cause with the granted scope of action P. **Without scope of action, L(P) = 0, and the risk vanishes, no matter how low the trust.** This is G1 in cell form: the loss depends on P and L; trust only determines how likely it is to occur. **“B is benevolent but incompetent in handling keys” is a different cell from “B is competent but not benevolent, and passes data on.”** Both violate confidentiality, but they require different countermeasures. The formula has the same structure as the verification rule in 6.3, broken down by dimension and security objective.
 
-### 13.3 Die Paare und ihre Grenzen
+### 13.3 The pairs and their limits
 
-**Wohlwollen und Vertraulichkeit (stark).** Wohlwollen fragt, ob B mir Gutes will. Im Informationskontext heißt das vor allem: B verwendet mein Wissen nicht gegen mich. Vertraulichkeit ist die Schadensseite derselben Erwartung.
+**Benevolence and confidentiality (strong).** Benevolence asks whether B wishes me well. In the information context this mainly means: B does not use my information against me. Confidentiality is the loss side of the same expectation.
 
-**Integrität und Datenintegrität (stark).** Die Dimension Integrität mit den Einzelmerkmalen Ehrlichkeit, Verantwortung und Offenheit entspricht dem Schutzziel Integrität: B verfälscht nichts, sagt die Wahrheit über den Zustand des Assets und ist zurechenbar. Die Zurechenbarkeit verbindet das Paar mit den erweiterten Schutzzielen Verbindlichkeit und Nichtabstreitbarkeit.
+**Integrity and data integrity (strong).** The dimension integrity, with its individual characteristics honesty, responsibility and openness, corresponds to the security objective integrity: B falsifies nothing, tells the truth about the state of the asset and is accountable. Accountability links the pair to the extended security objectives *Verbindlichkeit* (BSI) and non-repudiation.
 
-**Vorhersagbarkeit und Verfügbarkeit (stark).** Verlässlichkeit heißt, die Leistung ist da, wenn sie gebraucht wird. FIPS 199 verwendet für Verfügbarkeit selbst das Wort „verlässlich“.
+**Predictability and availability (strong).** Reliability means the service is there when it is needed. FIPS 199 itself uses the word “reliable” for availability.
 
-**Integrität und Vertraulichkeit (schwach).** Geheimhaltung kann eine Zusage sein. Wer sich an Zusagen hält, hält auch diese. Die Verbindung greift aber nur, wo Vertraulichkeit vereinbart ist, und ist schwächer als die über Wohlwollen.
+**Integrity and confidentiality (weak).** Secrecy can be a commitment. Whoever keeps commitments also keeps this one. The link only applies, however, where confidentiality has been agreed, and it is weaker than the link via benevolence.
 
-**Kompetenz und alle drei (schwach), ohne eigenes Gegenstück.** Ein unfähiges B leakt versehentlich, verfälscht durch Fehler, verursacht Ausfälle. Kompetenz hat in der Triade aber keine eigene Spalte. **CIA setzt voraus, dass das System das Richtige tut, und misst nur, ob es dabei ungestört bleibt.** Diese Lücke ist der wichtigste Befund des Vergleichs (Abschnitt 13.4).
+**Competence and all three (weak), without a counterpart of its own.** An incompetent B leaks by accident, corrupts through errors, causes outages. But competence has no column of its own in the triad. **CIA presupposes that the system does the right thing and only measures whether it remains undisturbed while doing so.** This gap is the most important finding of the comparison (Section 13.4).
 
-Drei Beobachtungen schärfen die Zuordnung.
+Three observations sharpen the mapping.
 
-*Falscher Freund.* Beide Modelle verwenden das Wort Integrität für Verschiedenes. Als Dimension bedeutet es Prinzipientreue einer Person, als Schutzziel Unverändertheit von Daten. Ein Akteur mit hoher persönlicher Integrität kann durch einen Fehler die Datenintegrität verletzen; ein Akteur ohne jede Prinzipientreue kann Daten unverändert lassen und sie trotzdem missbrauchen. Dieses Kapitel spricht deshalb von Integrität (Dimension) und Datenintegrität (Schutzziel).
+*False friend.* Both models use the word integrity for different things. As a dimension it means a person's adherence to principles; as a security objective it means that data remain unaltered. An actor with high personal integrity can violate data integrity through an error; an actor without any adherence to principles can leave data unaltered and still misuse them. This chapter therefore speaks of integrity (dimension) and data integrity (security objective).
 
-*Absicht und Versehen.* Kompetenz und Vorhersagbarkeit erklären vor allem unbeabsichtigte Schäden: Fehler, Schwankung, Ausfall. Sie stehen der Safety nahe, die Schäden ohne Angreifer betrachtet. Wohlwollen und Integrität erklären absichtliche Schäden: Angriff, Täuschung, Regelbruch. Sie stehen der Security und der Bedrohungsmodellierung nahe. Das deckt sich mit der bedingten Asymmetrie in 4.4 und mit S17: Kompetenzfehler und Täuschung sind verschiedene Ereignisse, weil sie auf verschiedenen Zeilen der Matrix liegen.
+*Intent and error.* Competence and predictability mainly explain unintended losses: error, fluctuation, outage. They are close to safety, which considers losses without an attacker. Benevolence and integrity explain intended losses: attack, deception, rule-breaking. They are close to security and threat modeling. This is consistent with the conditional asymmetry in 4.4 and with S17: competence errors and deception are different events because they lie on different rows of the matrix.
 
-*Offenheit und Vertraulichkeit.* Offenheit ist ein Einzelmerkmal der Integrität, Vertraulichkeit verlangt Verschwiegenheit. Beide sind vereinbar, wenn klar ist, wem gegenüber B offen ist (A) und wem gegenüber verschwiegen (Dritten). Ein B, das besonders offen wirkt, kann ein Vertraulichkeitsrisiko sein.
+*Openness and confidentiality.* Openness is an individual characteristic of integrity; confidentiality demands discretion. The two are compatible when it is clear towards whom B is open (A) and towards whom discreet (third parties). A B that appears particularly open can be a confidentiality risk.
 
-### 13.4 Kompetenz ohne Gegenstück: Nützlichkeit
+### 13.4 Competence without a counterpart: utility
 
-Wenn Kompetenz kein Schutzziel hat, stellt sich die Frage, welches ihr entspräche. Die Antwort ist Parkers Nützlichkeit: Das Ergebnis ist vorhanden, unverändert und vertraulich, aber unbrauchbar. Das ist das Schadensbild fehlender Kompetenz.
+If competence has no security objective, the question arises which one would correspond to it. The answer is Parker's utility: the result is present, unchanged and confidential, but unusable. That is the typical damage of missing competence.
 
-In ISO/IEC 27000 und im IT-Grundschutz ist Nützlichkeit kein Schutzziel. Sie ist dort ein gegebener Wert: Ein Asset wird betrachtet, weil es wirtschaftlich sinnvoll ist, und aus diesem Wert folgt der Schutzbedarf. **Nützlichkeit ist Eingangsgröße der Schutzbedarfsfeststellung, nicht Gegenstand des Schutzes.**
+In ISO/IEC 27000 and in IT-Grundschutz, utility is not a security objective. There it is a given value: an asset is considered because it is economically meaningful, and the protection requirement follows from this value. **Utility is an input to the protection requirements assessment, not an object of protection.**
 
-In der Praxis wird ein Angriff auf die Nützlichkeit meist über die Verfügbarkeit dargestellt. Ransomware macht Daten unbrauchbar, indem sie sie unzugänglich macht. Ein verlorener Schlüssel wirkt wie ein Ausfall, ein inkompatibles Format wie fehlende Verfügbarkeit in nutzbarer Form. Für Schäden, die nachträglich im Betrieb entstehen, ist diese Abbildung meist ausreichend.
+In practice, an attack on utility is usually represented through availability. Ransomware makes data unusable by making them inaccessible. A lost key acts like an outage, an incompatible format like a lack of availability in usable form. For losses that arise later during operation, this mapping is usually sufficient.
 
-Sie bricht dort, wo das Ergebnis verfügbar und unverändert ist, aber von Anfang an unzureichend: eine falsche Beratung, ein plausibler, aber unzutreffender Agenten-Output, eine korrekt umgesetzte, aber falsche Spezifikation. Solche Fälle landen notdürftig bei der Datenintegrität, obwohl nichts verfälscht wurde. Es gab nie einen richtigen Zustand, der hätte verändert werden können.
+It breaks down where the result is available and unchanged but inadequate from the start: wrong advice, a plausible but incorrect agent output, a correctly implemented but wrong specification. Such cases end up, as a makeshift, under data integrity, although nothing was falsified. There never was a correct state that could have been altered.
 
-Daraus folgt ein Abgrenzungskriterium. **Sicherheitsmodelle setzen einen Soll-Zustand voraus und schützen ihn gegen Abweichung. Kompetenz betrifft, ob der Soll-Zustand überhaupt erreicht wird.** Nützlichkeit ist die Stelle, an der das Vertrauensmodell über das Sicherheitsrisiko hinaus ins Leistungsrisiko reicht. Das erklärt, warum Kompetenz als einzige Dimension kein Gegenstück in der Triade hat: Nicht das Vertrauensmodell ist unscharf, sondern das Sicherheitsmodell endet an dieser Grenze.
+This yields a demarcation criterion. **Security models presuppose a target state and protect it against deviation. Competence concerns whether the target state is reached at all.** Utility is the point at which the trust model reaches beyond security risk into performance risk. This explains why competence is the only dimension without a counterpart in the triad: it is not the trust model that is imprecise; the security model ends at this boundary.
 
-Im Modell ist die Nützlichkeit bereits angelegt. Die dritte Prüfung in 6.1, die sachliche Richtigkeit, fragt genau danach: Stimmt die Anforderung oder das Ergebnis? Und Chens Ziel G in der vierstelligen Relation (Abschnitt 2.5) ist der Zweck, dem die Handlung dienen soll. Nützlichkeit heißt, dass φ tatsächlich G dient.
+Utility is already built into the model. The third verification in 6.1, factual correctness, asks exactly this: is the request or the result correct? And Chen's goal G in the four-place relation (Section 2.5) is the purpose the action is meant to serve. Utility means that φ actually serves G.
 
-### 13.5 Authentizität als Anker
+### 13.5 Authenticity as an anchor
 
-Authentizität ist in erweiterten Modellen ein eigenes Schutzziel (Parker 1998; ISO/IEC 27000:2018), in anderen Teil der Integrität (FIPS 199; BSI 2023). Für das Vertrauensmodell ist eine dritte Lesart fruchtbarer: **Authentizität ist kein Gegenstück zu einer Dimension, sondern der Anker unter dem gesamten Vertrauensprofil.** Bevor A fragt, ob B es kann, Gutes will, Regeln hält und konsistent handelt, muss geklärt sein: Ist B wirklich B?
+In extended models authenticity is a security objective in its own right (Parker 1998; ISO/IEC 27000:2018); in others it is part of integrity (FIPS 199; BSI 2023). For the trust model a third reading is more fruitful: **authenticity is not the counterpart of one dimension but the anchor beneath the entire trust profile.** Before A asks whether B is able, wishes well, keeps rules and acts consistently, one thing must be settled: is B really B?
 
-Die Abgrenzung zur Datenintegrität ist präzise. Datenintegrität betrifft den Inhalt (unverändert?), Authentizität die Herkunft (von wem?). Herkunft ist aber keine Frage danach, was beschädigt wird, sondern danach, wem A vertraut. Authentizität gehört deshalb auf die Akteursachse.
+The demarcation from data integrity is precise. Data integrity concerns the content (unchanged?), authenticity the origin (from whom?). Origin, however, is not a question of what is damaged but of whom A trusts. Authenticity therefore belongs on the actor axis.
 
-Im Modell ist das die Kantenzuordnung aus 6.1 und 7.4. Identitätsanmaßung ist dort der Angriff, bei dem ein Angreifer die Evidenz r eines anderen Knotens erbt. In der Sprache dieses Kapitels: **Wer die Identität übernimmt, übernimmt nicht eine Dimension, sondern das ganze Profil.** Beim CEO-Fraud leiht sich der Angreifer Kompetenz, Wohlwollen, Integrität und Verlässlichkeit, die A der echten Führungskraft zuschreibt. Kein Schutzziel wird dadurch schon verletzt. Ungültig wird die Zurechnung: Alle Zellen der Matrix beruhen dann auf Evidenz, die nicht zum Gegenüber gehört. Ob ein Schaden entsteht, entscheidet erst die angeforderte Handlung mit ihrem Spielraum P und Schaden L. Deshalb setzt die Schwellenregel in 6.2 bei der Handlung an und nicht bei der Person. Die Schritte 1 bis 4 in 10.2 und die Zero-Trust-Forderung, Identität vor jeder Sitzung neu zu prüfen (NIST SP 800-207), sichern diesen Anker, nicht eine einzelne Zelle.
+In the model, this is the edge attribution from 6.1 and 8.4. There, impersonation is the attack in which an attacker inherits the evidence r of another node. In the language of this chapter: **whoever takes over the identity takes over not one dimension but the whole profile.** In CEO fraud, the attacker borrows the competence, benevolence, integrity and reliability that A attributes to the real executive. No security objective is violated by this alone. What becomes invalid is the attribution: all cells of the matrix then rest on evidence that does not belong to the counterpart. Whether a loss occurs is decided only by the requested action with its scope P and loss L. This is why the threshold rule in 6.2 starts from the action and not from the person. Steps 1 to 4 in 10.2 and the Zero Trust requirement to re-verify identity before every session (NIST SP 800-207) secure this anchor, not an individual cell.
 
-### 13.6 Nützlichkeit als eigene Dimension für Agenten
+### 13.6 Utility as a dimension in its own right for agents
 
-Neu ist das Nützlichkeitsrisiko nicht. Auch klassische Software kann verfügbar und unverändert sein und trotzdem nicht leisten, was gebraucht wird, etwa bei einer korrekt umgesetzten, aber falschen Spezifikation (13.4). Dort wird es aber vor Inbetriebnahme behandelt: durch Anforderungsanalyse, Test und Abnahme. Danach verhält sich ein deterministisches System bei gleicher Eingabe gleich, und die Kompetenzfrage gilt als beantwortet. Das Risiko liegt im Projekt, nicht im Betrieb, und fällt deshalb aus der Schutzbedarfsfeststellung heraus.
+The utility risk is not new. Classic software, too, can be available and unchanged and still fail to deliver what is needed, for example with a correctly implemented but wrong specification (13.4). There, however, it is dealt with before going live: through requirements analysis, testing and acceptance. After that, a deterministic system behaves the same for the same input, and the competence question counts as answered. The risk lies in the project, not in operation, and therefore drops out of the protection requirements assessment.
 
-Bei KI-Agenten ist das Erreichen des Soll-Zustands selbst probabilistisch und situationsabhängig. Der Unterschied ist graduell, aber folgenreich: Das Risiko tritt je Ausführung neu auf, häufiger und schwerer erkennbar, und wandert damit aus dem Projekt in den Betrieb. **Ein Agent kann verfügbar, vertraulich und manipulationsfrei arbeiten und trotzdem unbrauchbare Ergebnisse liefern**: durch Halluzination, plausiblen Fehloutput oder Fehldeutung der Aufgabe. Flüssige Formulierung hat dabei die Diagnostizität q nahe 0 (Abschnitt 10.5). Eine feste Referenz, gegen die Datenintegrität Abweichungen messen könnte, fehlt häufig; das NIST AI RMF hält fest, dass für KI-Systeme eine Grundwahrheit mitunter nicht existiert oder nicht verfügbar ist.
+With AI agents, reaching the target state is itself probabilistic and situation-dependent. The difference is one of degree, but consequential: the risk arises anew with each execution, more frequently and harder to detect, and thereby moves from the project into operation. **An agent can be available, preserve confidentiality and be free of manipulation and still deliver unusable results**: through hallucination, plausible erroneous output or misinterpretation of the task. Fluent wording has a diagnosticity q close to 0 here (Section 10.5). A fixed reference against which data integrity could measure deviations is often missing; the NIST AI RMF notes that for AI systems a ground truth sometimes does not exist or is not available.
 
-Dass die Sicherheitsmodelle hier enden, zeigen die KI-Rahmenwerke selbst, indem sie die fehlende Eigenschaft eigens einführen. Das NIST AI RMF 1.0 nennt sieben Merkmale vertrauenswürdiger KI und stellt „valid and reliable“ als notwendige Bedingung und Basis der übrigen dar, während „secure and resilient“ getrennt über Vertraulichkeit, Integrität und Verfügbarkeit definiert wird (NIST AI 100-1). Nützlichkeit und CIA stehen dort nebeneinander, nicht ineinander. Das Rahmenwerk nennt ungenaue, aber sichere, datenschutzfreundliche und transparente Systeme ausdrücklich unerwünscht und verlangt Mechanismen, um Systeme abzuschalten, deren Ergebnisse dem beabsichtigten Gebrauch nicht entsprechen. Der EU AI Act führt in Art. 15 Genauigkeit, Robustheit und Cybersicherheit als getrennte Anforderungen an Hochrisiko-Systeme.
+That the security models end here is shown by the AI frameworks themselves, which introduce the missing property separately. The NIST AI RMF 1.0 names seven characteristics of trustworthy AI and presents “valid and reliable” as a necessary condition and the basis of the others, while “secure and resilient” is defined separately via confidentiality, integrity and availability (NIST AI 100-1). Utility and CIA stand side by side there, not one within the other. The framework explicitly calls inaccurate but secure, privacy-enhanced and transparent systems undesirable and requires mechanisms to deactivate systems whose outputs are inconsistent with their intended use. The EU AI Act, in Art. 15, lists accuracy, robustness and cybersecurity as separate requirements for high-risk systems.
 
-Auch die Sicherheits-Community bestätigt die Verschiebung. Die OWASP Top 10 für LLM-Anwendungen führen Misinformation (LLM09:2025) als eigenes Risiko: falsche, aber glaubwürdig wirkende Inhalte, verursacht durch Halluzination und verstärkt durch ungeprüftes Vertrauen der Nutzer (OWASP 2025). Daneben steht Excessive Agency (LLM06:2025), also zu viel Funktion, Berechtigung und Autonomie, dessen Folgen OWASP über Vertraulichkeit, Integrität und Verfügbarkeit hinweg beschreibt. Beide zusammen zeigen das Muster der Matrix: **Excessive Agency vergrößert P und damit den Schaden in den CIA-Spalten, Misinformation ist ein Schaden in der Nützlichkeitsspalte ohne jede CIA-Verletzung.**
+The security community confirms the shift as well. The OWASP Top 10 for LLM applications list Misinformation (LLM09:2025) as a risk in its own right: false but credible-seeming content, caused by hallucination and amplified by users' unverified trust (OWASP 2025). Next to it stands Excessive Agency (LLM06:2025), that is, too much functionality, permission and autonomy, whose consequences OWASP describes across confidentiality, integrity and availability. Together, the two show the pattern of the matrix: **Excessive Agency enlarges P and thus the loss in the CIA columns; Misinformation is a loss in the utility column without any CIA violation.**
 
-Die Vertrauensforschung liefert die passende Begriffsachse. Bei Lee & See (2004) entspricht Performance der Kompetenz, Process der Vorhersagbarkeit und Integrität, Purpose dem Wohlwollen. Jacovi et al. (2021) fassen Mensch-KI-Vertrauen als vertraglich: Es bezieht sich auf einen Vertrag über erwartetes Verhalten und ist nur gerechtfertigt, wenn es durch die tatsächliche Vertrauenswürdigkeit verursacht ist. Nützlichkeit ist in dieser Sprache der Vertragsgegenstand selbst. Der Agent schuldet nicht nur, dass er nichts verrät, nichts verfälscht und erreichbar ist, sondern dass sein Ergebnis für den Zweck taugt. Über- und Untervertrauen (Parasuraman & Riley 1997) sind damit Nützlichkeitsrisiken auf der Seite von A.
+Trust research supplies the matching conceptual axis. In Lee & See (2004), performance corresponds to competence, process to predictability and integrity, purpose to benevolence. Jacovi et al. (2021) conceive of human-AI trust as contractual: it refers to a contract about expected behavior and is warranted only if it is caused by actual trustworthiness. In this language, utility is the subject matter of the contract itself. The agent owes not only that it reveals nothing, falsifies nothing and is reachable, but that its result is fit for the purpose. Over- and undertrust (Parasuraman & Riley 1997) are thus utility risks on A's side.
 
-**Folgerung:** Bei Agenten reicht die Abbildung der Nützlichkeit auf Verfügbarkeit oder Datenintegrität nicht mehr. Ein unbrauchbares, aber verfügbares und unverändertes Ergebnis ist kein Randfall, sondern das charakteristische Fehlerbild. Nützlichkeit wird von einer stillschweigend gegebenen Eingangsgröße zu einer Risikodimension, die je Aufgabentyp bewertet, gemessen und überwacht werden muss. Das stützt die Regeln in 10.5 und Hypothese H14 von der Schadensseite her und erklärt, warum Kompetenzevidenz dort je Aufgabentyp geführt wird.
+**Conclusion:** With agents, mapping utility onto availability or data integrity is no longer sufficient. An unusable but available and unchanged result is not an edge case but the characteristic failure pattern. Utility turns from a tacitly given input into a risk dimension that must be assessed, measured and monitored per task type. This supports the rules in 10.5 and hypothesis H14 from the loss side and explains why competence evidence is kept per task type there.
 
-![Drei Dimensionen haben ein Schutzziel, Kompetenz braucht ein viertes](figures/fig-10-schutzziele.png)
+![Three dimensions have a security objective, competence needs a fourth](figures/fig-10-security-objectives.png)
 
-*Abbildung 10: Vertrauensdimensionen und Schutzziele nach Abschnitt 13.3 bis 13.6 · starke und schwache Zuordnungen, Authentizität als Anker*
+*Figure 10: Trust dimensions and security objectives according to Sections 13.3 to 13.6 · strong and weak mappings, authenticity as an anchor*
 
-Die vier starken Zuordnungen liegen auf der Diagonale. Kompetenz wirkt zusätzlich schwach auf alle anderen Schutzziele. Authentizität ist keine fünfte Zeile, sondern die Bedingung, dass alle vier Zeilen tatsächlich B zugeordnet sind.
+The four strong mappings lie on the diagonal. Competence additionally has a weak effect on all other security objectives. Authenticity is not a fifth row but the condition that all four rows are actually attributed to B.
 
-### 13.7 Die Matrix
+### 13.7 The matrix
 
-| Dimension | Vertraulichkeit | Datenintegrität | Verfügbarkeit | Nützlichkeit |
+| Dimension | Confidentiality | Data integrity | Availability | Utility |
 | --- | --- | --- | --- | --- |
-| **Kompetenz** – Kann B es? | Kann B Geheimnisse technisch schützen? · Leak durch Fehlkonfiguration | Kann B fehlerfrei verarbeiten? · Daten durch Fehler beschädigt | Kann B den Betrieb halten? · Ausfall durch Unvermögen | Kann B das richtige Ergebnis erzeugen? · plausibel, aber falsch |
-| **Wohlwollen** – Will B mir Gutes? | Verwendet B mein Wissen nicht gegen mich? · Weitergabe, Erpressung | Will B mir Wahres liefern? · gezielte Manipulation | Will B für mich da sein? · Zurückhalten, Lock-in | Arbeitet B an meinem Ziel? · Ergebnis dient B oder Dritten |
-| **Integrität** – Regeln und Wahrheit? | Hält B Geheimhaltungszusagen? · gebrochene Verschwiegenheit | Verfälscht B nichts und steht dafür ein? · Fälschung, Vertuschung | Hält B zugesagte Leistung? · verschwiegene Ausfälle | Sagt B ehrlich, wo seine Grenzen liegen? · vorgetäuschte Kompetenz |
-| **Vorhersagbarkeit** – Konsistent? | Behandelt B Information immer gleich? · situative Lecks | Liefert B reproduzierbare Ergebnisse? · schwankende Datenstände | Ist die Leistung da, wenn gebraucht? · Lastspitzenausfall | Ist die Qualität stabil? · mal brauchbar, mal nicht; Drift |
+| **Competence** – Can B do it? | Can B protect secrets technically? · leak through misconfiguration | Can B process without errors? · data damaged by errors | Can B keep operations running? · outage through incapacity | Can B produce the right result? · plausible but wrong |
+| **Benevolence** – Does B wish me well? | Will B refrain from using my information against me? · disclosure, blackmail | Does B want to give me what is true? · targeted manipulation | Does B want to be there for me? · withholding, lock-in | Does B work towards my goal? · result serves B or third parties |
+| **Integrity** – Rules and truth? | Does B keep secrecy commitments? · broken confidentiality | Does B falsify nothing and stand by it? · forgery, cover-up | Does B deliver the promised service? · concealed outages | Does B say honestly where its limits lie? · feigned competence |
+| **Predictability** – Consistent? | Does B always treat information the same way? · situational leaks | Does B deliver reproducible results? · fluctuating data states | Is the service there when needed? · peak-load outage | Is the quality stable? · sometimes usable, sometimes not; drift |
 
-*Tabelle 13.1: Leitfrage und typisches Schadensbild je Zelle*
+*Table 13.1: Guiding question and typical damage per cell*
 
-| Dimension | Vertraulichkeit | Datenintegrität | Verfügbarkeit | Nützlichkeit | Schadenstyp |
+| Dimension | Confidentiality | Data integrity | Availability | Utility | Type of loss |
 | --- | --- | --- | --- | --- | --- |
-| Kompetenz | schwach | schwach | schwach | **stark** | Versehen |
-| Wohlwollen | **stark** | schwach | schwach | schwach | Absicht |
-| Integrität | schwach | **stark** | schwach | schwach | Absicht |
-| Vorhersagbarkeit | schwach | schwach | **stark** | schwach | Schwankung |
-| Authentizität | – | – | – | – | Anker unter allen Zeilen |
+| Competence | weak | weak | weak | **strong** | error |
+| Benevolence | **strong** | weak | weak | weak | intent |
+| Integrity | weak | **strong** | weak | weak | intent |
+| Predictability | weak | weak | **strong** | weak | fluctuation |
+| Authenticity | – | – | – | – | anchor beneath all rows |
 
-*Tabelle 13.2: Zuordnungsstärke μ(k,z) · Einstufungen sind begründete Setzungen, keine Messwerte*
+*Table 13.2: Mapping strength μ(k,z) · ratings are reasoned assumptions, not measured values*
 
-Gemessen an der Triade allein liegen drei starke Paare in einer 4×3-Matrix, während die Kompetenzzeile nur schwach besetzt ist. Das ist die mittlere Überdeckung. Erst die Nützlichkeitsspalte schließt die Lücke.
+Measured against the triad alone, there are three strong pairs in a 4×3 matrix, while the competence row is only weakly populated. That is the partial coverage. Only the utility column closes the gap.
 
-### 13.8 Folgerungen
+### 13.8 Implications
 
-**Für das Modell.** Vertrauensdimensionen und Schutzziele werden nicht ineinander übersetzt, sondern kombiniert. Eine Risikobewertung, die nur Schutzziele betrachtet, setzt Kompetenz und Authentizität stillschweigend voraus. Eine Vertrauensbewertung ohne Schutzziele bleibt unklar darüber, was auf dem Spiel steht. Für Agenten heißt das: Nützlichkeit wird als vierte Spalte in Schutzbedarfs- und Risikobewertungen geführt und mit Validierungs- und Monitoring-Evidenz belegt (Regel S19 in 14.1).
+**For the model.** Trust dimensions and security objectives are not translated into one another but combined. A risk assessment that considers only security objectives tacitly presupposes competence and authenticity. A trust assessment without security objectives remains unclear about what is at stake. For agents this means: utility is kept as a fourth column in protection requirements and risk assessments and backed by validation and monitoring evidence (rule S19 in 14.1).
 
-**Kontrolle und Vertrauen.** Schutzziele werden über Kontrollen durchgesetzt: Verschlüsselung, Rechte, Redundanz. Vertrauen wird dort gebraucht, wo Kontrolle fehlt; Mayer et al. (1995) definieren es als Verwundbarkeit unabhängig von der Möglichkeit, B zu überwachen. Die Matrix zeigt, wo das der Fall ist. Für die Nützlichkeitsspalte von Agenten gibt es kaum technische Kontrollen, die ein falsches, aber plausibles Ergebnis sicher verhindern. Dort bleibt nur kalibriertes Vertrauen, gestützt auf geprüfte Ergebnisse je Aufgabentyp und menschliche Abnahme bei hohem L.
+**Control and trust.** Security objectives are enforced through controls: encryption, rights, redundancy. Trust is needed where control is missing; Mayer et al. (1995) define it as vulnerability irrespective of the ability to monitor B. The matrix shows where this is the case. For the utility column of agents there are hardly any technical controls that reliably prevent a wrong but plausible result. What remains there is only calibrated trust, based on verified results per task type and human acceptance when L is high.
 
-**Für Schulung.** Das Kurzverfahren in 9.3 beginnt mit der Identität, und dieses Kapitel liefert den Grund: Wer die Identität übernimmt, übernimmt das ganze Profil. Die erste Prüffrage lautet deshalb immer „Ist B wirklich B?“ über einen unabhängigen Kanal, bevor irgendeine Dimension bewertet wird.
+**For training.** The quick procedure in 9.3 begins with identity, and this chapter supplies the reason: whoever takes over the identity takes over the whole profile. The first verification question is therefore always “Is B really B?” via an independent channel, before any dimension is assessed.
 
-**Für Mensch-Agent-Vertrauen.** Nutzer von Agenten brauchen die umgekehrte Schulung. Ein Agent kann authentisch, verfügbar und vertraulich sein und trotzdem nicht kompetent für die konkrete Aufgabe. Die Prüffrage lautet hier „Taugt dieses Ergebnis für meinen Zweck?“, und sie ist pro Ergebnis zu stellen, nicht einmal pro System. Auch diese Prüfung unterliegt der Verantwortungsdiffusion: Teilen sich mehrere Personen die Abnahme von Agentenergebnissen, braucht sie eine benannte Rolle (7.3).
+**For human-agent trust.** Users of agents need the reverse training. An agent can be authentic, available and confidential and still not be competent for the specific task. The verification question here is “Is this result fit for my purpose?”, and it must be asked per result, not once per system. This verification, too, is subject to diffusion of responsibility: if several people share the acceptance of agent results, it needs a named role (7.3).
 
-### 13.9 Grenzen
+### 13.9 Limitations
 
-- **Nützlichkeit ist außerhalb von Parker kaum etabliert.** Weder ISO/IEC 27000 noch der IT-Grundschutz führen sie als Schutzziel. Die These stützt sich auf die Parallele zu „valid and reliable“ im AI RMF, nicht auf eine Normänderung.
-- **Abgrenzung zu Datenintegrität und Verfügbarkeit.** Ob ein Ergebnis nie richtig war oder nachträglich verändert wurde, ist nicht immer beobachtbar, etwa bei vergifteten Trainingsdaten. Dort überlagern sich Zellen.
-- **Zuordnungsstärken sind argumentativ.** Tabelle 13.2 ist eine Setzung. Eine empirische Prüfung, etwa durch Kodierung realer Vorfälle nach Zeile und Spalte, steht aus.
-- **Uneinheitliche Normlage zu Authentizität.** Die Lesart als Anker ist ein Vorschlag; FIPS 199 und BSI ordnen sie der Integrität zu, Parker und ISO/IEC 27000 führen sie eigenständig.
-- **Agent als B oder als Werkzeug von B.** Offen bleibt, ob ein Agent selbst Vertrauensnehmer ist oder Werkzeug seines Betreibers (2.5). Davon hängt ab, wem Wohlwollen und Integrität zugeschrieben werden.
+- **Utility is hardly established outside Parker.** Neither ISO/IEC 27000 nor IT-Grundschutz lists it as a security objective. The thesis rests on the parallel to “valid and reliable” in the AI RMF, not on a change to the standards.
+- **Demarcation from data integrity and availability.** Whether a result was never correct or was altered later is not always observable, for example with poisoned training data. There, cells overlap.
+- **Mapping strengths rest on argument, not measurement.** Table 13.2 is an assumption. An empirical test, for example by coding real incidents by row and column, is still pending.
+- **Inconsistent standards on authenticity.** The reading as an anchor is a proposal; FIPS 199 and the BSI assign it to integrity, Parker and ISO/IEC 27000 list it separately.
+- **Agent as B or as B's tool.** It remains open whether an agent is itself a trustee or a tool of its operator (2.5). This determines to whom benevolence and integrity are attributed.
 
-## 14. Praktische Aussagen zur Informationssicherheit
+## 14. Practical statements on information security
 
-Ja: Aus dem Modell folgen vierundzwanzig konkrete Regeln. Viele sind als gute Praxis bekannt, etwa Zero Trust, Least Privilege und Funktionstrennung. **Der Beitrag des Modells ist eine gemeinsame Begründung, eine Rangfolge nach Schadenshöhe und eine Rechenregel für Prüfintervalle.** Die Regeln sind Ableitungen und als Paket nicht empirisch geprüft.
+Yes: twenty-four concrete rules follow from the model. Many are known as good practice, such as Zero Trust, least privilege and separation of duties. **The model's contribution is a common justification, a ranking by size of the loss and a calculation rule for re-verification intervals.** The rules are derivations and, as a package, have not been empirically tested.
 
-### 14.1 Berechtigung und Entscheidung
+### 14.1 Permission and decision
 
-| Nr. | Regel | Folgt aus | Umsetzung (Beispiele) |
+| No. | Rule | Follows from | Implementation (examples) |
 | --- | --- | --- | --- |
-| S1 | Berechtigungen hängen an der Handlung, nicht an der Person. | Schwelle θ ist personenunabhängig | Freigabestufen je Handlungsklasse und Betrag |
-| S2 | Identität, Autorisierung und Richtigkeit werden einzeln geprüft. | drei getrennte Evidenzfragen (6.1) | Zahlungsfreigabe prüft Absender, Zeichnungsrecht und Rechnung getrennt |
-| S3 | Hohes Ansehen und lange Zugehörigkeit ersetzen keine Kontrolle. | Schaden wächst mit P und L, nicht mit dem Vertrauen (G1) | Vier-Augen-Prinzip auch für Leitungsebene |
-| S4 | Für Handlungen mit sehr hohem Schaden reicht persönliches Vertrauen nie aus. | θ nahe 1 ist mit u_min > 0 nicht erreichbar | zweite unabhängige Freigabe, technische Limits |
-| S19 | Bei Agenten wird das Ergebnis je Aufgabe auf Nützlichkeit geprüft, nicht nur das System auf Verfügbarkeit und Integrität. | Kompetenz hat kein Gegenstück in der CIA-Triade (13.4, 13.6) | Abnahmekriterien je Aufgabentyp, Stichproben nachgeprüfter Ergebnisse, Nützlichkeit als vierte Spalte der Schutzbedarfsfeststellung |
+| S1 | Permissions depend on the action, not on the person. | threshold θ is independent of the person | approval levels per action class and amount |
+| S2 | Identity, authorization and correctness are verified separately. | three separate evidence questions (6.1) | payment approval checks sender, signing authority and invoice separately |
+| S3 | High standing and long membership do not replace control. | loss grows with P and L, not with trust (G1) | four-eyes principle for management too |
+| S4 | For actions with a very high loss, personal trust is never sufficient. | θ close to 1 cannot be reached with u_min > 0 | second independent approval, technical limits |
+| S19 | With agents, the result is checked for utility per task, not just the system for availability and integrity. | competence has no counterpart in the CIA triad (13.4, 13.6) | acceptance criteria per task type, samples of re-checked results, utility as a fourth column of the protection requirements assessment |
 
-S2 trifft den Kern von Business Email Compromise: 2024 wurden dem FBI dazu rund 2,77 Milliarden USD Schaden gemeldet (FBI IC3 2024). Der Angriff nutzt die Gleichsetzung von vertrautem Absender und berechtigter Zahlung.
+S2 hits the core of business email compromise: in 2024, losses of about USD 2.77 billion from it were reported to the FBI (FBI IC3 2024). The attack exploits the equation of trusted sender with authorized payment.
 
-### 14.2 Evidenz und Kanäle
+### 14.2 Evidence and channels
 
-| Nr. | Regel | Folgt aus | Umsetzung (Beispiele) |
+| No. | Rule | Follows from | Implementation (examples) |
 | --- | --- | --- | --- |
-| S5 | Eine Bestätigung über denselben Kanal ist keine zweite Evidenz. | D = 1 ergibt n_eff = 1 | Rückruf über selbst gewählte Nummer, nie über Angaben aus der Anfrage |
-| S6 | Mehrheit zählt nur bei Unabhängigkeit. | n_eff ist durch 1 / D begrenzt | Bewertungen, Meldungen und Agentenvoten nach Ursprung entdoppeln |
-| S7 | Inhaltsmerkmale taugen nicht mehr als Echtheitsbeleg. | Diagnostizität q geht mit Erzeugungskosten gegen 0 | Schulung auf Handlungsauslöser statt auf Tippfehler oder Stimmklang |
-| S8 | Nur teure Signale zählen als Nachweis. | q misst Fälschungskosten | Signaturen, Besitznachweise, vorab vereinbarte Kennwörter |
-| S9 | Das Evidenzkonto selbst ist ein Schutzobjekt. | Manipulation des Modells (8.4) | manipulationssichere Protokolle mit Herkunft je Eintrag |
+| S5 | A confirmation via the same channel is not a second piece of evidence. | D = 1 yields n_eff = 1 | call-back via a self-chosen number, never via details from the request |
+| S6 | A majority counts only if independent. | n_eff is bounded by 1 / D | de-duplicate ratings, reports and agent votes by origin |
+| S7 | Content features no longer serve as proof of authenticity. | diagnosticity q tends to 0 as generation costs do | training on action triggers instead of typos or the sound of a voice |
+| S8 | Only costly signals count as proof. | q measures forgery costs | signatures, proofs of possession, pre-agreed code words |
+| S9 | The evidence account itself is an object of protection. | manipulation of the model (8.4) | tamper-proof logs with provenance per entry |
 
-### 14.3 Zeit und Kontext
+### 14.3 Time and context
 
-| Nr. | Regel | Folgt aus | Umsetzung (Beispiele) |
+| No. | Rule | Follows from | Implementation (examples) |
 | --- | --- | --- | --- |
-| S10 | Vertrauen altert und muss erneuert werden. | Zeitverfall λ, Prüfintervall t* | kurzlebige Zugangsmittel, Rezertifizierung von Rechten, Sperre ruhender Konten |
-| S11 | Riskantere Rechte werden häufiger geprüft. | t* sinkt mit kleinerem u_max | gestaffelte Intervalle je Risikoklasse |
-| S12 | Vertrauen aus einer Domäne begründet keine Rechte in einer anderen. | Evidenz ist kontextspezifisch | Rollentrennung; Anhebung der Prüfstufe bei Kontextwechsel |
-| S13 | Vertrauen ist nicht transitiv; Ketten werden begrenzt. | Abzinsungsoperator (4.6) | Lieferanten und Unterauftragnehmer einzeln prüfen, Delegationstiefe begrenzen |
+| S10 | Trust ages and must be renewed. | temporal decay λ, re-verification interval t* | short-lived credentials, recertification of rights, locking of dormant accounts |
+| S11 | Riskier rights are verified more often. | t* decreases with smaller u_max | staggered intervals per risk class |
+| S12 | Trust from one domain does not justify rights in another. | evidence is context-specific | role separation; raising the verification level on a change of context |
+| S13 | Trust is not transitive; chains are limited. | discounting operator (4.6) | verify suppliers and subcontractors individually, limit delegation depth |
 
-### 14.4 Menschen und Organisation
+### 14.4 People and organization
 
-| Nr. | Regel | Folgt aus | Umsetzung (Beispiele) |
+| No. | Rule | Follows from | Implementation (examples) |
 | --- | --- | --- | --- |
-| S14 | Prüfungen müssen billig sein, sonst unterbleiben sie. | Prüfregel K < τ·(1 − E)·L | Rückrufverzeichnis, Meldeknopf, feste Ansprechstelle |
-| S15 | Struktur schlägt Wachsamkeit. | geringe Wirkung von Awareness-Training (Ho et al. 2025) | technische Sperren und Freigaben für Hochrisiko-Handlungen |
-| S16 | Falsches Misstrauen wird als Kostenfaktor gemessen. | Γ < 0 ist ein Fehler wie Γ > 0 | Quote abgelehnter legitimer Anfragen, Zeitaufwand je Prüfung |
-| S17 | Fehler und Täuschung werden verschieden behandelt. | bedingte Asymmetrie (4.4) | Fehlklicks führen zu Unterstützung, nicht zu Sanktion; Täuschung führt zu sofortigem, breitem Entzug |
-| S18 | Nach einer Angriffswelle werden Schwellen gezielt für schwach belegte Kanten angehoben. | ΔE = u·Δa | strengere Prüfung für neue Kontakte und geänderte Stammdaten statt für alle |
+| S14 | Verifications must be cheap, otherwise they do not happen. | verification rule K < τ·(1 − E)·L | call-back directory, report button, fixed point of contact |
+| S15 | Structure beats vigilance. | low effect of awareness training (Ho et al. 2025) | technical locks and approvals for high-risk actions |
+| S16 | False distrust is measured as a cost factor. | Γ < 0 is an error just like Γ > 0 | rate of rejected legitimate requests, time spent per verification |
+| S17 | Errors and deception are treated differently. | conditional asymmetry (4.4) | mis-clicks lead to support, not sanctions; deception leads to immediate, broad withdrawal |
+| S18 | After an attack wave, thresholds are raised selectively for weakly evidenced edges. | ΔE = u·Δa | stricter verification for new contacts and changed master data instead of for everyone |
 
-S17 hat einen praktischen Grund: Wer für einen Fehlklick bestraft wird, meldet ihn nicht. Die Organisation verliert dann Evidenz. Diese Begründung ist eine Annahme und zu prüfen.
+S17 has a practical reason: whoever is punished for a mis-click does not report it. The organization then loses evidence. This justification is an assumption and is to be checked.
 
-### 14.5 Gruppen und Organisation
+### 14.5 Groups and organization
 
-| Nr. | Regel | Folgt aus | Umsetzung (Beispiele) |
+| No. | Rule | Follows from | Implementation (examples) |
 | --- | --- | --- | --- |
-| S20 | Jede Handlungsklasse hat eine benannte Prüfrolle, kein „jemand prüft“. | Verantwortungsdiffusion, Prüfdeckung C (7.3) | Prüfer im Freigabeprozess namentlich; Vertretungsregel |
-| S21 | Zweite Prüfer prüfen unabhängig: anderer Kanal, eigene Information, eigene Zuständigkeit. | D der Prüfer (7.3) | Zweitfreigabe sieht die Anfrage, nicht die Begründung der Erstfreigabe |
-| S22 | Die Sicherheitsinstitution macht sichtbar, was sie nicht abfängt. | Schutzdelegation, τ_I (7.4) | Quartalszahl durchgekommener Angriffe; Hinweis auf gefilterten Mails: „Gefiltert heißt nicht geprüft“ |
-| S23 | Prüfquoten werden je Team gemessen und als Norm kommuniziert, nie je Person. | deskriptive Norm (7.5); Leistungskontrolle (15.4) | Team-Dashboard; keine Einzelauswertung |
-| S24 | Neue Beziehungen erhalten höhere Schwellen, bis individuelle Evidenz vorliegt. | Swift Trust, u nahe 1 (7.6, V9) | Zweitfreigabe für Erstzahlungen an neue Lieferanten und für Stammdatenänderungen |
+| S20 | Every action class has a named verification role, no “someone checks”. | diffusion of responsibility, verification coverage C (7.3) | verifier named in the approval process; deputy rule |
+| S21 | Second verifiers verify independently: different channel, own information, own responsibility. | D of the verifiers (7.3) | second approval sees the request, not the justification of the first approval |
+| S22 | The security institution makes visible what it does not catch. | protection delegation, τ_I (7.4) | quarterly figure of attacks that got through; notice on filtered mails: “Filtered does not mean verified” |
+| S23 | Verification rates are measured per team and communicated as a norm, never per person. | descriptive norm (7.5); performance monitoring (15.4) | team dashboard; no individual evaluation |
+| S24 | New relationships get higher thresholds until individual evidence is available. | swift trust, u close to 1 (7.6, V9) | second approval for first payments to new suppliers and for master data changes |
 
-S22 hat ein Risiko: Wird die Fehlerquote ohne Einordnung kommuniziert, kippt τ_I in Untervertrauen (V22). Die Zahl gehört deshalb neben die Prüfregel für den Einzelnen, nicht allein.
+S22 carries a risk: if the error rate is communicated without context, τ_I tips into undertrust (V22). The figure therefore belongs next to the verification rule for the individual, not on its own.
 
-### 14.6 Die vier wichtigsten Regeln
+### 14.6 The four most important rules
 
-Wenn nur vier Regeln eingeführt werden können:
+If only four rules can be introduced:
 
-1. **S1 mit S5:** Für eine kurze Liste riskanter Handlungen gilt immer eine Prüfung über einen zweiten, selbst gewählten Kanal.
-2. **S10:** Jede Berechtigung hat ein Ablaufdatum, gestaffelt nach Risiko.
-3. **S14:** Die Prüfung dauert unter einer Minute und ist ausdrücklich erwünscht.
-4. **S20:** Eine benannte Person prüft. Ohne diese Regel laufen die drei anderen ins Leere, weil die Prüfung zwar vorgesehen ist, aber von niemandem durchgeführt wird.
+1. **S1 with S5:** For a short list of risky actions, a verification via a second, self-chosen channel always applies.
+2. **S10:** Every permission has an expiry date, staggered by risk.
+3. **S14:** The verification takes less than a minute and is explicitly welcome.
+4. **S20:** A named person verifies. Without this rule the other three come to nothing, because the verification is provided for but carried out by no one.
 
-Diese Auswahl folgt aus dem Verhältnis von Schadenshöhe zu Aufwand im Modell. Sie ist eine Empfehlung, kein Befund.
+This selection follows from the ratio of size of the loss to effort in the model. It is a recommendation, not a finding.
 
-## 15. Forschungsplan, Grenzen und offene Fragen
+## 15. Research plan, limitations and open questions
 
-### 15.1 Phasen
+### 15.1 Phases
 
-| Phase | Ziel | Ergebnis |
+| Phase | Goal | Result |
 | --- | --- | --- |
-| 1 Begriffe und Literatur | markierte Quellenangaben gegenprüfen; Bezug zu Rousseau, Mayer, Lewicki, Jøsang, Lee & See herstellen | konsistentes Begriffsmodell mit getrennten belegten und hypothetischen Annahmen |
-| 2 Formale Spezifikation | Evidenzmodell, Kontextübertragung, Abzinsung und beide Konten vollständig definieren | mathematisch konsistente Spezifikation |
-| 3 Minimale Simulation | kleiner Graph mit normativem und deskriptivem Konto | sichtbare Kalibrierungslücke Γ je Szenario |
-| 4 Heuristik und Schulung | Auslöserliste, Kurzverfahren, Übungsfälle mit beiden Fehlerarten | prüfbares Trainingskonzept (H12) |
-| 5 Agentenprototyp | Evidenzkonto mit Zeitverfall und Freigabeschwellen für einen Agenten | prüfbare Umsetzung (H13, H14) |
-| 6 Evaluation | präregistrierte Studien mit Trennschärfe, Antworttendenz, Zeitaufwand | Bestätigung oder Widerlegung je Hypothese |
+| 1 Concepts and literature | cross-check marked references; establish the link to Rousseau, Mayer, Lewicki, Jøsang, Lee & See | consistent conceptual model with supported and hypothetical assumptions kept separate |
+| 2 Formal specification | fully define the evidence model, context transfer, discounting and both accounts | mathematically consistent specification |
+| 3 Minimal simulation | small graph with normative and descriptive account | visible calibration gap Γ per scenario |
+| 4 Heuristics and training | trigger list, quick procedure, practice cases with both types of error | testable training concept (H12) |
+| 5 Agent prototype | evidence account with temporal decay and approval thresholds for an agent | testable implementation (H13, H14) |
+| 6 Evaluation | preregistered studies with discriminability, response bias, time spent | confirmation or refutation per hypothesis |
 
-Die technische Prüfung einer Simulation ist keine empirische Validierung des psychologischen Modells.
+The technical verification of a simulation is not an empirical validation of the psychological model.
 
-### 15.2 Simulationsszenarien
+### 15.2 Simulation scenarios
 
-1. Aufbau einer neuen beruflichen Beziehung.
-2. Einzelner schwerer Bruch bei kurzer und bei langer Vorgeschichte (V1, V3).
-3. Täuschung gegen Kompetenzfehler bei gleicher Ereignisstärke (H5a, V6).
-4. Langer Vertrauensaufbau mit billigen Ereignissen, dann Hochrisiko-Anforderung (V5).
-5. Hundert Wiederholungen einer Behauptung bei D = 1, 0,5 und 0 (V17).
-6. Ruhende Beziehung über mehrere Halbwertszeiten (V10 bis V12).
-7. Globale Nachricht mit Verschiebung der Basisrate (V15, V16).
-8. Misstrauen unter der Interaktionsschwelle mit und ohne erzwungenes Feedback (V4).
-9. Empfehlungskette mit drei Gliedern (H4).
-10. Agent mit Versionswechsel und erneuter Attestierung (H13).
-11. Gegenprüfung durch korrelierte und unabhängige Agenten (H14).
-12. Zahlungsanforderung unter Zeitdruck mit und ohne Auslöserregel (H12).
-13. Agent liefert verfügbare, unveränderte, aber unbrauchbare Ergebnisse; Vergleich der Erkennung mit und ohne Nützlichkeitsprüfung je Aufgabentyp (H15c).
-14. Team mit n = 1, 2 und 4 möglichen Prüfern, Rolle zugewiesen und nicht zugewiesen (H17, V24).
-15. Schutzdelegation: τ_I angenommen 0,99 gegen tatsächlich 0,9, mit und ohne sichtbare Fehlerquote (H16, H19, V22).
-16. Zwei Gruppen mit gleichem E gegenüber Außenquellen, einmal u-dominiert (Blase), einmal d-dominiert (Kammer), unter Außenkontakt (V26).
+1. Building a new professional relationship.
+2. A single serious breach after a short and after a long history (V1, V3).
+3. Deception versus competence error at equal event strength (H5a, V6).
+4. Long trust-building with cheap events, then a high-risk request (V5).
+5. A hundred repetitions of a claim at D = 1, 0.5 and 0 (V17).
+6. A dormant relationship over several half-lives (V10 to V12).
+7. Global news with a shift in the base rate (V15, V16).
+8. Distrust below the interaction threshold with and without enforced feedback (V4).
+9. Referral chain with three links (H4).
+10. Agent with a version change and renewed attestation (H13).
+11. Cross-check by correlated and independent agents (H14).
+12. Payment request under time pressure with and without a trigger rule (H12).
+13. Agent delivers available, unchanged but unusable results; comparison of detection with and without a utility check per task type (H15c).
+14. Team with n = 1, 2 and 4 possible verifiers, role assigned and not assigned (H17, V24).
+15. Protection delegation: τ_I assumed 0.99 versus actually 0.9, with and without a visible error rate (H16, H19, V22).
+16. Two groups with the same E towards outside sources, one u-dominated (bubble), one d-dominated (chamber), under outside contact (V26).
 
-### 15.3 Grenzen und methodische Risiken
+### 15.3 Limitations and methodological risks
 
-- **Quantifizierung.** Auch ein Tripel aus b, d und u ist eine Abstraktion. Es ist nicht belegt, dass menschliches Vertrauen sich so vollständig abbilden lässt.
-- **Subjektivität.** Das Modell muss beobachtbare Tatsachen von subjektiven Bewertungen trennen.
-- **Kausalität.** Eine beobachtete Vertrauensänderung zeigt nicht, welcher Faktor sie verursacht hat.
-- **Parameterfülle.** λ, W, w±, φ, D und q sind zahlreich. Ohne hierarchische Schätzung und Modellvergleich droht ein unwiderlegbares Modell.
-- **Identifizierbarkeit.** Basisrate und Priorstärke lassen sich aus Verhalten nur mit geeigneten Designs trennen.
-- **Normativer Maßstab.** Das normative Konto setzt voraus, dass D und q bestimmbar sind. Im Alltag sind sie oft nur schätzbar.
-- **Psychologische Vereinfachung.** Disposition, Prägung, Trauma und Glaubenssätze sind komplexe Konzepte. Einzelne Parameter sind bewusste Vereinfachungen.
-- **Manipulation des Modells.** Ein System, das Vertrauen berechnet, wird selbst Angriffsziel (8.4, S9).
-- **Meso-Parameter.** τ_I, c_n und die deskriptive Norm sind nur in Feldstudien schätzbar. Die Befunde zu Konformität, Kaskaden und Verantwortungsdiffusion stammen überwiegend nicht aus Sicherheitskontexten (7.9).
-- **Vertrauen oder Sich-Verlassen.** Das Modell bildet normative Erwartungen nicht eigens ab. In der Unterscheidung von Chen (2021) beschreibt es vor allem kalibriertes Sich-Verlassen (2.5).
+- **Quantification.** Even a triple of b, d and u is an abstraction. It has not been shown that human trust can be represented this completely.
+- **Subjectivity.** The model must separate observable facts from subjective assessments.
+- **Causality.** An observed change in trust does not show which factor caused it.
+- **Abundance of parameters.** λ, W, w±, φ, D and q are numerous. Without hierarchical estimation and model comparison, the model risks becoming unfalsifiable.
+- **Identifiability.** Base rate and prior strength can be separated from behavior only with suitable designs.
+- **Normative standard.** The normative account presupposes that D and q can be determined. In everyday life they can often only be estimated.
+- **Psychological simplification.** Disposition, formative experiences, trauma and beliefs are complex concepts. Individual parameters are deliberate simplifications.
+- **Manipulation of the model.** A system that computes trust itself becomes a target of attack (8.4, S9).
+- **Meso parameters.** τ_I, c_n and the descriptive norm can only be estimated in field studies. The findings on conformity, cascades and diffusion of responsibility mostly do not come from security contexts (7.9).
+- **Trust or reliance.** The model does not represent normative expectations separately. In Chen's (2021) distinction, it mainly describes calibrated reliance (2.5).
 
-### 15.4 Ethik und Recht
+### 15.4 Ethics and law
 
-Das Modell dient der Selbstreflexion, der Schulung, der Simulation und der Bewertung technischer Systeme. **Es dient nicht der Bewertung von Personen für Entscheidungen Dritter.**
+The model serves self-reflection, training, simulation and the assessment of technical systems. **It does not serve the assessment of persons for decisions by third parties.**
 
-- **EU AI Act, Art. 5 Abs. 1 lit. c.** Verboten sind KI-Systeme, die Personen über einen Zeitraum anhand ihres Sozialverhaltens oder persönlicher Merkmale bewerten, wenn das zu Benachteiligung in fremden Kontexten oder zu unverhältnismäßiger Benachteiligung führt. Ein Graph, der Gruppenvertrauen überträgt und kontextübergreifend fortschreibt, läge nahe an diesem Tatbestand.
-- **DSGVO Art. 22.** Nach dem EuGH-Urteil C-634/21 (SCHUFA, 7.12.2023) kann schon die Erstellung eines Scores eine automatisierte Entscheidung sein.
-- **DSGVO Art. 9.** Erfasste Glaubenssätze können weltanschauliche oder gesundheitsbezogene Daten sein.
-- **Diskriminierung.** Gruppenprioren können sich selbst bestätigen. Sie dürfen nie allein eine Entscheidung tragen (3.3).
-- **Leistungskontrolle.** Prüfquoten und Meldequoten je Person sind eine Verhaltens- und Leistungskontrolle und in Deutschland mitbestimmungspflichtig (BetrVG § 87 Abs. 1 Nr. 6). Die Messgrößen aus Kapitel 7 werden deshalb je Team und Handlungsklasse erhoben (S23).
+- **EU AI Act, Art. 5(1)(c).** Prohibited are AI systems that evaluate persons over a period of time based on their social behavior or personal characteristics, where this leads to detrimental treatment in unrelated contexts or to disproportionate detrimental treatment. A graph that transfers group trust and carries it forward across contexts would come close to this prohibited practice.
+- **GDPR Art. 22.** According to CJEU judgment C-634/21 (SCHUFA, 7 December 2023), the very creation of a score can be an automated decision.
+- **GDPR Art. 9.** Recorded beliefs can be data on philosophical beliefs or health.
+- **Discrimination.** Group priors can confirm themselves. They must never carry a decision on their own (3.3).
+- **Performance monitoring.** Verification rates and reporting rates per person constitute behavior and performance monitoring and in Germany are subject to works-council co-determination (German Works Constitution Act (BetrVG) § 87(1) no. 6). The metrics from Chapter 7 are therefore collected per team and action class (S23).
 
-Die rechtliche Einordnung ist eine Ersteinschätzung und ersetzt keine juristische Prüfung.
+The legal classification is an initial assessment and does not replace a legal review.
 
-### 15.5 Offene Fragen
+### 15.5 Open questions
 
-**Theoretisch**
+**Theoretical**
 
-- Sind Vertrauen und Misstrauen zwei Dimensionen oder zwei Lesarten derselben Evidenz?
-- Wie unterscheiden sich Vertrauen, Glaubwürdigkeit und Reputation im Modell?
-- Welche Rolle spielen Emotion und Intuition jenseits der Aktivierung H?
-- Braucht das Modell eine eigene Größe für normative Erwartungen, um Vertrauen von bloßem Sich-Verlassen zu unterscheiden (Chen 2021)?
-- Ist Nützlichkeit ein Schutzziel neben Vertraulichkeit, Integrität und Verfügbarkeit oder eine Größe außerhalb der Sicherheit (13.4)? Lässt sich die Grenze zwischen „nie richtig“ und „nachträglich verändert“ empirisch ziehen?
+- Are trust and distrust two dimensions or two readings of the same evidence?
+- How do trust, credibility and reputation differ in the model?
+- What role do emotion and intuition play beyond activation H?
+- Does the model need a quantity of its own for normative expectations in order to distinguish trust from mere reliance (Chen 2021)?
+- Is utility a security objective alongside confidentiality, integrity and availability, or a quantity outside security (13.4)? Can the boundary between “never correct” and “altered later” be drawn empirically?
 
-**Mathematisch**
+**Mathematical**
 
-- Wie werden D und q im Alltag geschätzt?
-- Ist der Vergessensfaktor je Dimension und Kontext verschieden (V14)?
-- Welche Form hat die Sättigung des Familiaritätsterms?
-- Wie wird die Kontextübertragung r(e,c) parametrisiert, ohne Evidenz doppelt zu zählen?
-- Wie verändern sich Glaubenssätze formal: als langsamer Prior über Prioren?
+- How are D and q estimated in everyday life?
+- Does the forgetting factor differ by dimension and context (V14)?
+- What form does the saturation of the familiarity term take?
+- How is context transfer r(e,c) parameterized without counting evidence twice?
+- How do beliefs change formally: as a slow prior over priors?
 
-**Psychologisch**
+**Psychological**
 
-- Übertragen sich Familiaritätseffekte auf Organisationen und Agenten (H9)?
-- Unter welchen Bedingungen werden Glaubenssätze revidiert?
-- Wie wirken Stress und Zeitdruck auf Prüfaufwand und Genauigkeitsfokus?
+- Do familiarity effects transfer to organizations and agents (H9)?
+- Under what conditions are beliefs revised?
+- How do stress and time pressure affect verification effort and accuracy focus?
 
-**Praktisch**
+**Practical**
 
-- Welche Auslöserliste ist kurz genug, um befolgt zu werden, und breit genug, um zu schützen?
-- Wie viel unabhängige Evidenz ist für welche Handlungsklasse nötig?
-- Wie werden λ und u_max für Agentensysteme begründet festgelegt?
-- Wie erkennt ein Mensch, dass seine Einschätzung auf Familiarität statt auf Evidenz beruht?
-- Wie lässt sich τ_I erheben, ohne durch die Frage selbst Untervertrauen in die Institution auszulösen?
-- Welche Teamgröße und welche Rollenzuweisung maximieren die Prüfdeckung C bei vertretbarer Reibung?
+- Which trigger list is short enough to be followed and broad enough to protect?
+- How much independent evidence is needed for which action class?
+- How are λ and u_max set on a justified basis for agent systems?
+- How does a person recognize that their assessment rests on familiarity rather than evidence?
+- How can τ_I be measured without the question itself triggering undertrust in the institution?
+- Which team size and which role assignment maximize verification coverage C with acceptable friction?
 
-### 15.6 Nächste Entwicklungsschritte
+### 15.6 Next development steps
 
-- [ ] Markierte Quellenangaben im Literaturverzeichnis gegenprüfen.
-- [ ] Evidenzmodell aus Kapitel 4 als ausführbare Spezifikation schreiben.
-- [ ] Minimale Simulation mit den Szenarien 2, 4, 5, 7 und 15 bauen.
-- [ ] Auslöserliste und Übungsfälle für eine Pilotschulung entwerfen (H12).
-- [ ] Prototyp eines Agenten-Evidenzkontos mit Prüfintervall t* entwerfen (H13).
-- [ ] Präregistrierung für die erste Studie zu H6 oder H12 vorbereiten.
-- [ ] Kodierschema für reale Vorfälle nach Dimension × Schutzziel entwerfen und an einer Stichprobe (etwa FBI IC3, ACFE) testen (H15).
+- [ ] Cross-check the marked references in the bibliography.
+- [ ] Write the evidence model from Chapter 4 as an executable specification.
+- [ ] Build a minimal simulation with scenarios 2, 4, 5, 7 and 15.
+- [ ] Design a trigger list and practice cases for a pilot training (H12).
+- [ ] Design a prototype of an agent evidence account with re-verification interval t* (H13).
+- [ ] Prepare the preregistration for the first study on H6 or H12.
+- [ ] Design a coding scheme for real incidents by dimension × security objective and test it on a sample (for example FBI IC3, ACFE) (H15).
 
-### 15.7 Vorläufige Synthese
+### 15.7 Preliminary synthesis
 
-Künstlich erzeugte Inhalte entwerten die Merkmale, an denen Menschen bisher Vertrauenswürdigkeit abgelesen haben. Die angemessene Reaktion ist weder blindes Vertrauen noch grundsätzliches Misstrauen.
+Artificially generated content devalues the features from which people have so far read trustworthiness. The appropriate response is neither blind trust nor blanket distrust.
 
-**Das Modell beschreibt Vertrauen als Evidenzlage mit drei Anteilen: Vertrauen, Misstrauen und Unwissen.** Es trennt die subjektive von der evidenzgerechten Bewertung und macht ihre Differenz messbar. Angriffe, Schulung und technische Kontrollen lassen sich als Eingriffe in dieselben Größen beschreiben.
+**The model describes trust as an evidential situation with three components: trust, distrust and ignorance.** It separates the subjective assessment from the evidence-based one and makes their difference measurable. Attacks, training and technical controls can be described as interventions in the same quantities.
 
-Trust is engineered: nicht weil sich menschliches Vertrauen auf einen Algorithmus reduzieren ließe, sondern weil sich Entscheidungen, die auf Vertrauen beruhen, strukturieren, prüfen und verbessern lassen.
+Trust is engineered: not because human trust could be reduced to an algorithm, but because decisions that rest on trust can be structured, verified and improved.
 
-Das Ergebnis ist keine Maschine, die bestimmt, wem wir vertrauen sollen. Es ist ein Modell, das erklärt, warum wir vertrauen, wann wir uns irren und welche Handlung unter Unsicherheit vertretbar ist.
+The result is not a machine that determines whom we should trust. It is a model that explains why we trust, when we are wrong and which action is justifiable under uncertainty.
 
-## 16. Literatur
+## 16. References
 
-Die Angaben stammen aus einer Literaturprüfung zu diesem Konzept. Einträge mit dem Vermerk „prüfen“ sind vor einer Veröffentlichung am Original gegenzuprüfen. Die übrigen Angaben wurden überwiegend nicht am Volltext verifiziert. Seit Oktober 2026 werden Einträge einzeln geprüft: „verifiziert JJJJ-MM-TT“ heißt, bibliographische Angaben und die zitierte Aussage wurden am Volltext geprüft; „Sekundärzitat“ heißt, die Angaben sind geprüft, die Aussage aber nur über Abstract oder Sekundärliteratur.
+The references come from a literature review for this concept. Entries marked “to be checked” must be checked against the original before publication. Most of the remaining references have not been verified against the full text. Since October 2026, entries are being checked one by one: “verified YYYY-MM-DD” means that the bibliographic details and the cited claim were checked against the full text; “secondary citation” means that the bibliographic details have been checked, but the claim only via the abstract or secondary literature.
 
-### Vertrauensbegriff und Modelle
+### Concept of trust and models
 
 - Castelfranchi, C. & Falcone, R. (2010). Trust Theory. Wiley.
-- Chen, M. (2021). Trust and Trust-Engineering in Artificial Intelligence Research: Theory and Praxis. Philosophy & Technology, 34, 1429–1447. https://doi.org/10.1007/s13347-021-00465-4 (am Volltext geprüft)
+- Chen, M. (2021). Trust and Trust-Engineering in Artificial Intelligence Research: Theory and Praxis. Philosophy & Technology, 34, 1429–1447. https://doi.org/10.1007/s13347-021-00465-4 (checked against full text)
 - Colquitt, J. A., Scott, B. A. & LePine, J. A. (2007). Journal of Applied Psychology, 92(4), 909–927.
 - Hardin, R. (2002). Trust and Trustworthiness. Russell Sage Foundation.
-- Lewicki, R. J. & Bunker, B. B. (1996). In Kramer & Tyler (Hrsg.), Trust in Organizations. Sage. (prüfen)
+- Lewicki, R. J. & Bunker, B. B. (1996). In Kramer & Tyler (Eds.), Trust in Organizations. Sage. (to be checked)
 - Lewicki, R. J., McAllister, D. J. & Bies, R. J. (1998). Academy of Management Review, 23(3), 438–458.
 - Mayer, R. C., Davis, J. H. & Schoorman, F. D. (1995). An Integrative Model of Organizational Trust. Academy of Management Review, 20(3), 709–734.
 - McKnight, D. H., Choudhury, V. & Kacmar, C. (2002). Information Systems Research, 13(3), 334–359.
@@ -1356,7 +1358,7 @@ Die Angaben stammen aus einer Literaturprüfung zu diesem Konzept. Einträge mit
 - O'Neill, O. (2002). A Question of Trust. Cambridge University Press.
 - Rousseau, D. M., Sitkin, S. B., Burt, R. S. & Camerer, C. (1998). Not so different after all. Academy of Management Review, 23(3), 393–404.
 
-### Formale und rechnerische Modelle
+### Formal and computational models
 
 - Christianson, B. & Harbison, W. S. (1997). Why isn't trust transitive? Security Protocols Workshop, LNCS 1189, 171–176.
 - Douceur, J. R. (2002). The Sybil Attack. IPTPS, LNCS 2429.
@@ -1364,9 +1366,9 @@ Die Angaben stammen aus einer Literaturprüfung zu diesem Konzept. Einträge mit
 - Friedkin, N. E. & Johnsen, E. C. (1990). Journal of Mathematical Sociology, 15(3–4), 193–206.
 - Jøsang, A. (2016). Subjective Logic. Springer.
 - Jøsang, A. & Ismail, R. (2002). The Beta Reputation System. 15th Bled eConference.
-- Marsh, S. (1994). Formalising Trust as a Computational Concept. Dissertation, University of Stirling.
+- Marsh, S. (1994). Formalising Trust as a Computational Concept. PhD thesis, University of Stirling.
 
-### Asymmetrie, Verletzung und Reparatur
+### Asymmetry, violation and repair
 
 - Baumeister, R. F., Bratslavsky, E., Finkenauer, C. & Vohs, K. D. (2001). Review of General Psychology, 5(4), 323–370.
 - Cvetkovich, G. et al. (2002). Risk Analysis, 22(2), 359–367.
@@ -1378,7 +1380,7 @@ Die Angaben stammen aus einer Literaturprüfung zu diesem Konzept. Einträge mit
 - Slovic, P. (1993). Perceived risk, trust, and democracy. Risk Analysis, 13(6), 675–682.
 - White, M. P. et al. (2003). Risk Analysis, 23(4), 717–726.
 
-### Gruppen, Disposition und Erfahrung
+### Groups, disposition and experience
 
 - Alesina, A. & La Ferrara, E. (2002). Journal of Public Economics, 85(2), 207–234.
 - Balliet, D., Wu, J. & De Dreu, C. K. W. (2014). Psychological Bulletin, 140(6), 1556–1581.
@@ -1401,27 +1403,27 @@ Die Angaben stammen aus einer Literaturprüfung zu diesem Konzept. Einträge mit
 - Uslaner, E. M. (2002). The Moral Foundations of Trust. Cambridge University Press.
 - Van Lange, P. A. M., Vinkhuyzen, A. A. E. & Posthuma, D. (2014). PLoS ONE, 9(4), e93880.
 
-### Gruppen und Organisation
+### Groups and organization
 
-- Allport, G. W. (1954). The Nature of Prejudice. Addison-Wesley. (prüfen)
-- Asch, S. E. (1951). Effects of group pressure upon the modification and distortion of judgments. In Guetzkow (Hrsg.), Groups, Leadership and Men. Carnegie Press. (prüfen)
-- Bikhchandani, S., Hirshleifer, D. & Welch, I. (1992). A Theory of Fads, Fashion, Custom, and Cultural Change as Informational Cascades. Journal of Political Economy, 100(5), 992–1026. (prüfen)
-- Bond, R. & Smith, P. B. (1996). Culture and conformity: A meta-analysis of studies using Asch's line judgment task. Psychological Bulletin, 119(1), 111–137. (prüfen)
-- Cialdini, R. B., Reno, R. R. & Kallgren, C. A. (1990). A focus theory of normative conduct. Journal of Personality and Social Psychology, 58(6), 1015–1026. (prüfen)
-- Darley, J. M. & Latané, B. (1968). Bystander intervention in emergencies: Diffusion of responsibility. Journal of Personality and Social Psychology, 8(4), 377–383. (prüfen)
-- Edmondson, A. (1999). Psychological safety and learning behavior in work teams. Administrative Science Quarterly, 44(2), 350–383. (prüfen)
-- Fischer, P. et al. (2011). The bystander-effect: A meta-analytic review on bystander intervention in dangerous and non-dangerous emergencies. Psychological Bulletin, 137(4), 517–537. (prüfen)
-- Herley, C. (2009). So Long, and No Thanks for the Externalities: The Rational Rejection of Security Advice by Users. NSPW, 133–144. (prüfen)
-- Janis, I. L. (1972). Victims of Groupthink. Houghton Mifflin. (prüfen)
-- Lorenz, J., Rauhut, H., Schweitzer, F. & Helbing, D. (2011). How social influence can undermine the wisdom of crowd effect. PNAS, 108(22), 9020–9025. (prüfen)
-- Marques, J. M., Yzerbyt, V. Y. & Leyens, J.-P. (1988). The „black sheep effect“. European Journal of Social Psychology, 18(1), 1–16. (prüfen)
-- Meyerson, D., Weick, K. E. & Kramer, R. M. (1996). Swift trust and temporary groups. In Kramer & Tyler (Hrsg.), Trust in Organizations. Sage. (prüfen)
-- Nguyen, C. T. (2020). Echo Chambers and Epistemic Bubbles. Episteme, 17(2), 141–161. (prüfen)
-- Peltzman, S. (1975). The Effects of Automobile Safety Regulation. Journal of Political Economy, 83(4), 677–725. (prüfen)
-- Pettigrew, T. F. & Tropp, L. R. (2006). A meta-analytic test of intergroup contact theory. Journal of Personality and Social Psychology, 90(5), 751–783. https://doi.org/10.1037/0022-3514.90.5.751 (Sekundärzitat)
-- Wilde, G. J. S. (1982). The theory of risk homeostasis: Implications for safety and health. Risk Analysis, 2(4), 209–225. https://doi.org/10.1111/j.1539-6924.1982.tb01384.x (Sekundärzitat)
+- Allport, G. W. (1954). The Nature of Prejudice. Addison-Wesley. (to be checked)
+- Asch, S. E. (1951). Effects of group pressure upon the modification and distortion of judgments. In Guetzkow (Eds.), Groups, Leadership and Men. Carnegie Press. (to be checked)
+- Bikhchandani, S., Hirshleifer, D. & Welch, I. (1992). A Theory of Fads, Fashion, Custom, and Cultural Change as Informational Cascades. Journal of Political Economy, 100(5), 992–1026. (to be checked)
+- Bond, R. & Smith, P. B. (1996). Culture and conformity: A meta-analysis of studies using Asch's line judgment task. Psychological Bulletin, 119(1), 111–137. (to be checked)
+- Cialdini, R. B., Reno, R. R. & Kallgren, C. A. (1990). A focus theory of normative conduct. Journal of Personality and Social Psychology, 58(6), 1015–1026. (to be checked)
+- Darley, J. M. & Latané, B. (1968). Bystander intervention in emergencies: Diffusion of responsibility. Journal of Personality and Social Psychology, 8(4), 377–383. (to be checked)
+- Edmondson, A. (1999). Psychological safety and learning behavior in work teams. Administrative Science Quarterly, 44(2), 350–383. (to be checked)
+- Fischer, P. et al. (2011). The bystander-effect: A meta-analytic review on bystander intervention in dangerous and non-dangerous emergencies. Psychological Bulletin, 137(4), 517–537. (to be checked)
+- Herley, C. (2009). So Long, and No Thanks for the Externalities: The Rational Rejection of Security Advice by Users. NSPW, 133–144. (to be checked)
+- Janis, I. L. (1972). Victims of Groupthink. Houghton Mifflin. (to be checked)
+- Lorenz, J., Rauhut, H., Schweitzer, F. & Helbing, D. (2011). How social influence can undermine the wisdom of crowd effect. PNAS, 108(22), 9020–9025. (to be checked)
+- Marques, J. M., Yzerbyt, V. Y. & Leyens, J.-P. (1988). The “black sheep effect”. European Journal of Social Psychology, 18(1), 1–16. (to be checked)
+- Meyerson, D., Weick, K. E. & Kramer, R. M. (1996). Swift trust and temporary groups. In Kramer & Tyler (Eds.), Trust in Organizations. Sage. (to be checked)
+- Nguyen, C. T. (2020). Echo Chambers and Epistemic Bubbles. Episteme, 17(2), 141–161. (to be checked)
+- Peltzman, S. (1975). The Effects of Automobile Safety Regulation. Journal of Political Economy, 83(4), 677–725. (to be checked)
+- Pettigrew, T. F. & Tropp, L. R. (2006). A meta-analytic test of intergroup contact theory. Journal of Personality and Social Psychology, 90(5), 751–783. https://doi.org/10.1037/0022-3514.90.5.751 (secondary citation)
+- Wilde, G. J. S. (1982). The theory of risk homeostasis: Implications for safety and health. Risk Analysis, 2(4), 209–225. https://doi.org/10.1111/j.1539-6924.1982.tb01384.x (secondary citation)
 
-### Glaubenssätze und Rückkopplung
+### Beliefs and feedback loops
 
 - Clifton, J. D. W. et al. (2019). Primal world beliefs. Psychological Assessment, 31(1), 82–101.
 - Coppock, A. (2022). Persuasion in Parallel. University of Chicago Press.
@@ -1434,19 +1436,19 @@ Die Angaben stammen aus einer Literaturprüfung zu diesem Konzept. Einträge mit
 - Lord, C. G., Ross, L. & Lepper, M. R. (1979). Journal of Personality and Social Psychology, 37(11), 2098–2109.
 - Wood, T. & Porter, E. (2019). The elusive backfire effect. Political Behavior, 41(1), 135–163.
 
-### Wiederholung und Familiarität
+### Repetition and familiarity
 
 - Brashier, N. M., Eliseev, E. D. & Marsh, E. J. (2020). Cognition, 194, 104054.
-- Fazio, L. K., Brashier, N. M., Payne, B. K. & Marsh, E. J. (2015). Knowledge Does Not Protect Against Illusory Truth. Journal of Experimental Psychology: General, 144(5), 993–1002. Zu zitieren als „Wissen schützt nicht zuverlässig“; vgl. Shechter & Klauer (2025), Personality and Social Psychology Bulletin.
+- Fazio, L. K., Brashier, N. M., Payne, B. K. & Marsh, E. J. (2015). Knowledge Does Not Protect Against Illusory Truth. Journal of Experimental Psychology: General, 144(5), 993–1002. To be cited as “knowledge does not reliably protect”; cf. Shechter & Klauer (2025), Personality and Social Psychology Bulletin.
 - Hasher, L., Goldstein, D. & Toppino, T. (1977). Frequency and the Conference of Referential Validity. Journal of Verbal Learning and Verbal Behavior, 16(1), 107–112.
 - Hassan, A. & Barber, S. J. (2021). Cognitive Research: Principles and Implications, 6, 38.
 - Koch, T. & Zerback, T. (2013). Journal of Communication, 63(6), 993–1010.
 - Mattavelli, S., Brambilla, M. & Unkelbach, C. (2025). Repeating statements increases source credibility. Personality and Social Psychology Bulletin, 52(9), 2724–2737.
 - Montoya, R. M. et al. (2017). Psychological Bulletin, 143(5), 459–498.
-- Ye et al. (2026). Nature Communications, 17, 3270. (Autorenliste prüfen)
+- Ye et al. (2026). Nature Communications, 17, 3270. (author list to be checked)
 - Yousif, S. R., Aboody, R. & Keil, F. C. (2019). The illusion of consensus. Psychological Science, 30(8), 1195–1204.
 
-### KI, Herkunft und Automation
+### AI, provenance and automation
 
 - Altay, S. & Gilardi, F. (2024). PNAS Nexus, 3(10), pgae403.
 - Chesney, R. & Citron, D. (2019). Deep Fakes: A Looming Challenge. California Law Review, 107, 1753–1820.
@@ -1460,9 +1462,9 @@ Die Angaben stammen aus einer Literaturprüfung zu diesem Konzept. Einträge mit
 - Parasuraman, R. & Riley, V. (1997). Human Factors, 39(2), 230–253.
 - Schiff, K. J., Schiff, D. S. & Bueno, N. S. (2025). The Liar's Dividend. American Political Science Review, 119(1), 71–90.
 - Spence, M. (1973). Job Market Signaling. Quarterly Journal of Economics, 87(3), 355–374.
-- Wang, Sturgis & de Kadt (2026). AI labeling reduces the perceived accuracy of online content but has limited broader effects. Telematics and Informatics, 107. (prüfen)
+- Wang, Sturgis & de Kadt (2026). AI labeling reduces the perceived accuracy of online content but has limited broader effects. Telematics and Informatics, 107. (to be checked)
 
-### Training, adversariales Denken und Sicherheit
+### Training, adversarial thinking and security
 
 - ACFE (2024). Occupational Fraud 2024: A Report to the Nations.
 - Beautement, A., Sasse, M. A. & Wonham, M. (2008). The compliance budget. NSPW, 47–58.
@@ -1485,17 +1487,17 @@ Die Angaben stammen aus einer Literaturprüfung zu diesem Konzept. Einträge mit
 - Stanton, B. et al. (2016). Security fatigue. IT Professional, 18(5), 26–32.
 - Wineburg, S. & McGrew, S. (2019). Teachers College Record, 121(11).
 
-### Schutzziele der Informationssicherheit
+### Security objectives of information security
 
-- BSI (2017). BSI-Standard 200-1: Managementsysteme für Informationssicherheit, Version 1.0. Bundesamt für Sicherheit in der Informationstechnik. (prüfen)
-- BSI (2023). IT-Grundschutz-Kompendium, Edition 2023, Glossar. Bundesamt für Sicherheit in der Informationstechnik. (Formulierungen zu Authentizität und Verbindlichkeit prüfen)
-- ISO/IEC 27000:2018. Information technology – Security techniques – Information security management systems – Overview and vocabulary. (Definitionen am Normtext prüfen)
+- BSI (2017). BSI-Standard 200-1: Managementsysteme für Informationssicherheit, Version 1.0. Bundesamt für Sicherheit in der Informationstechnik. (to be checked)
+- BSI (2023). IT-Grundschutz-Kompendium, Edition 2023, Glossar. Bundesamt für Sicherheit in der Informationstechnik. (wording on authenticity and *Verbindlichkeit* to be checked)
+- ISO/IEC 27000:2018. Information technology – Security techniques – Information security management systems – Overview and vocabulary. (definitions to be checked against the text of the standard)
 - NIST (2004). FIPS PUB 199: Standards for Security Categorization of Federal Information and Information Systems.
-- Parker, D. B. (1998). Fighting Computer Crime: A New Framework for Protecting Information. Wiley. (Seitenzahl für Nützlichkeit prüfen)
+- Parker, D. B. (1998). Fighting Computer Crime: A New Framework for Protecting Information. Wiley. (page number for utility to be checked)
 
-### Recht
+### Law
 
-- Verordnung (EU) 2024/1689 (KI-Verordnung), Art. 5 Abs. 1 lit. c; Art. 15 (Genauigkeit, Robustheit und Cybersicherheit).
-- Verordnung (EU) 2016/679 (DSGVO), Art. 9 und Art. 22.
-- EuGH, Urteil vom 7.12.2023, C-634/21 (SCHUFA).
-- Betriebsverfassungsgesetz (BetrVG), § 87 Abs. 1 Nr. 6.
+- Regulation (EU) 2024/1689 (AI Act), Art. 5(1)(c); Art. 15 (accuracy, robustness and cybersecurity).
+- Regulation (EU) 2016/679 (GDPR), Art. 9 and Art. 22.
+- CJEU, judgment of 7 December 2023, C-634/21 (SCHUFA).
+- German Works Constitution Act (Betriebsverfassungsgesetz, BetrVG), § 87(1) no. 6.
