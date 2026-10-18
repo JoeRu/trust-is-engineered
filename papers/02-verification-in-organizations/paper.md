@@ -133,7 +133,7 @@ If an action can be verified by n persons and each decides independently and ver
 C = 1 - (1 - c_n)^n
 ```
 
-In general, C is the probability that at least one person verifies, 1 − P(nobody verifies); the formula is the special case of independent decisions. If the decisions are positively correlated, for example because all see the same request and presume the same, C is lower than the formula gives; if all decide together, C = c_n.
+In general, C is the probability that at least one person verifies, 1 − P(nobody verifies); the formula is the special case of independent decisions. With dependent decisions, C can be lower or higher than the formula gives; if all decide together, C = c_n.
 
 Empirically, c_n decreases with n faster than the larger exponent compensates. Each individual applies the verification rule not to (1−E), but to the residual risk after the presumed verification by the others. If everyone presumes the same, nobody verifies. **Two possible verifiers without assigned responsibility often amount to less than one verification.**
 
