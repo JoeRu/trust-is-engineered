@@ -44,6 +44,18 @@ Both problems share one structure: an entity has to decide which action it allow
 | 14 | Practical implications for information security |
 | 15–16 | Research plan, limitations, ethics and law, references |
 
+## Papers
+
+The long version is split into three self-contained papers for submission. Each derives its content from the long version, keeps its identifiers and evidence status, and comes with a related-work document that compares it with prior work and names the main overlap risks.
+
+| Paper | Contribution | Related work |
+| --- | --- | --- |
+| [Paper 1: An Evidence Model of Trust, Distrust and the Calibration Gap](papers/01-evidence-model/paper.md) | evidence model with trust, distrust and uncertainty, temporal decay, source dependence, normative vs. descriptive account | [related-work.md](papers/01-evidence-model/related-work.md) |
+| [Paper 2: Verification as a Public Good](papers/02-verification-in-organizations/paper.md) | groups act on verification; protection delegation; action-bound rules; trust dimensions × security objectives | [related-work.md](papers/02-verification-in-organizations/related-work.md) |
+| [Paper 3: Engineering Calibrated Trust between Humans, Agents and Machines](papers/03-human-agent-trust/paper.md) | evidence accounts, decay and re-verification for agents and machines; utility as a risk dimension | [related-work.md](papers/03-human-agent-trust/related-work.md) |
+
+All references are in [`bib/references.bib`](bib/references.bib) with their verification status; see [`bib/README.md`](bib/README.md) and the open points in [`bib/check-report.md`](bib/check-report.md).
+
 ## Companion papers
 
 | Paper | Topic |
@@ -65,6 +77,9 @@ docs/case-study-01-populist-techniques.md      companion paper: Case Study 1
 docs/figures/                                  Figures 1 to 10 (English)
 docs/figures/src/make_figures.py               script that generates the figures
 docs/de/                                       German original v0.6 (archived, not maintained)
+papers/0N-*/paper.md                           Papers 1-3 derived from the long version
+papers/0N-*/related-work.md                    related-work document per paper
+bib/references.bib                             bibliography with verification status
 LICENSE                                        license text CC BY 4.0
 CITATION.cff                                   citation metadata (machine-readable)
 ```
