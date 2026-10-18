@@ -48,6 +48,9 @@ DOCUMENTS = [
     ("papers/01-evidence-model/related-work.md", "related-work-1", False),
     ("papers/02-verification-in-organizations/related-work.md", "related-work-2", False),
     ("papers/03-human-agent-trust/related-work.md", "related-work-3", False),
+    ("papers/01-evidence-model/whats-new.md", "whats-new-1", False),
+    ("papers/02-verification-in-organizations/whats-new.md", "whats-new-2", False),
+    ("papers/03-human-agent-trust/whats-new.md", "whats-new-3", False),
 ]
 
 REF_HEADING = re.compile(r"^(#{2,3}) (?:\d+\. )?References\s*$", re.M)
