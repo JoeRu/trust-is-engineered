@@ -26,6 +26,20 @@ jeder PR-Text ist sofort sichtbar.
   "(verified YYYY-MM-DD)" = am Volltext geprüft. Einen Vermerk nie
   einfach löschen; die Legende in Kapitel 16 definiert sie.
 
+## Paper und Literatur
+
+- `docs/trust-is-engineered.md` ist die Langfassung und Quelle aller Aussagen.
+  Die drei Paper unter `papers/0N-*/paper.md` sind daraus abgeleitet: kein
+  Inhalt, der nicht in der Langfassung steht; Kennungen und Evidenzstatus wie
+  dort. Inhaltliche Änderungen zuerst in der Langfassung, dann in den Papern.
+- Je Paper gibt es `related-work.md`. Neue Quellen dort tragen „(new, secondary
+  citation)“ oder „(new, to be checked)“ und dürfen nur so weit beschrieben
+  werden, wie sie gelesen wurden.
+- `bib/references.bib` ist die einzige Literaturdatenbank. Feld `verification`
+  = Vermerk aus der Langfassung; beim Prüfen am Volltext beide Stellen im
+  selben Commit ändern. Regeln in `bib/README.md`, offene Punkte in
+  `bib/check-report.md`.
+
 ## Abbildungen
 
 - Die Abbildungen werden mit `docs/figures/src/make_figures.py` erzeugt
