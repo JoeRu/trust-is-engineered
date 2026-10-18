@@ -10,6 +10,8 @@ A dynamic, context-sensitive model of trust, distrust and decisions under uncert
 
 ## 0. What has changed compared with earlier versions
 
+**Clarifications in the English edition of v0.6 (October 2026).** Two formulas now state their assumptions: verification coverage C (7.3) assumes independent decisions, with the general case and the effect of correlated decisions added; the re-verification interval t* (10.4) states its domain (0 < λ < 1, n₀ > 0, u(0) < u_max) and the boundary cases. No statement, hypothesis or prediction changes.
+
 **Addition in v0.6.** Chapter 7 “Groups and Organization” is new. It introduces the meso level (team, department, organization), at which information security is actually practiced, and shows that groups act less on the assessment than on verification: through diffusion of responsibility, protection delegation (“That's IT's job”) and descriptive norms. The model gains no new parameter, but two derived quantities (verification coverage C, effective trust after presumed filtering E′), one core assumption (G4), four hypotheses (H16 to H19), six predictions (V22 to V27) and five rules (S20 to S24). H12 is sharpened. Section 8.2 distinguishes two attack classes (abuse and calibration). The companion paper [Case Study 1](case-study-01-populist-techniques.md) applies the model to populist argumentation techniques as calibration attacks at the macro level. Because of the new Chapter 7, the former Chapters 7 to 15 are now 8 to 16; hypothesis, rule and prediction numbers remain stable.
 
 **Addition in v0.5.** The chapter on trust dimensions and security objectives (now Chapter 13) was new. Result: dimensions and security objectives lie on two axes (actor and asset), three dimensions have a strong counterpart, competence has none; for AI agents, utility becomes a risk dimension of its own (hypothesis H15, rule S19, Figure 10).
@@ -529,11 +531,13 @@ Three findings are considered established and form core assumption G4 (Section 1
 
 ### 7.3 Verification as a public good
 
-If an action can be verified by n persons and each verifies with probability c_n, the verification coverage is:
+If an action can be verified by n persons and each decides independently and verifies with probability c_n, the verification coverage is:
 
 ```math
 C = 1 - (1 - c_n)^n
 ```
+
+In general, C is the probability that at least one person verifies, 1 − P(nobody verifies); the formula is the special case of independent decisions. If the decisions are positively correlated, for example because all see the same request and presume the same, C is lower than the formula gives; if all decide together, C = c_n.
 
 Empirically, c_n decreases with n faster than the larger exponent compensates. Each individual applies the verification rule from 6.3 not to (1−E), but to the residual risk after the presumed verification by the others. If everyone presumes the same, nobody verifies. **Two possible verifiers without assigned responsibility often amount to less than one verification.**
 
@@ -808,6 +812,8 @@ If an action class tolerates at most uncertainty u_max, the latest re-verificati
 ```math
 t^{*} = \frac{\ln\!\left(\dfrac{W\,(1-u_{\max})}{u_{\max}\,n_0}\right)}{\ln \lambda}
 ```
+
+The formula applies for 0 < λ < 1, n₀ > 0 and an edge that is still within the limit at the last verification, u(0) = W / (W + n₀) < u_max. If u(0) ≥ u_max, including a new edge with n₀ = 0, the formula gives no positive interval or none at all: verification is due immediately (t* = 0). Without forgetting (λ = 1), uncertainty stays at u(0); an edge within the limit then never crosses it through decay alone.
 
 Worked example with illustrative values W = 2, n₀ = 40, λ = 0.9 per day:
 

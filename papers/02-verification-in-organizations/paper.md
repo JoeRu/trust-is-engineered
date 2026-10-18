@@ -127,11 +127,13 @@ Three findings are considered established and form core assumption G4 (Section 9
 
 ### 4.2 Verification as a public good
 
-If an action can be verified by n persons and each verifies with probability c_n, the verification coverage is:
+If an action can be verified by n persons and each decides independently and verifies with probability c_n, the verification coverage is:
 
 ```math
 C = 1 - (1 - c_n)^n
 ```
+
+In general, C is the probability that at least one person verifies, 1 − P(nobody verifies); the formula is the special case of independent decisions. If the decisions are positively correlated, for example because all see the same request and presume the same, C is lower than the formula gives; if all decide together, C = c_n.
 
 Empirically, c_n decreases with n faster than the larger exponent compensates. Each individual applies the verification rule not to (1−E), but to the residual risk after the presumed verification by the others. If everyone presumes the same, nobody verifies. **Two possible verifiers without assigned responsibility often amount to less than one verification.**
 
