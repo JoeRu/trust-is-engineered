@@ -56,6 +56,15 @@ The long version is split into three self-contained papers for submission. Each 
 
 All references are in [`bib/references.bib`](bib/references.bib) with their verification status; see [`bib/README.md`](bib/README.md) and the open points in [`bib/check-report.md`](bib/check-report.md).
 
+## Building the PDFs
+
+A GitHub Actions workflow ([`.github/workflows/latex.yml`](.github/workflows/latex.yml)) runs on every push and pull request:
+
+1. `python3 tools/build_papers.py check` matches every author–year citation and every reference-list entry against [`bib/references.bib`](bib/references.bib) and fails on references that are missing or ambiguous.
+2. `python3 tools/build_papers.py build --pdf` converts the papers, the long version and Case Study 1 with pandoc to LaTeX and builds PDFs with LuaLaTeX and biber. The reference lists are generated from the bibliography, and the verification status of each entry (e.g. "to be checked") is printed after it.
+
+The PDFs, the `.tex` sources and a per-paper `.bib` are available as a workflow artifact; for version tags (`v*`) the PDFs are attached to the release. Locally the same commands work with pandoc, LuaLaTeX, latexmk and biber installed; output goes to `build/`.
+
 ## Companion papers
 
 | Paper | Topic |
@@ -80,6 +89,7 @@ docs/de/                                       German original v0.6 (archived, n
 papers/0N-*/paper.md                           Papers 1-3 derived from the long version
 papers/0N-*/related-work.md                    related-work document per paper
 bib/references.bib                             bibliography with verification status
+tools/build_papers.py                          citation check and LaTeX/PDF build
 LICENSE                                        license text CC BY 4.0
 CITATION.cff                                   citation metadata (machine-readable)
 ```

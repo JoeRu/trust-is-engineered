@@ -240,4 +240,4 @@ New compared with the working paper. Entries marked “to be checked” must be 
 - Ross, L., Greene, D. & House, P. (1977). The “false consensus effect”. Journal of Experimental Social Psychology, 13(3), 279–301.
 - Shackel, N. (2005). The Vacuity of Postmodernist Methodology. Metaphilosophy, 36(3), 295–320. (to be checked)
 
-Adopted from the working paper: Balliet et al. 2014; Lord, Lepper & Preston 1984; Modirrousta-Galian & Higham 2023; Wineburg & McGrew 2019; Yousif, Aboody & Keil 2019.
+Adopted from the working paper: Balliet et al. 2014; Lord, Lepper & Preston 1984; Modirrousta-Galian & Higham 2023; Wineburg & McGrew 2019; Yousif, Aboody & Keil 2019; GDPR Art. 9.
