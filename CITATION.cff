@@ -9,6 +9,7 @@ type: software
 authors:
   - family-names: Rumpf
     given-names: Johannes
+    orcid: "https://orcid.org/0009-0001-8675-0608"
 version: "0.6"
 date-released: "2026-10-12"
 license: CC-BY-4.0
@@ -27,6 +28,7 @@ preferred-citation:
   authors:
     - family-names: Rumpf
       given-names: Johannes
+      orcid: "https://orcid.org/0009-0001-8675-0608"
   year: 2026
   month: 10
   version: "0.6"
