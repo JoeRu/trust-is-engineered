@@ -2,7 +2,10 @@
 
 Arbeitspapier *Trust Is Engineered* (`docs/trust-is-engineered.md`) mit
 Begleitpapieren (`docs/fallstudie-*.md`) und Abbildungen (`docs/figures/`).
-Das Paper ist als **ENTWURF** gekennzeichnet (Hinweis oben in README, Paper und Fallstudie) — den Hinweis nicht entfernen, solange Johannes keine Fassung freigibt. Bewusst ohne Lizenz.
+Das Paper ist als **ENTWURF** gekennzeichnet (Hinweis oben in README, Paper und Fallstudie) — den Hinweis nicht entfernen, solange Johannes keine Fassung freigibt.
+Lizenz: CC BY 4.0 (`LICENSE`) für Text und Abbildungen. Code, falls er
+hinzukommt, erhält eine eigene Softwarelizenz (vorgesehen: Apache 2.0) in
+seinem Ordner, nicht CC BY.
 Das Repository ist **öffentlich**: Jeder Commit, jede Commit-Nachricht und
 jeder PR-Text ist sofort sichtbar.
 
@@ -24,5 +27,7 @@ jeder PR-Text ist sofort sichtbar.
   (`docs(paper): Quellenprüfung <Einträge>`).
 - Inhaltliche Überarbeitungen auf einem Branch `v<next>-<thema>` mit PR;
   Johannes merged. Versionszeile, Kapitel 0 („Ergänzung in v<next>“) und die
-  Kapiteltabelle in `README.md` mitziehen.
+  Kapiteltabelle in `README.md` mitziehen, ebenso `version` und
+  `date-released` in `CITATION.cff` sowie die Version im Zitiervorschlag
+  des README.
 - Keine internen Host-, Pfad- oder Personennamen in Dateien, Commits oder PRs.
