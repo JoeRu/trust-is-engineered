@@ -81,7 +81,7 @@
 - **Lain, Kostiainen & Čapkun (2022)** and **Lain et al. (2024).** Long-term field evidence on embedded training and crowdsourced reporting. Belong next to Ho et al. (2025) in the training-evidence section (9.1) and as a protective group effect (7.7).
 - **Bullee & Junger (2020)** and **Prümmer, van Steen & van den Berg (2025).** Meta-analyses that a reviewer will expect in place of or next to single studies. Belong in 9.1 and in the H8/H12 evidence rows.
 - **Kwak et al. (2020)** and **Kersten et al. (2022).** Reporting behavior. Belong where the reporting rate is used as a metric (9.7) and next to V23.
-- **Vishwanath, Harrison & Ng (2018)** and **Ferreira, Coventry & Lenzini (2015).** Susceptibility model with automaticity and a merged persuasion taxonomy. Belong in the attack section (8.2, 8.4 rows) to position the variable mapping against existing taxonomies.
+- **Vishwanath, Harrison & Ng (2016)** and **Ferreira, Coventry & Lenzini (2015).** Susceptibility model with automaticity and a merged persuasion taxonomy. Belong in the attack section (8.2, 8.4 rows) to position the variable mapping against existing taxonomies.
 - **Kirlappos & Sasse (2015)** and **Albrechtsen & Hovden (2010).** Peer trust as a driver of collaborative non-compliance; group-based intervention. Belong in "groups as an attack surface" (7.6) and "role and norm instead of appeal" (9.6).
 - **Renaud et al. (2018).** Responsibilization critique. Belongs in the protection-delegation section to make clear that the paper argues for named roles, not for shifting risk onto individuals.
 - **Cross & Gillett (2020).** Academic review of BEC. Belongs next to FBI IC3 (2024) where S2 is motivated; a review is preferable to relying on one agency report.

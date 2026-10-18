@@ -1,0 +1,39 @@
+% Shared preamble for all papers (included via pandoc header-includes).
+
+% (applied once biblatex is loaded, because pandoc loads it after header-includes)
+% Print the verification status of each reference after the entry,
+% e.g. "(to be checked)"; entries without a marker print nothing.
+\AddToHook{package/biblatex/after}{%
+  \DeclareSourcemap{
+    \maps[datatype=bibtex]{
+      \map{% internal notes on unconfirmed fields are not printed
+        \step[fieldsource=note, match=\regexp{\Aincomplete:}, final]
+        \step[fieldset=note, null]
+      }
+      \map{
+        \step[fieldsource=verification, match=\regexp{\A(unmarked)?\Z}, final]
+        \step[fieldset=verification, null]
+      }
+      \map{
+        \step[fieldsource=verification]
+        \step[fieldset=addendum, origfieldval]
+      }
+    }
+  }%
+  \DeclareFieldFormat{addendum}{\mkbibparens{#1}}%
+}
+
+% Draft marker in the footer of every page.
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[L]{\footnotesize Draft -- not peer reviewed, not empirically validated}
+\fancyfoot[R]{\footnotesize\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[L]{\footnotesize Draft -- not peer reviewed, not empirically validated}\fancyfoot[R]{\footnotesize\thepage}\renewcommand{\headrulewidth}{0pt}}
+
+% Long tables with wrapped cells.
+\usepackage{array}
+\renewcommand{\arraystretch}{1.15}
+\setlength{\emergencystretch}{3em}
+\sloppy

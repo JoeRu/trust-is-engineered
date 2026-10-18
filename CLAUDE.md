@@ -40,6 +40,14 @@ jeder PR-Text ist sofort sichtbar.
   selben Commit ändern. Regeln in `bib/README.md`, offene Punkte in
   `bib/check-report.md`.
 
+## Build und Zitate
+
+- Vor jedem Commit an Papern oder Literatur `python3 tools/build_papers.py check`
+  laufen lassen; die CI (`.github/workflows/latex.yml`) bricht sonst ab.
+- Zitate im Text bleiben Autor-Jahr-Text. Die Zuordnung zur BibTeX-Datei läuft
+  über das Feld `intextform`; eine neue Zitierform dort ergänzen, nicht den
+  Text auf Zitierschlüssel umstellen.
+
 ## Abbildungen
 
 - Die Abbildungen werden mit `docs/figures/src/make_figures.py` erzeugt
