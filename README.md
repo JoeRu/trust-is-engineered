@@ -77,7 +77,7 @@ The artifact contains the PDFs and, per document, a self-contained LaTeX folder 
 ```
 docs/trust-is-engineered.md                    long version (working paper v0.6)
 docs/case-study-01-populist-techniques.md      Case Study 1
-docs/figures/                                  Figures 1 to 10
+docs/figures/                                  Figures 1 to 10 and Figure F1.1 of Case Study 1
 docs/figures/src/make_figures.py               script that generates the figures
 docs/de/                                       German original v0.6 (archived, not maintained)
 papers/0N-*/paper.md                           Papers 1-3 derived from the long version

@@ -115,7 +115,7 @@ def year_of(fields):
 
 def citation_patterns(bib):
     """[(regex, key)] built from every intextform of every entry."""
-    pats = []
+    explicit, generic = [], []
     for key, e in bib.items():
         forms = e["fields"].get("intextform", "")
         if not forms or forms == "not cited in text":
@@ -131,7 +131,7 @@ def citation_patterns(bib):
                 rx = a + r",?\s+\(?" + year + r"[a-z]?\)?"
             else:  # forms without a year, e.g. "NIST SP 800-207", "OWASP 2025 LLM09"
                 rx = re.escape(form)
-            pats.append((re.compile(r"(?<![\w-])" + rx + r"(?![\w-])"), key))
+            explicit.append((re.compile(r"(?<![\w-])" + rx + r"(?![\w-])"), key))
     # generic forms from the author field: "A YEAR", "A & B YEAR", "A et al. YEAR",
     # "A, B & C YEAR"; skipped when first author and year are not unique
     seen = {}
@@ -150,9 +150,13 @@ def citation_patterns(bib):
         name = r"[A-ZÄÖÜÅØ][\w'’\-]+(?: [A-Z][\w'’\-]+)?"
         rx = (re.escape(sur) + r"(?: et al\.|(?:,? (?:&|and) " + name + r")|(?:, " + name + r")+,? (?:&|and) " + name
               + r")?,?\s+\(?" + y + r"[a-z]?\)?")
-        pats.append((re.compile(r"(?<![\w-])" + rx + r"(?![\w-])"), keys[0]))
+        generic.append((re.compile(r"(?<![\w-])" + rx + r"(?![\w-])"), keys[0]))
     # longer patterns first so "Lewicki, McAllister & Bies 1998" wins over "Lewicki 1998"
-    pats.sort(key=lambda p: -len(p[0].pattern))
+    # explicit intextform forms win over generic ones ("S. Kim et al. 2024" before
+    # "Kim et al. 2024"); within each group longer patterns first
+    explicit.sort(key=lambda p: -len(p[0].pattern))
+    generic.sort(key=lambda p: -len(p[0].pattern))
+    pats = explicit + generic
     return pats
 
 
@@ -239,14 +243,44 @@ NOT_CITATIONS = re.compile(
     r"Phase|Section|Table|Figure|By|Before|After|Until|Top|The|Year|Studies|Report)\b")
 
 
+EXTRA_YEARS = re.compile(r"(?:,\s*(?:19|20)\d\d[a-z]?)+")
+
+
+def match_one(text, pats):
+    """Key of the citation pattern that matches the whole text, or None."""
+    for rx, key in pats:
+        m = rx.search(text)
+        if m and m.start() == 0 and m.end() == len(text):
+            return key
+    return None
+
+
 def find_citations(text, pats):
-    found, spans = {}, []
+    """Return (found {key: form}, unresolved suspects, unmatched grouped years).
+
+    Grouped citations such as "Debenedetti et al. (2024, 2025)" or
+    "Debenedetti et al. 2024, 2025" are expanded: every further year is
+    checked with the same authors and must match an entry of its own.
+    """
+    found, spans, unmatched = {}, [], []
     for rx, key in pats:
         for m in rx.finditer(text):
             if any(s <= m.start() < e for s, e in spans):
                 continue
-            spans.append((m.start(), m.end()))
+            end = m.end()
             found.setdefault(key, m.group(0))
+            extra = EXTRA_YEARS.match(text, m.end())
+            if extra:
+                head = re.sub(r"[\s(]*(?:19|20)\d\d[a-z]?\)?$", "", m.group(0))
+                for y in re.findall(r"(?:19|20)\d\d[a-z]?", extra.group(0)):
+                    form = head + " " + y
+                    k = match_one(form, pats)
+                    if k:
+                        found.setdefault(k, form)
+                    else:
+                        unmatched.append(form)
+                end = extra.end()
+            spans.append((m.start(), end))
     unresolved = []
     for m in SUSPECT.finditer(text):
         if any(s <= m.start() < e or s < m.end() <= e for s, e in spans):
@@ -254,7 +288,7 @@ def find_citations(text, pats):
         if NOT_CITATIONS.match(m.group(0)):
             continue
         unresolved.append(m.group(0))
-    return found, sorted(set(unresolved))
+    return found, sorted(set(unresolved)), sorted(set(unmatched))
 
 
 def check_document(path, bib, pats):
@@ -276,7 +310,9 @@ def check_document(path, bib, pats):
         prose = "\n".join(l for l in refs.splitlines() if not l.startswith("- ") and not l.startswith("#"))
         for key in find_citations(prose, pats)[0]:
             listed.setdefault(key, "(adopted)")
-    cited, unresolved = find_citations(body, pats)
+    cited, unresolved, unmatched = find_citations(body, pats)
+    for u in unmatched:
+        errors.append("grouped citation year without bib match: " + u)
     for key, form in sorted(cited.items()):
         if refs is not None and key not in listed:
             errors.append("cited but not in reference list: %s (%s)" % (form, key))
