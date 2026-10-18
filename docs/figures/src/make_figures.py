@@ -507,6 +507,40 @@ def fig10(outdir):
     save(fig, outdir, "fig-10-security-objectives.png")
 
 
+# ---------------------------------------------------------------------------
+# Figure F1.1 of Case Study 1: attack chain on the macro level (Section F1.5)
+# ---------------------------------------------------------------------------
+
+def fig_f1_1(outdir):
+    fig, ax = canvas(500)
+    title(ax, "Attack chain on the macro level",
+          "Feedback loop via dependent sources", y=48)
+    top, bot = (130, 250), (330, 450)
+    cols = [(42, 410), (488, 856), (934, 1302)]
+    box(ax, cols[0][0], top[0], cols[0][1], top[1], "Silent majority",
+        "group boundary,\na for S rises")
+    box(ax, cols[1][0], top[0], cols[1][1], top[1], "Straw man",
+        "s on edges to F rises (π < 1)")
+    box(ax, cols[2][0], top[0], cols[2][1], top[1], "False dilemma", "u becomes d")
+    box(ax, cols[2][0], bot[0], cols[2][1], bot[1], "Motte-and-bailey", "no counter-evidence")
+    box(ax, cols[1][0], bot[0], cols[1][1], bot[1], "Edges to F",
+        "below the interaction\nthreshold")
+    box(ax, cols[0][0], bot[0], cols[0][1], bot[1], "Learning trap",
+        "no correction, Σ stays high", highlight=True)
+    mid_top, mid_bot = sum(top) / 2, sum(bot) / 2
+    polyline(ax, [(cols[0][1] + 2, mid_top), (cols[1][0] - 2, mid_top)])
+    polyline(ax, [(cols[1][1] + 2, mid_top), (cols[2][0] - 2, mid_top)])
+    xc = sum(cols[2]) / 2
+    polyline(ax, [(xc, top[1] + 2), (xc, bot[0] - 2)])
+    polyline(ax, [(cols[2][0] - 2, mid_bot), (cols[1][1] + 2, mid_bot)])
+    polyline(ax, [(cols[1][0] - 2, mid_bot), (cols[0][1] + 2, mid_bot)])
+    xa = sum(cols[0]) / 2
+    polyline(ax, [(xa, bot[0] - 2), (xa, top[1] + 2)], color=BLUE, dashed=True)
+    text(ax, xa + 14, (top[1] + bot[0]) / 2, "internal repetition, D close to 1",
+         size=F_SMALL, color=BLUE, ha="left")
+    save(fig, outdir, "fig-f1-1-attack-chain.png")
+
+
 DEFAULT_OUT = os.environ.get(
     "FIGURES_OUT", os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -514,7 +548,7 @@ DEFAULT_OUT = os.environ.get(
 def main():
     outdir = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_OUT
     os.makedirs(outdir, exist_ok=True)
-    for f in (fig01, fig02, fig03, fig04, fig05, fig06, fig07, fig08, fig09, fig10):
+    for f in (fig01, fig02, fig03, fig04, fig05, fig06, fig07, fig08, fig09, fig10, fig_f1_1):
         f(outdir)
 
 

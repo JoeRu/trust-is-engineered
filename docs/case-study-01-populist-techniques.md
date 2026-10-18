@@ -146,15 +146,7 @@ As in 8.4, the techniques usually occur in combination. A typical sequence:
 3. **False dilemma** forces a binary judgment. Remaining ambivalence becomes distrust.
 4. **Motte-and-bailey** protects the narrative against counter-evidence.
 
-```mermaid
-flowchart LR
-  A["Silent majority<br/>group boundary, a for S rises"] --> B["Straw man<br/>s on edges to F rises (π < 1)"]
-  B --> C["False dilemma<br/>u becomes d"]
-  C --> D["Motte-and-bailey<br/>no counter-evidence"]
-  D --> E["Edges to F below the<br/>interaction threshold"]
-  E --> F["Learning trap: no correction,<br/>Σ stays high"]
-  F -. "internal repetition, D close to 1" .-> A
-```
+![Attack chain on the macro level: silent majority, straw man, false dilemma and motte-and-bailey lead to edges below the interaction threshold and a learning trap, which internal repetition feeds back](figures/fig-f1-1-attack-chain.png)
 
 *Figure F1.1: Attack chain on the macro level · feedback loop via dependent sources*
 
@@ -240,4 +232,4 @@ New compared with the working paper. Entries marked “to be checked” must be 
 - Ross, L., Greene, D. & House, P. (1977). The “false consensus effect”. Journal of Experimental Social Psychology, 13(3), 279–301.
 - Shackel, N. (2005). The Vacuity of Postmodernist Methodology. Metaphilosophy, 36(3), 295–320. (to be checked)
 
-Adopted from the working paper: Balliet et al. 2014; Lord, Lepper & Preston 1984; Modirrousta-Galian & Higham 2023; Wineburg & McGrew 2019; Yousif, Aboody & Keil 2019.
+Adopted from the working paper: Balliet et al. 2014; Lord, Lepper & Preston 1984; Modirrousta-Galian & Higham 2023; Wineburg & McGrew 2019; Yousif, Aboody & Keil 2019; GDPR Art. 9.
