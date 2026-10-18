@@ -63,7 +63,7 @@ A GitHub Actions workflow ([`.github/workflows/latex.yml`](.github/workflows/lat
 1. `python3 tools/build_papers.py check` matches every author–year citation and every reference-list entry against [`bib/references.bib`](bib/references.bib) and fails on references that are missing or ambiguous.
 2. `python3 tools/build_papers.py build --pdf` converts the papers, the long version and Case Study 1 with pandoc to LaTeX and builds PDFs with LuaLaTeX and biber. The reference lists are generated from the bibliography, and the verification status of each entry (e.g. "to be checked") is printed after it.
 
-The PDFs, the `.tex` sources and a per-paper `.bib` are available as a workflow artifact; for version tags (`v*`) the PDFs are attached to the release. Locally the same commands work with pandoc, LuaLaTeX, latexmk and biber installed; output goes to `build/`.
+The PDFs and, per document, a self-contained LaTeX folder (`.tex`, the document's own `.bib`, preamble and figures) are available as a workflow artifact; for version tags (`v*`) the PDFs are attached to the release. Locally the same commands work with pandoc, LuaLaTeX, latexmk and biber installed; output goes to `build/`.
 
 ## Companion papers
 

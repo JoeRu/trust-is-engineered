@@ -35,7 +35,10 @@ jobs:
       - name: Build LaTeX and PDF
         run: python3 tools/build_papers.py build --pdf
 
-      - name: Upload PDFs, LaTeX sources and per-paper bibliographies
+      # Each build/<name>/ folder is self-contained: .tex, subset .bib,
+      # preamble.tex, bibnote.tex (if any) and figures/ compile anywhere
+      # with LuaLaTeX and biber.
+      - name: Upload PDFs and self-contained LaTeX sources
         uses: actions/upload-artifact@v4
         with:
           name: papers-${{ github.sha }}
@@ -43,6 +46,7 @@ jobs:
             build/pdf/*.pdf
             build/*/*.tex
             build/*/*.bib
+            build/*/figures/*
           if-no-files-found: error
 
       - name: Attach PDFs to the release

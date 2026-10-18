@@ -122,7 +122,7 @@ def citation_patterns(bib):
             continue
         for form in forms.split(" | "):
             form = form.strip()
-            m = re.match(r"^(.*?),?\s*\(?(" + YEAR + r")[a-z]?\)?$", form)
+            m = re.match(r"^(.*?),?(?:\s+\(?|\s*\()(" + YEAR + r")[a-z]?\)?$", form)
             if m:
                 authors, year = m.group(1).strip(), m.group(2)
                 # "&" and "and" are interchangeable; optional comma before the year;
@@ -236,7 +236,7 @@ SUSPECT = re.compile(
 NOT_CITATIONS = re.compile(
     r"^(?:Since|In|Version|Edition|October|January|February|March|April|May|June|July|"
     r"August|September|November|December|As|From|Stand|Draft|Act|Art|Regulation|ISO|IEC|"
-    r"Phase|Section|Table|Figure|By|Before|After|Until|Top|The|Year|Studies|Report|Rumpf)\b")
+    r"Phase|Section|Table|Figure|By|Before|After|Until|Top|The|Year|Studies|Report)\b")
 
 
 def find_citations(text, pats):
@@ -266,8 +266,6 @@ def check_document(path, bib, pats):
         errors.append("no reference section found")
     else:
         for line in reference_lines(refs):
-            if line.startswith("Rumpf, J."):  # the long version, cited as a document
-                continue
             hits = match_reference_line(line, bib)
             if len(hits) == 1:
                 listed[hits[0]] = line
@@ -292,16 +290,27 @@ def check_document(path, bib, pats):
 
 # ---------------------------------------------------------------- LaTeX build
 
-def to_pandoc_markdown(md, src_path, keys):
+def reference_prose(md):
+    """Explanatory prose of the reference section (legend, notes), without the list."""
+    _, refs = split_references(md)
+    if not refs:
+        return ""
+    lines = refs.splitlines()[1:]  # drop the heading
+    keep = [l for l in lines if not l.startswith("- ") and not l.startswith("#")]
+    return "\n".join(keep).strip()
+
+
+def to_pandoc_markdown(md, src_path, keys, outdir, name):
     body, _ = split_references(md)
     # GitHub ```math blocks -> display math
     body = MATH_FENCE.sub(lambda m: "$$\n" + m.group(1).strip() + "\n$$", body)
-    # title from the first H1
-    m = re.search(r"^# (.+)$", body, re.M)
+    # title from the first H1, otherwise the first H2 (Case Study 1)
+    m = re.search(r"^# (.+)$", body, re.M) or re.search(r"^## (.+)$", body, re.M)
     title = m.group(1).strip() if m else os.path.basename(src_path)
     if m:
         body = body[:m.start()] + body[m.end():]
     src_dir = os.path.dirname(src_path)
+    os.makedirs(os.path.join(outdir, "figures"), exist_ok=True)
 
     def relink(match):
         text, target = match.group(1), match.group(2)
@@ -311,12 +320,24 @@ def to_pandoc_markdown(md, src_path, keys):
         full = os.path.normpath(os.path.join(ROOT, src_dir, path))
         rel = os.path.relpath(full, ROOT).replace(os.sep, "/")
         if path.lower().endswith((".png", ".jpg", ".jpeg", ".pdf")):
-            return "%s(%s)" % (text, full)
+            shutil.copy(full, os.path.join(outdir, "figures", os.path.basename(full)))
+            return "%s(figures/%s)" % (text, os.path.basename(full))
         return "%s(%s%s)" % (text, REPO_URL, rel + ("#" + anchor if anchor else ""))
 
     body = re.sub(r"(!?\[[^\]]*\])\(([^)\s]+)\)", relink, body)
-    # the hand-written list is replaced by the generated bibliography
     body = body.rstrip() + "\n"
+
+    # the preamble and, if present, the legend of the reference list travel with the .tex
+    shutil.copy(os.path.join(ROOT, "tools", "latex", "preamble.tex"), os.path.join(outdir, "preamble.tex"))
+    includes = [r"\input{preamble.tex}"]
+    prose = reference_prose(md)
+    if prose:
+        legend = subprocess.run(["pandoc", "--from", "markdown", "--to", "latex"], input=prose,
+                                capture_output=True, text=True, check=True).stdout.strip()
+        open(os.path.join(outdir, "bibnote.tex"), "w", encoding="utf-8").write(
+            "\\AddToHook{package/biblatex/after}{%\n  \\defbibnote{legend}{" + legend
+            + "}%\n  \\DeclarePrintbibliographyDefaults{prenote=legend}%\n}\n")
+        includes.append(r"\input{bibnote.tex}")
     meta = [
         "---",
         "title: " + yaml_str(title),
@@ -331,14 +352,11 @@ def to_pandoc_markdown(md, src_path, keys):
         "colorlinks: true",
         "biblio-title: References",
         "biblatexoptions: [style=authoryear, maxbibnames=99, maxcitenames=2, uniquename=false, uniquelist=false, backend=biber]",
-        "bibliography: " + yaml_str(BIB),
+        "bibliography: " + yaml_str(name + ".bib"),
         "nocite: |",
         "  " + ", ".join("@" + k for k in keys),
         "header-includes:",
-        "  - " + yaml_str(r"\input{" + os.path.join(ROOT, "tools", "latex", "preamble.tex") + "}"),
-        "---",
-        "",
-    ]
+    ] + ["  - " + yaml_str(i) for i in includes] + ["---", ""]
     return "\n".join(meta) + body
 
 
@@ -347,19 +365,22 @@ def yaml_str(s):
 
 
 def build(doc, name, keys, pdf):
-    os.makedirs(os.path.join(OUT, name), exist_ok=True)
+    """Write a self-contained folder build/<name>/: .md, .tex, subset .bib,
+    preamble, legend and figures; compiles anywhere with LuaLaTeX and biber."""
+    outdir = os.path.join(OUT, name)
+    os.makedirs(outdir, exist_ok=True)
     md = open(os.path.join(ROOT, doc), encoding="utf-8").read()
-    pmd = os.path.join(OUT, name, name + ".md")
-    open(pmd, "w", encoding="utf-8").write(to_pandoc_markdown(md, doc, keys))
-    tex = os.path.join(OUT, name, name + ".tex")
-    subprocess.run(["pandoc", pmd, "--from", "markdown+tex_math_dollars-implicit_figures",
-                    "--standalone", "--biblatex", "--pdf-engine=lualatex", "-o", tex], check=True)
-    write_subset_bib(keys, os.path.join(OUT, name, name + ".bib"))
+    write_subset_bib(keys, os.path.join(outdir, name + ".bib"))
+    pmd = os.path.join(outdir, name + ".md")
+    open(pmd, "w", encoding="utf-8").write(to_pandoc_markdown(md, doc, keys, outdir, name))
+    subprocess.run(["pandoc", name + ".md", "--from", "markdown+tex_math_dollars-implicit_figures",
+                    "--standalone", "--biblatex", "--pdf-engine=lualatex", "-o", name + ".tex"],
+                   cwd=outdir, check=True)
     if pdf:
         subprocess.run(["latexmk", "-lualatex", "-interaction=nonstopmode", "-halt-on-error",
-                        "-file-line-error", name + ".tex"], cwd=os.path.join(OUT, name), check=True)
+                        "-file-line-error", name + ".tex"], cwd=outdir, check=True)
         os.makedirs(os.path.join(OUT, "pdf"), exist_ok=True)
-        shutil.copy(os.path.join(OUT, name, name + ".pdf"), os.path.join(OUT, "pdf", name + ".pdf"))
+        shutil.copy(os.path.join(outdir, name + ".pdf"), os.path.join(OUT, "pdf", name + ".pdf"))
 
 
 def write_subset_bib(keys, path):
@@ -387,7 +408,8 @@ def main(argv):
     results = []
     for doc, name, makes_pdf in DOCUMENTS:
         if not os.path.exists(os.path.join(ROOT, doc)):
-            print("skip (missing): " + doc)
+            print("\n== %s\n  ERROR   configured document is missing" % doc)
+            failed = True
             continue
         md, keys, errors, warnings = check_document(doc, bib, pats)
         print("\n== %s: %d references matched, %d errors, %d warnings"
