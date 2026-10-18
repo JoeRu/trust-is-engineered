@@ -234,6 +234,8 @@ If an action class tolerates at most uncertainty u_max, the latest re-verificati
 t^{*} = \frac{\ln\!\left(\dfrac{W\,(1-u_{\max})}{u_{\max}\,n_0}\right)}{\ln \lambda}
 ```
 
+The formula applies for 0 < λ < 1, n₀ > 0 and an edge that is still within the limit at the last verification, u(0) = W / (W + n₀) < u_max. If u(0) ≥ u_max, including a new edge with n₀ = 0, the formula gives no positive interval or none at all: verification is due immediately (t* = 0). Without forgetting (λ = 1), uncertainty stays at u(0); an edge within the limit then never crosses it through decay alone.
+
 Worked example with illustrative values W = 2, n₀ = 40, λ = 0.9 per day:
 
 | Action class | u_max | Re-verification interval t* |

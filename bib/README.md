@@ -1,6 +1,6 @@
 # Bibliography
 
-`references.bib` is the single bibliography for the long version and the three papers. It holds every entry of Chapter 16 of the long version, in the same order and grouped by the same sub-headings, plus the references that the related-work documents add (last section of the file).
+`references.bib` is the single bibliography for the long version and the three papers. It holds the working paper itself (`rumpf2026`, cited by the three papers), every entry of Chapter 16 of the long version, in the same order and grouped by the same sub-headings, plus the references that the related-work documents add (last section of the file).
 
 ## Keys
 
