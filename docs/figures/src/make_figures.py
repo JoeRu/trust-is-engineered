@@ -8,7 +8,7 @@ OUTPUT_DIR defaults to $FIGURES_OUT, else docs/figures/ (the parent of this
 script's folder), so a plain run regenerates the figures in place.
 
 Requires matplotlib only. All curves and values are computed from the
-formulas in the paper (Sections 2.2, 4.3, 4.7, 10.4, 12.4); all parameter
+formulas in the paper (Sections 2.2, 4.3, 4.7, 7.9, 10.4, 12.4); all parameter
 values are the illustrative values stated there.
 
 Layout is done on a fixed pixel canvas: every figure is 1344 px wide
@@ -508,6 +508,41 @@ def fig10(outdir):
 
 
 # ---------------------------------------------------------------------------
+# Figure 11: verification coverage against the number of possible verifiers
+# (Section 7.9): C = 1 - rho^(n/(n-1)), rho = K / (tau (1 - E) L)
+# ---------------------------------------------------------------------------
+
+def fig11(outdir):
+    def coverage(rho, n):
+        return 1.0 if n == 1 else 1 - rho ** (n / (n - 1))
+
+    ns = list(range(1, 9))
+    fig, ax = canvas(640)
+    title(ax, "More possible verifiers, less coverage",
+          "Verification coverage C when every verifier presumes the same of the others and "
+          "perfect peer detection (τ̂ = 1); ρ = K / (τ (1 − E) L) (illustrative values)", y=42)
+    c = Chart(ax, 113, 997, 494, 158, 1, 8, 0, 1.0)
+    yt = [0, 0.2, 0.4, 0.6, 0.8, 1.0]
+    c.grid(yt, ["0"] + [num(v, 1) for v in yt[1:]], ns, [str(n) for n in ns],
+           "Number of possible verifiers n (no role assigned)")
+    c.line([1, 8], [1, 1], BLUE, lw=3.0, ls=(0, (4, 3)))
+    text(ax, 1012, c.Y(1.0), "Named role: C = 1", size=F_TEXT, color=BLUE, weight="bold")
+    curves = [(0.1, INK, "High visible loss (ρ = 0.1)"),
+              (0.3, DARK_LINE, "Medium (ρ = 0.3)"),
+              (0.6, "#B04A48", "Looks harmless (ρ = 0.6)")]
+    for rho, col, name in curves:
+        ys = [coverage(rho, n) for n in ns]
+        c.line(ns, ys, col)
+        for n, y in zip(ns, ys):
+            ax.plot([c.X(n)], [c.Y(y)], "o", ms=12 * PT, color=col, zorder=5)
+        text(ax, 1012, c.Y(ys[-1]), name, size=F_TEXT, color=col)
+    text(ax, 113, 598, "n = 1: the single verifier always verifies (ρ < 1). "
+         "From n = 2 on, coverage falls with every further unassigned verifier "
+         "and falls faster the smaller the loss.", size=F_SMALL, color=MUTED)
+    save(fig, outdir, "fig-11-verification-coverage.png")
+
+
+# ---------------------------------------------------------------------------
 # Figure F1.1 of Case Study 1: attack chain on the macro level (Section F1.5)
 # ---------------------------------------------------------------------------
 
@@ -548,7 +583,7 @@ DEFAULT_OUT = os.environ.get(
 def main():
     outdir = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_OUT
     os.makedirs(outdir, exist_ok=True)
-    for f in (fig01, fig02, fig03, fig04, fig05, fig06, fig07, fig08, fig09, fig10, fig_f1_1):
+    for f in (fig01, fig02, fig03, fig04, fig05, fig06, fig07, fig08, fig09, fig10, fig11, fig_f1_1):
         f(outdir)
 
 
