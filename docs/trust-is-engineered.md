@@ -1,14 +1,16 @@
-# Trust is Engineered – Version 0.6 (Draft)
+# Trust is Engineered – Version 0.7 (Draft)
 
 > **DRAFT.** Work in progress, not peer reviewed and not empirically validated. Content, chapter numbers and references may change; some references have not yet been checked against the original (status notes in Chapter 16).
 
-As of: 12 October 2026 · Johannes Rumpf · English translation of the German original of 12 October 2026, translated 18 October 2026; the English version is authoritative from now on (German original: [de/trust-is-engineered.md](de/trust-is-engineered.md)).
+As of: 22 October 2026 · Johannes Rumpf · English translation of the German original of 12 October 2026, translated 18 October 2026, revised 22 October 2026; the English version is authoritative from now on (German original: [de/trust-is-engineered.md](de/trust-is-engineered.md)).
 
 *Note on identifiers:* the identifiers are kept from the German original for stability: G = core assumption (*Grundannahme*), H = hypothesis, V = prediction (*Vorhersage*), S = security rule (*Sicherheitsregel*).
 
 A dynamic, context-sensitive model of trust, distrust and decisions under uncertainty. Status: research concept and mathematical model hypothesis, revised after a literature review.
 
 ## 0. What has changed compared with earlier versions
+
+**Addition in v0.7 (October 2026, in progress).** New Section 7.9 “Perceived coverage by others” shows that protection delegation (7.4) and diffusion of responsibility (7.3) are two instances of one term in the verification rule, 1 − τ̂_O, and derives the decrease of verification coverage with the number of unassigned verifiers and its dependence on the loss L from that rule (volunteer's dilemma; Figure 11). It separates the three processes of the bystander literature by model variable, places the same structure in risk compensation, automation complacency, free riding, social loafing and the redundancy problem, and states which four statements the unification adds beyond those literatures. Two predictions are new (V28, V29). The evidence rows of H16 and H17 now cite measurements from security contexts found in the related-work review (Zhang, Reithel & Li 2009; Brink, Eller & Gan 2015; Paravastu, Simmers & Anandarajan 2018); the former Section 7.9 is now 7.10. No parameter, hypothesis or rule changes.
 
 **Clarifications in the English edition of v0.6 (October 2026).** Two formulas now state their assumptions: verification coverage C (7.3) assumes independent decisions, with the general case for dependent decisions added; the re-verification interval t* (10.4) states its domain (0 < λ < 1, n₀ > 0, u(0) < u_max) and the boundary cases. No statement, hypothesis or prediction changes.
 
@@ -539,7 +541,7 @@ C = 1 - (1 - c_n)^n
 
 In general, C is the probability that at least one person verifies, 1 − P(nobody verifies); the formula is the special case of independent decisions. With dependent decisions, C can be lower or higher than the formula gives; if all decide together, C = c_n.
 
-Empirically, c_n decreases with n faster than the larger exponent compensates. Each individual applies the verification rule from 6.3 not to (1−E), but to the residual risk after the presumed verification by the others. If everyone presumes the same, nobody verifies. **Two possible verifiers without assigned responsibility often amount to less than one verification.**
+Empirically, c_n decreases with n faster than the larger exponent compensates. Each individual applies the verification rule from 6.3 not to (1−E), but to the residual risk after the presumed verification by the others. If everyone presumes the same, nobody verifies; 7.9 derives the decrease from the verification rule. **Two possible verifiers without assigned responsibility often amount to less than one verification.**
 
 The four-eyes principle therefore protects only under two conditions: both verifiers are explicitly responsible, and they verify independently. If both see the same justification and the same request via the same channel, their dependence D is close to 1 and, according to 4.7, the second verification has almost no evidential value. This is Section 10.7 (correlated verifiers in agents), transferred to humans.
 
@@ -559,7 +561,7 @@ E' = 1 - (1 - E)\,(1 - \tau_I)
 
 τ_I is the detection rate of the institution as assumed by A. With τ_I close to 1, (1−E′) tends to 0, and **no verification of one's own is worthwhile any longer, for any loss L.** In fact, τ_I is below 1; filters let part of the attacks through, and precisely this part reaches A.
 
-The calibration gap here lies not on A→B but on A→I: Γ_{A→I} > 0. **It acts as a multiplier on all edges A→B within the institution's area of responsibility.** In the model, the sentence “It's IT's job to protect us” is not an attitude problem, but a rationally applied verification rule with a miscalibrated τ_I. A related phenomenon is risk compensation: perceived protection increases risk behavior (Peltzman 1975; Wilde 1982). Section 4.2 formulates the same for platforms: a platform guarantee is itself only a source of evidence with its own uncertainty. For employees, IT is the platform.
+The calibration gap here lies not on A→B but on A→I: Γ_{A→I} > 0. **It acts as a multiplier on all edges A→B within the institution's area of responsibility.** In the model, the sentence “It's IT's job to protect us” is not an attitude problem, but a rationally applied verification rule with a miscalibrated τ_I. A related phenomenon is risk compensation: perceived protection increases risk behavior (Peltzman 1975; Wilde 1982); in a security survey, perceived technical protection lowered the intention to comply with security policy (Zhang, Reithel & Li 2009). Section 4.2 formulates the same for platforms: a platform guarantee is itself only a source of evidence with its own uncertainty. For employees, IT is the platform.
 
 Two consequences follow from ΔE = u·Δa (12.4): Because u is high on A→I, a single visible incident hits the edge in full. After the first successful attack, “IT protects us” flips to “IT is useless”, without any calibrated assessment in between. Both states are miscalibrations; the second produces security fatigue and circumvention (Stanton et al. 2016). The remedy is not more trust in the institution, but visible evidence about its error rate (Rule S22).
 
@@ -598,9 +600,63 @@ The same mechanisms have a calibrating effect when the sources are independent (
 
 Nguyen (2020) distinguishes the epistemic bubble, in which other sources are simply absent, from the echo chamber, in which outside sources are discredited in advance. In the model, the bubble is a u-state towards outside sources, the chamber a d-state. They call for opposite countermeasures: contact with outside sources dissolves the bubble and confirms the chamber. **A single trust value could not distinguish between the two.** This is the strongest everyday example of the separation from 2.2 and at the same time the collective form of the learning trap from 5.4: groupthink (Janis 1972) is a group below the interaction threshold towards everything that comes from outside.
 
-### 7.9 Limitations
+### 7.9 Perceived coverage by others: one structure behind 7.3 and 7.4
 
-- **Transfer.** Conformity, cascades and diffusion of responsibility are well supported in the laboratory and in the field, but have hardly been measured in security contexts. H16 to H19 are transfers.
+Sections 7.3 and 7.4 describe two mechanisms, but one structure. In both, A applies the verification rule from 6.3 not to the residual risk (1 − E), but to the residual risk after the verification that A attributes to other nodes. Let τ̂_O be the detection rate that A attributes to all other nodes O that could also verify the action. The verification rule becomes:
+
+```math
+K \;<\; \tau \cdot (1 - E)\,(1 - \hat{\tau}_O) \cdot L
+```
+
+Protection delegation (7.4) is the case O = {I} with τ̂_O = τ_I. Diffusion of responsibility (7.3) is the case in which O consists of the n − 1 colleagues, each presumed to verify with probability ĉ, so that τ̂_O = 1 − (1 − ĉ)^(n−1). Both lower one's own verification through the same term, and they combine multiplicatively: with an institution and n − 1 colleagues, 1 − τ̂_O = (1 − τ_I)(1 − ĉ)^(n−1). **Trust is not the cause of either effect but its weight:** τ_I and ĉ are A's opinions about the competence of I and of the colleagues in the context “verification”, and E on those edges decides how much coverage A ascribes to them.
+
+**What the rule derives.** Let ρ = K / (τ (1 − E) L) be the ratio of verification cost to the expected loss prevented; ρ < 1, otherwise nobody verifies even alone. A potential verifier verifies as long as (1 − ĉ)^(n−1) > ρ. If every potential verifier presumes the same of the others and applies the same rule, the symmetric solution at which nobody gains by deviating is:
+
+```math
+c_n = 1 - \rho^{\,1/(n-1)}, \qquad C = 1 - \rho^{\,n/(n-1)}
+```
+
+For n = 1, c = 1 and C = 1; for n = 2, C = 1 − ρ²; as n grows, C falls monotonically towards 1 − ρ. This is the volunteer's dilemma (Diekmann 1985) with verification as the volunteered act. Two statements that 7.3 made only empirically follow from it. First, c_n falls with n fast enough that C falls too; the larger exponent does not compensate. Second, coverage rises with the loss L and falls with the verification cost K and with the trust E in the sender. The second statement turns the main moderator of the bystander literature into a prediction: the bystander effect is weaker in dangerous emergencies (Fischer et al. 2011); in the model, diffusion is weakest where L is high and visible, and strongest where the action looks harmless, such as a routine mail or a master-data change, which is exactly where social engineering operates (V28). The solution assumes that A knows n, treats the others as alike and applies the rule as a threshold; real c_n also carries the habitual part of behavior and the social part of K (7.5). It is a model statement, not a finding.
+
+![More possible verifiers, less coverage](figures/fig-11-verification-coverage.png)
+
+*Figure 11: Verification coverage C against the number of possible verifiers n · symmetric solution for three values of ρ; a named role keeps C = 1*
+
+**What the model imports.** The rule does not explain why A presumes coverage by others at all, nor how strongly; that is core assumption G4 and comes from the bystander literature. That literature names three processes (Latané & Darley 1970), which the model keeps apart because they act on different variables:
+
+| Process (Latané & Darley 1970) | Everyday form | Model variable | Where |
+| --- | --- | --- | --- |
+| Diffusion of responsibility | “Someone else will check.” | τ̂_O in the verification rule | 7.3, H17 |
+| Pluralistic ignorance | “Nobody reacts, so it is harmless.” | inaction of others as evidence; D close to 1 | V23 |
+| Audience inhibition | “If I am wrong, I look distrustful.” | social part of the verification cost K | 7.5, H18 |
+
+Studies in security contexts usually measure these together, as an intention to report or to act (Brink, Eller & Gan 2015; Paravastu, Simmers & Anandarajan 2018). The separation is what makes H17, H18 and V23 testable one at a time.
+
+**The same structure in other literatures.** Once the effect is read as “perceived coverage by other nodes”, it is recognizable in several fields that rarely cite one another:
+
+| Literature | Coverage attributed to | Own protective act | Where in the model |
+| --- | --- | --- | --- |
+| Risk compensation, risk homeostasis (Peltzman 1975; Wilde 1982); in security, perceived technical protection (Zhang, Reithel & Li 2009) | technical protection | risk behavior rises | τ_I (7.4), H16 |
+| Automation complacency (Parasuraman & Manzey 2010) | automation | monitoring declines | τ_I; H14 (10.5) |
+| Free riding in public goods; security as a best-shot public good (Varian 2004; Grossklags, Christin & Chuang 2008) | other contributors | own contribution falls | C as a best-shot aggregate (7.3) |
+| Volunteer's dilemma (Diekmann 1985) | other potential volunteers | probability of volunteering falls with n | c_n, C (this section) |
+| Social loafing (Karau & Williams 1993) | co-workers on a joint task | effort falls with group size; effect sizes per n | c_n as a function of n |
+| Redundancy problem (Sagan 2004) | redundant safeguards | each layer relies on the others | D of the verifiers (7.3, V24) |
+
+**What the abstraction buys, and where it ends.** The unification is worth keeping only where it yields a statement that the source literatures do not make. Four such statements can be tested:
+
+1. **Independence, not number.** Bystander studies count heads. The model says that a second verifier adds coverage only to the extent that D < 1 (7.3, V24, S21). Sagan (2004) comes closest.
+2. **Multiplicative combination.** Because 1 − τ̂_O = (1 − τ_I)(1 − ĉ)^(n−1), H16 and H17 multiply: a team with high trust in the security institution and several unnamed verifiers is the worst case (V29). Neither risk-compensation nor bystander research states this, because each sees only one factor.
+3. **Loss dependence.** c_n rises with L (V28). In the bystander literature this is an empirical moderator; here it is derived.
+4. **Trust in the others as the weight.** ĉ is itself an opinion on the edge A→colleague. High trust in the colleagues' competence raises τ̂_O and lowers one's own verification, while in-group membership lowers the social part of K (7.5). The two channels pull in opposite directions. Bystander research finds that in-group bystanders can raise rather than lower intervention (Levine & Crowther 2008); the K channel accounts for this, the τ̂_O channel does not. Which channel dominates for a given action class is an empirical question, not a prediction of the model.
+
+The dynamics of V22 come from the evidence model (4.3, 12.4) and have no counterpart in these literatures either.
+
+Beyond these statements, “perceived coverage” becomes a label. The model does not derive the bystander effect from first principles; it subsumes it. What it derives is the dependence of c_n on n and on ρ; what it imports is that people presume coverage at all (G4) and the three processes behind it. A reviewer can object that H17 is the bystander effect with Greek letters; the answer is the four statements above, not the relabeling. Section 11.4 therefore keeps “derived” and “transferred” apart for H16 and H17.
+
+### 7.10 Limitations
+
+- **Transfer.** Conformity, cascades and diffusion of responsibility are well supported in the laboratory and in the field. In security contexts they have been measured as reporting and compliance intentions (Zhang, Reithel & Li 2009; Brink, Eller & Gan 2015; Paravastu, Simmers & Anandarajan 2018), not as verification coverage per action class. H16 to H19 are transfers in that narrower sense; 7.9 states which part of H16 and H17 the model derives and which it imports.
 - **Measurability.** τ_I, c_n and the descriptive norm can only be estimated in field studies. In simulations they are assumptions (15.2).
 - **Verification rates per person are performance monitoring.** The metrics of this chapter apply per team and action class, never per person (15.4, Rule S23).
 - **An organization is not just a group.** Hierarchy, incentives and formal processes have additional effects. The chapter covers only the part that can be traced back to evidence, interpretation and verification.
@@ -925,6 +981,8 @@ After the literature review, four statements are considered established and are 
 
 **H17 – Diffusion of responsibility in verifications.** Verification coverage C per action class decreases with the number of possible verifiers, provided no role is assigned. One named verification role achieves higher coverage than two unnamed ones.
 
+H16 and H17 are two instances of one structure, perceived coverage by other nodes (7.9). The decrease of coverage with n and its dependence on the loss L are derived there from the verification rule; that people presume coverage at all is imported (G4).
+
 **H18 – Norms before knowledge.** The descriptive norm in the team (perceived verification rate of colleagues) predicts one's own verification behavior better than individual knowledge and than the prescribed rule.
 
 **H19 – Visible gap instead of appeal.** If the security institution makes its error rate visible, τ_I decreases, and the verification rate rises more than after general awareness communication.
@@ -948,8 +1006,8 @@ After the literature review, four statements are considered established and are 
 | H13 | untested | derived from Section 4.3; NIST SP 800-207 | cost of frequent verification |
 | H14 | untested | Lee & See 2004; Glikson & Woolley 2020 | automation complacency |
 | H15 | conceptually grounded, untested | Mayer et al. 1995; Parker 1998; NIST AI 100-1 2023; OWASP 2025 | utility not established outside Parker; distinction from data integrity empirically blurred |
-| H16 | untested; transfer | Peltzman 1975; Wilde 1982; Herley 2009 | no measurement of τ_I in security contexts known |
-| H17 | mechanism well supported, transfer untested | Darley & Latané 1968; Fischer et al. 2011 | bystander effect weaker under high danger (Fischer et al. 2011) |
+| H16 | untested; transfer; first clause partly supported | Peltzman 1975; Wilde 1982; Herley 2009; Zhang, Reithel & Li 2009 | τ_I measured only as perceived technical protection and intended compliance (Zhang et al. 2009), not per edge; the comparison with awareness tests is untested |
+| H17 | mechanism well supported; n- and L-dependence derived (7.9); transfer to verification coverage untested | Darley & Latané 1968; Fischer et al. 2011; Diekmann 1985; Brink, Eller & Gan 2015; Paravastu, Simmers & Anandarajan 2018 | security measurements concern reporting and intentions, not verification coverage; the danger moderator (Fischer et al. 2011) is consistent with V28 but manipulates danger, not the loss L of the model |
 | H18 | mechanism well supported, transfer untested | Cialdini et al. 1990; Beautement et al. 2008 | norm effects are context-dependent |
 | H19 | untested | derived from H16 and ΔE = u·Δa | risk of tipping into undertrust (V22) |
 
@@ -1030,6 +1088,8 @@ V15 and V19 fit existing findings: Blanket AI labeling also lowers the credibili
 | V25 | New project and supplier relationships are overrepresented in incident data. | Swift Trust, V9 | incidents by relationship age |
 | V26 | Contact with outside sources improves calibration in bubbles and worsens it in echo chambers. | u against d (7.8) | separate measurement of u and d towards outside sources before contact |
 | V27 | Awareness training without changes in roles and norms changes test results, not verification rates. | H12, H18 | test scores against measured verification coverage |
+| V28 | Diffusion of responsibility is strongest for action classes with a low visible loss and weakest for a high visible loss: the drop in coverage from n = 1 to n = 4 is larger for routine mails than for large payments. | c_n = 1 − ρ^(1/(n−1)), ρ falls with L (7.9) | coverage by n, crossed with action class |
+| V29 | The effects of trust in the security institution and of the number of unassigned verifiers multiply: teams with a high τ_I and several unnamed verifiers show lower coverage than either factor alone predicts. | 1 − τ̂_O = (1 − τ_I)(1 − ĉ)^(n−1) (7.9) | survey on τ_I crossed with role assignment, coverage per team |
 
 ### 12.6 Limits of the predictions
 
@@ -1264,7 +1324,7 @@ The technical verification of a simulation is not an empirical validation of the
 11. Cross-check by correlated and independent agents (H14).
 12. Payment request under time pressure with and without a trigger rule (H12).
 13. Agent delivers available, unchanged but unusable results; comparison of detection with and without a utility check per task type (H15c).
-14. Team with n = 1, 2 and 4 possible verifiers, role assigned and not assigned (H17, V24).
+14. Team with n = 1, 2 and 4 possible verifiers, role assigned and not assigned, crossed with the loss L and with τ_I (H17, V24, V28, V29).
 15. Protection delegation: τ_I assumed 0.99 versus actually 0.9, with and without a visible error rate (H16, H19, V22).
 16. Two groups with the same E towards outside sources, one u-dominated (bubble), one d-dominated (chamber), under outside contact (V26).
 
@@ -1278,7 +1338,7 @@ The technical verification of a simulation is not an empirical validation of the
 - **Normative standard.** The normative account presupposes that D and q can be determined. In everyday life they can often only be estimated.
 - **Psychological simplification.** Disposition, formative experiences, trauma and beliefs are complex concepts. Individual parameters are deliberate simplifications.
 - **Manipulation of the model.** A system that computes trust itself becomes a target of attack (8.4, S9).
-- **Meso parameters.** τ_I, c_n and the descriptive norm can only be estimated in field studies. The findings on conformity, cascades and diffusion of responsibility mostly do not come from security contexts (7.9).
+- **Meso parameters.** τ_I, c_n and the descriptive norm can only be estimated in field studies. The findings on conformity, cascades and diffusion of responsibility mostly do not come from security contexts (7.10).
 - **Trust or reliance.** The model does not represent normative expectations separately. In Chen's (2021) distinction, it mainly describes calibrated reliance (2.5).
 
 ### 15.4 Ethics and law
@@ -1415,19 +1475,29 @@ The references come from a literature review for this concept. Entries marked �
 - Asch, S. E. (1951). Effects of group pressure upon the modification and distortion of judgments. In Guetzkow (Eds.), Groups, Leadership and Men. Carnegie Press. (to be checked)
 - Bikhchandani, S., Hirshleifer, D. & Welch, I. (1992). A Theory of Fads, Fashion, Custom, and Cultural Change as Informational Cascades. Journal of Political Economy, 100(5), 992–1026. (to be checked)
 - Bond, R. & Smith, P. B. (1996). Culture and conformity: A meta-analysis of studies using Asch's line judgment task. Psychological Bulletin, 119(1), 111–137. (to be checked)
+- Brink, A., Eller, C. K. & Gan, H. (2015). Reporting fraud: An examination of the bystander effect and evidence strength. Advances in Accounting Behavioral Research, 125–154. https://doi.org/10.1108/S1475-148820150000018004 (secondary citation)
 - Cialdini, R. B., Reno, R. R. & Kallgren, C. A. (1990). A focus theory of normative conduct. Journal of Personality and Social Psychology, 58(6), 1015–1026. (to be checked)
 - Darley, J. M. & Latané, B. (1968). Bystander intervention in emergencies: Diffusion of responsibility. Journal of Personality and Social Psychology, 8(4), 377–383. (to be checked)
+- Diekmann, A. (1985). Volunteer's Dilemma. Journal of Conflict Resolution, 29(4), 605–610. https://doi.org/10.1177/0022002785029004003 (to be checked)
 - Edmondson, A. (1999). Psychological safety and learning behavior in work teams. Administrative Science Quarterly, 44(2), 350–383. (to be checked)
 - Fischer, P. et al. (2011). The bystander-effect: A meta-analytic review on bystander intervention in dangerous and non-dangerous emergencies. Psychological Bulletin, 137(4), 517–537. (to be checked)
+- Grossklags, J., Christin, N. & Chuang, J. (2008). Secure or insure? A game-theoretic analysis of information security games. WWW '08, 209–218. https://doi.org/10.1145/1367497.1367526 (secondary citation)
 - Herley, C. (2009). So Long, and No Thanks for the Externalities: The Rational Rejection of Security Advice by Users. NSPW, 133–144. (to be checked)
 - Janis, I. L. (1972). Victims of Groupthink. Houghton Mifflin. (to be checked)
+- Karau, S. J. & Williams, K. D. (1993). Social loafing: A meta-analytic review and theoretical integration. Journal of Personality and Social Psychology, 65(4), 681–706. https://doi.org/10.1037/0022-3514.65.4.681 (to be checked)
+- Latané, B. & Darley, J. M. (1970). The Unresponsive Bystander: Why Doesn't He Help? Appleton-Century-Crofts. (to be checked)
+- Levine, M. & Crowther, S. (2008). The responsive bystander: How social group membership and group size can encourage as well as inhibit bystander intervention. Journal of Personality and Social Psychology, 95(6), 1429–1439. (to be checked)
 - Lorenz, J., Rauhut, H., Schweitzer, F. & Helbing, D. (2011). How social influence can undermine the wisdom of crowd effect. PNAS, 108(22), 9020–9025. (to be checked)
 - Marques, J. M., Yzerbyt, V. Y. & Leyens, J.-P. (1988). The “black sheep effect”. European Journal of Social Psychology, 18(1), 1–16. (to be checked)
 - Meyerson, D., Weick, K. E. & Kramer, R. M. (1996). Swift trust and temporary groups. In Kramer & Tyler (Eds.), Trust in Organizations. Sage. (to be checked)
 - Nguyen, C. T. (2020). Echo Chambers and Epistemic Bubbles. Episteme, 17(2), 141–161. (to be checked)
+- Paravastu, N., Simmers, C. A. & Anandarajan, M. (2018). Non-compliant mobile device usage and information systems security: A bystander theory perspective. International Journal of Information Systems and Social Change, 9(1), 1–25. https://doi.org/10.4018/IJISSC.2018010101 (secondary citation)
 - Peltzman, S. (1975). The Effects of Automobile Safety Regulation. Journal of Political Economy, 83(4), 677–725. (to be checked)
 - Pettigrew, T. F. & Tropp, L. R. (2006). A meta-analytic test of intergroup contact theory. Journal of Personality and Social Psychology, 90(5), 751–783. https://doi.org/10.1037/0022-3514.90.5.751 (secondary citation)
+- Sagan, S. D. (2004). The problem of redundancy problem: Why more nuclear security forces may produce less nuclear security. Risk Analysis, 24(4), 935–946. https://doi.org/10.1111/j.0272-4332.2004.00495.x (to be checked)
+- Varian, H. (2004). System reliability and free riding. In Camp & Lewis (Eds.), Economics of Information Security, 1–15. Springer. https://doi.org/10.1007/1-4020-8090-5_1 (secondary citation)
 - Wilde, G. J. S. (1982). The theory of risk homeostasis: Implications for safety and health. Risk Analysis, 2(4), 209–225. https://doi.org/10.1111/j.1539-6924.1982.tb01384.x (secondary citation)
+- Zhang, J., Reithel, B. J. & Li, H. (2009). Impact of perceived technical protection on security behaviors. Information Management & Computer Security, 17(4), 330–340. https://doi.org/10.1108/09685220910993980 (secondary citation)
 
 ### Beliefs and feedback loops
 

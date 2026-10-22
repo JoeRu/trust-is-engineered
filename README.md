@@ -4,19 +4,19 @@
 
 A dynamic, context-sensitive model of trust, distrust and decisions under uncertainty.
 
-**Status:** research concept and mathematical model hypothesis, version 0.6 (12 October 2026). The model has not been empirically validated. From version 0.6 onward the English text is authoritative; the German original is kept unchanged in [`docs/de/`](docs/de/).
+**Status:** research concept and mathematical model hypothesis, version 0.7 (22 October 2026, in progress). The model has not been empirically validated. From version 0.6 onward the English text is authoritative; the German original is kept unchanged in [`docs/de/`](docs/de/).
 
 ## Documents
 
 | Document | What it is |
 | --- | --- |
-| [**Long version** (working paper v0.6)](docs/trust-is-engineered.md) | The complete model and the source of all statements; Chapters 0–16 |
+| [**Long version** (working paper v0.7)](docs/trust-is-engineered.md) | The complete model and the source of all statements; Chapters 0–16 |
 | [Paper 1: An Evidence Model of Trust, Distrust and the Calibration Gap](papers/01-evidence-model/paper.md) | Core model: trust, distrust and uncertainty per edge, temporal decay, source dependence, normative vs. descriptive account · [what is new](papers/01-evidence-model/whats-new.md) · [related work](papers/01-evidence-model/related-work.md) |
-| [Paper 2: Verification as a Public Good](papers/02-verification-in-organizations/paper.md) | Groups act on verification, protection delegation, action-bound rules, trust dimensions × security objectives · [what is new](papers/02-verification-in-organizations/whats-new.md) · [related work](papers/02-verification-in-organizations/related-work.md) |
+| [Paper 2: Verification as a Public Good](papers/02-verification-in-organizations/paper.md) | Groups act on verification, protection delegation, perceived coverage by others, action-bound rules, trust dimensions × security objectives · [what is new](papers/02-verification-in-organizations/whats-new.md) · [related work](papers/02-verification-in-organizations/related-work.md) |
 | [Paper 3: Engineering Calibrated Trust between Humans, Agents and Machines](papers/03-human-agent-trust/paper.md) | Evidence accounts, decay and re-verification for agents and machines; utility as a risk dimension · [what is new](papers/03-human-agent-trust/whats-new.md) · [related work](papers/03-human-agent-trust/related-work.md) |
 | [Case Study 1](docs/case-study-01-populist-techniques.md) | Populist argumentation techniques as calibration attacks on the macro level |
 
-Papers 1–3 are self-contained versions of the long version for submission (version 0.1, draft). They contain nothing that is not in the long version and keep its identifiers and evidence status. Each comes with a short *what is new* file (one table: compared with which prior work, what this paper adds, where it overlaps) and a detailed related-work document that also names the paper's weakest novelty claims.
+Papers 1–3 are self-contained versions of the long version for submission (Papers 1 and 3 version 0.1, Paper 2 version 0.2, draft). They contain nothing that is not in the long version and keep its identifiers and evidence status. Each comes with a short *what is new* file (one table: compared with which prior work, what this paper adds, where it overlaps) and a detailed related-work document that also names the paper's weakest novelty claims.
 
 **PDFs** of all five documents are built automatically: open the latest successful run of the [LaTeX build workflow](../../actions/workflows/latex.yml) and download the artifact (see [Building the PDFs](#building-the-pdfs)).
 
@@ -75,9 +75,9 @@ The artifact contains the PDFs and, per document, a self-contained LaTeX folder 
 ## Repository layout
 
 ```
-docs/trust-is-engineered.md                    long version (working paper v0.6)
+docs/trust-is-engineered.md                    long version (working paper v0.7)
 docs/case-study-01-populist-techniques.md      Case Study 1
-docs/figures/                                  Figures 1 to 10 and Figure F1.1 of Case Study 1
+docs/figures/                                  Figures 1 to 11 and Figure F1.1 of Case Study 1
 docs/figures/src/make_figures.py               script that generates the figures
 docs/de/                                       German original v0.6 (archived, not maintained)
 papers/0N-*/paper.md                           Papers 1-3 derived from the long version
@@ -97,6 +97,6 @@ Quotations from and content of the cited literature are not covered by this lice
 
 **Suggested citation:**
 
-> Rumpf, J. (2026). *Trust is Engineered* (Working paper, version 0.6, draft). https://github.com/JoeRu/trust-is-engineered
+> Rumpf, J. (2026). *Trust is Engineered* (Working paper, version 0.7, draft). https://github.com/JoeRu/trust-is-engineered
 
 The metadata are available in machine-readable form in [`CITATION.cff`](CITATION.cff); GitHub shows them under "Cite this repository".
