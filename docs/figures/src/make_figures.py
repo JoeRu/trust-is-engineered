@@ -519,8 +519,8 @@ def fig11(outdir):
     ns = list(range(1, 9))
     fig, ax = canvas(640)
     title(ax, "More possible verifiers, less coverage",
-          "Verification coverage C when every verifier presumes the same of the others; "
-          "ρ = K / (τ (1 − E) L) (illustrative values)", y=42)
+          "Verification coverage C when every verifier presumes the same of the others and "
+          "perfect peer detection (τ̂ = 1); ρ = K / (τ (1 − E) L) (illustrative values)", y=42)
     c = Chart(ax, 113, 997, 494, 158, 1, 8, 0, 1.0)
     yt = [0, 0.2, 0.4, 0.6, 0.8, 1.0]
     c.grid(yt, ["0"] + [num(v, 1) for v in yt[1:]], ns, [str(n) for n in ns],
