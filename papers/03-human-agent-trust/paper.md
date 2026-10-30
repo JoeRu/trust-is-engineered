@@ -10,7 +10,7 @@ AI agents now read content, call tools and trigger actions on behalf of people a
 
 **Keywords:** human-agent trust; machine-machine trust; Subjective Logic; temporal decay; re-verification; Zero Trust; utility risk
 
-Identifiers G (core assumption), H (hypothesis), V (prediction) and S (rule) follow the long version [Rumpf 2026, v0.6] so that they stay stable across papers.
+Identifiers G (core assumption), H (hypothesis), V (prediction) and S (rule) follow the long version [Rumpf 2026a, v0.6] so that they stay stable across papers.
 
 ## 1. Introduction
 
@@ -46,7 +46,7 @@ The model represents trust as an opinion in Subjective Logic (Jøsang 2016) and 
 
 ## 3. The model in brief
 
-This section summarizes only the quantities this paper needs. The full model, including the descriptive account, beliefs and psychological factors, is developed in Paper 1 (Rumpf, in preparation) and in the long version (Chapters 2 to 6).
+This section summarizes only the quantities this paper needs. The full model, including the descriptive account, beliefs and psychological factors, is developed in Paper 1 (Rumpf 2026b) and in the long version (Chapters 2 to 6).
 
 ### 3.1 Trust as a directed graph of opinions
 
@@ -125,7 +125,7 @@ Repeated statements from dependent sources are not independent evidence. In the 
 n_{\text{eff}} = \frac{n}{1 + (n-1)\,D}, \qquad \lim_{n\to\infty} n_{\text{eff}} = \frac{1}{D}
 ```
 
-At D = 1 (one original source), n_eff = 1, no matter how often the statement appears. At D = 0.5, any number of repetitions reaches at most the value of two independent sources. The long version also keeps a descriptive account, in which perceived repetition raises trust without new evidence; the difference between the two accounts is the calibration gap Γ (long version, Sections 4.7 and 4.8; Paper 1 (Rumpf, in preparation)). Decisions are made only on the basis of the normative account.
+At D = 1 (one original source), n_eff = 1, no matter how often the statement appears. At D = 0.5, any number of repetitions reaches at most the value of two independent sources. The long version also keeps a descriptive account, in which perceived repetition raises trust without new evidence; the difference between the two accounts is the calibration gap Γ (long version, Sections 4.7 and 4.8; Paper 1 (Rumpf 2026b)). Decisions are made only on the basis of the normative account.
 
 ### 3.5 Three questions and the threshold rule
 
@@ -473,7 +473,8 @@ Trust is engineered: not because human trust could be reduced to an algorithm, b
 
 ## References
 
-- Rumpf, J. (2026). Trust is Engineered. Working paper, version 0.6 (draft). https://github.com/JoeRu/trust-is-engineered
+- Rumpf, J. (2026a). Trust is Engineered. Working paper, version 0.6 (draft). https://github.com/JoeRu/trust-is-engineered
+- Rumpf, J. (2026b). Trust is Engineered: An Evidence Model of Trust, Distrust and the Calibration Gap. Preprint, version 0.1 (draft), Paper 1 of 3. Zenodo. https://doi.org/10.5281/zenodo.23810447
 - Altay, S. & Gilardi, F. (2024). PNAS Nexus, 3(10), pgae403.
 - Brashier, N. M., Eliseev, E. D. & Marsh, E. J. (2020). Cognition, 194, 104054.
 - BSI (2023). IT-Grundschutz-Kompendium, Edition 2023, Glossar. Bundesamt für Sicherheit in der Informationstechnik. (wording on authenticity and *Verbindlichkeit* to be checked)
