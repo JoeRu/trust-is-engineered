@@ -15,6 +15,10 @@ date-released: "2026-10-22"
 license: CC-BY-4.0
 repository-code: "https://github.com/JoeRu/trust-is-engineered"
 url: "https://github.com/JoeRu/trust-is-engineered"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.23810448"
+    description: "Paper 1: An Evidence Model of Trust, Distrust and the Calibration Gap (v0.1, Zenodo)"
 keywords:
   - trust
   - distrust
