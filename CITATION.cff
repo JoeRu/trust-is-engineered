@@ -37,3 +37,25 @@ preferred-citation:
     - en
   notes: "Working paper, draft. English translation of the German original v0.6."
   url: "https://github.com/JoeRu/trust-is-engineered"
+references:
+  - type: report
+    title: "Trust is Engineered: An Evidence Model of Trust, Distrust and the Calibration Gap"
+    authors:
+      - family-names: Rumpf
+        given-names: Johannes
+        orcid: "https://orcid.org/0009-0001-8675-0608"
+    year: 2026
+    month: 10
+    version: "0.1"
+    status: preprint
+    doi: "10.5281/zenodo.23810447"
+    identifiers:
+      - type: doi
+        value: "10.5281/zenodo.23810448"
+        description: "Version 0.1 of this preprint on Zenodo"
+    publisher:
+      name: Zenodo
+    languages:
+      - en
+    notes: "Paper 1 of 3, derived from the working paper. Draft, not peer reviewed and not empirically validated. The DOI resolves to all versions; the identifier names version 0.1."
+    url: "https://doi.org/10.5281/zenodo.23810447"
