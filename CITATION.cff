@@ -59,3 +59,45 @@ references:
       - en
     notes: "Paper 1 of 3, derived from the working paper. Draft, not peer reviewed and not empirically validated. The DOI resolves to all versions; the identifier names version 0.1."
     url: "https://doi.org/10.5281/zenodo.23810447"
+  - type: report
+    title: "Verification as a Public Good: Groups, Protection Delegation and Action-Bound Rules against Social Engineering"
+    authors:
+      - family-names: Rumpf
+        given-names: Johannes
+        orcid: "https://orcid.org/0009-0001-8675-0608"
+    year: 2026
+    month: 10
+    version: "0.2"
+    status: preprint
+    doi: "10.5281/zenodo.23813117"
+    identifiers:
+      - type: doi
+        value: "10.5281/zenodo.23813118"
+        description: "Version 0.2 of this preprint on Zenodo"
+    publisher:
+      name: Zenodo
+    languages:
+      - en
+    notes: "Paper 2 of 3, derived from the working paper. Draft, not peer reviewed and not empirically validated. The DOI resolves to all versions; the identifier names version 0.2."
+    url: "https://doi.org/10.5281/zenodo.23813117"
+  - type: report
+    title: "Engineering Calibrated Trust between Humans, Agents and Machines: Evidence Accounts, Decay and Re-verification"
+    authors:
+      - family-names: Rumpf
+        given-names: Johannes
+        orcid: "https://orcid.org/0009-0001-8675-0608"
+    year: 2026
+    month: 10
+    version: "0.1"
+    status: preprint
+    doi: "10.5281/zenodo.23813131"
+    identifiers:
+      - type: doi
+        value: "10.5281/zenodo.23813132"
+        description: "Version 0.1 of this preprint on Zenodo"
+    publisher:
+      name: Zenodo
+    languages:
+      - en
+    notes: "Paper 3 of 3, derived from the working paper. Draft, not peer reviewed and not empirically validated. The DOI resolves to all versions; the identifier names version 0.1."
+    url: "https://doi.org/10.5281/zenodo.23813131"

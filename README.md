@@ -99,8 +99,12 @@ Quotations from and content of the cited literature are not covered by this lice
 
 > Rumpf, J. (2026). *Trust is Engineered* (Working paper, version 0.7, draft). https://github.com/JoeRu/trust-is-engineered
 
-**Paper 1 (preprint):**
+**The three papers (preprints on Zenodo):**
 
 > Rumpf, J. (2026). *Trust is Engineered: An Evidence Model of Trust, Distrust and the Calibration Gap* (Preprint, draft). Zenodo. https://doi.org/10.5281/zenodo.23810447 (all versions; v0.1: https://doi.org/10.5281/zenodo.23810448)
+
+> Rumpf, J. (2026). *Verification as a Public Good: Groups, Protection Delegation and Action-Bound Rules against Social Engineering* (Preprint, draft). Zenodo. https://doi.org/10.5281/zenodo.23813117 (all versions; v0.2: https://doi.org/10.5281/zenodo.23813118)
+
+> Rumpf, J. (2026). *Engineering Calibrated Trust between Humans, Agents and Machines: Evidence Accounts, Decay and Re-verification* (Preprint, draft). Zenodo. https://doi.org/10.5281/zenodo.23813131 (all versions; v0.1: https://doi.org/10.5281/zenodo.23813132)
 
 The metadata are available in machine-readable form in [`CITATION.cff`](CITATION.cff); GitHub shows them under "Cite this repository".
