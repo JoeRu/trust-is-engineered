@@ -10,7 +10,7 @@ Social engineering exploits trust, yet training people to detect deception achie
 
 **Keywords:** social engineering; verification; diffusion of responsibility; protection delegation; descriptive norms; security objectives; trust model
 
-Identifiers G (core assumption), H (hypothesis), V (prediction) and S (rule) follow the long version [Rumpf 2026, v0.7] so that they stay stable across papers.
+Identifiers G (core assumption), H (hypothesis), V (prediction) and S (rule) follow the long version [Rumpf 2026a, v0.7] so that they stay stable across papers.
 
 ## 1. Introduction
 
@@ -27,7 +27,7 @@ The contribution has four parts:
 3. **Trust dimensions and security objectives form a matrix,** not a mapping (Section 7).
 4. **Security rules ranked by loss** (Section 8).
 
-The core model is developed in Paper 1 (Rumpf, in preparation); human-agent and machine-machine trust are treated in Paper 3 (Rumpf, in preparation).
+The core model is developed in Paper 1 (Rumpf 2026b); human-agent and machine-machine trust are treated in Paper 3 (Rumpf, in preparation).
 
 ## 2. Related work
 
@@ -35,7 +35,7 @@ The paper builds on the definition of trust as willingness to be vulnerable (May
 
 ## 3. The model in brief
 
-This section summarizes only the quantities used here. The full model is given in Paper 1 (Rumpf, in preparation) and in the long version (Chapters 3 to 6).
+This section summarizes only the quantities used here. The full model is given in Paper 1 (Rumpf 2026b) and in the long version (Chapters 3 to 6).
 
 **Opinion.** Trust is modeled as a directed graph of entities. Each edge carries, per context c and dimension k, an opinion instead of a scalar:
 
@@ -109,7 +109,7 @@ Between the macro and the micro level lies the level at which security decisions
 
 | Level | Unit | Typical action | Where treated |
 | --- | --- | --- | --- |
-| Micro | edge A→B | payment, approval, data disclosure | Paper 1 (Rumpf, in preparation); Section 6 |
+| Micro | edge A→B | payment, approval, data disclosure | Paper 1 (Rumpf 2026b); Section 6 |
 | Meso | team, department, organization | verifying, reporting, following or circumventing norms | this section |
 | Macro | public, categories | assent, sharing, turning away | long version, Section 12.4; [Case Study 1](../../docs/case-study-01-populist-techniques.md) |
 
@@ -176,7 +176,7 @@ The matching attack is normalization (“Everyone here does it this way”). It 
 | Internal consensus (“We all saw it”) | cascade, D close to 1 | n_eff |
 | Blame after an incident | black sheep effect (Marques, Yzerbyt & Leyens 1988): deviants from one's own group are judged more harshly; reporting does not happen | s, S17 |
 
-G is the group prior. V9 (long version) predicts that in one-off contacts category signals remain decisive because u stays close to 1. H4 and H4a (long version; Paper 1 (Rumpf, in preparation)) state that referrals are discounted too little, least within the in-group.
+G is the group prior. V9 (long version) predicts that in one-off contacts category signals remain decisive because u stays close to 1. H4 and H4a (long version; Paper 1 (Rumpf 2026b)) state that referrals are discounted too little, least within the in-group.
 
 ### 4.6 Groups as a protective factor
 
@@ -611,7 +611,8 @@ All of this is a derivation. The hypotheses H16 to H19 are transfers from social
 
 ## References
 
-- Rumpf, J. (2026). Trust is Engineered. Working paper, version 0.7 (draft). https://github.com/JoeRu/trust-is-engineered
+- Rumpf, J. (2026a). Trust is Engineered. Working paper, version 0.7 (draft). https://github.com/JoeRu/trust-is-engineered
+- Rumpf, J. (2026b). Trust is Engineered: An Evidence Model of Trust, Distrust and the Calibration Gap. Preprint, version 0.1 (draft), Paper 1 of 3. Zenodo. https://doi.org/10.5281/zenodo.23810447
 - ACFE (2024). Occupational Fraud 2024: A Report to the Nations.
 - Allport, G. W. (1954). The Nature of Prejudice. Addison-Wesley. (to be checked)
 - Asch, S. E. (1951). Effects of group pressure upon the modification and distortion of judgments. In Guetzkow (Eds.), Groups, Leadership and Men. Carnegie Press. (to be checked)

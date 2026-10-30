@@ -125,13 +125,16 @@ def citation_patterns(bib):
             continue
         for form in forms.split(" | "):
             form = form.strip()
-            m = re.match(r"^(.*?),?(?:\s+\(?|\s*\()(" + YEAR + r")[a-z]?\)?$", form)
+            m = re.match(r"^(.*?),?(?:\s+\(?|\s*\()(" + YEAR + r")([a-z]?)\)?$", form)
             if m:
-                authors, year = m.group(1).strip(), m.group(2)
+                authors, year, suffix = m.group(1).strip(), m.group(2), m.group(3)
                 # "&" and "and" are interchangeable; optional comma before the year;
-                # year may be in parentheses (narrative citation).
+                # year may be in parentheses (narrative citation). A year suffix
+                # ("Rumpf 2026b") distinguishes works of one author and year, so a
+                # form with a suffix matches only that suffix and a form without
+                # one matches only the bare year.
                 a = re.escape(authors).replace(r"\&", r"(?:&|and)")
-                rx = a + r",?\s+\(?" + year + r"[a-z]?\)?"
+                rx = a + r",?\s+\(?" + year + (suffix if suffix else r"(?![a-z])") + r"\)?"
             else:  # forms without a year, e.g. "NIST SP 800-207", "OWASP 2025 LLM09"
                 rx = re.escape(form)
             explicit.append((re.compile(r"(?<![\w-])" + rx + r"(?![\w-])"), key))
@@ -220,8 +223,16 @@ def match_reference_line(line, bib):
             ok = any(al.startswith(acronym) for al in aliases)
         if ok:
             hits.append(key)
-    if len(hits) > 1:  # several works of one author and year: compare title words
-        words = [w for w in re.findall(r"[a-z]{5,}", norm_words(line))]
+    if len(hits) > 1:  # several works of one author and year: the line that
+        # contains one entry's full title (longest wins) decides; otherwise
+        # compare title words
+        nline = norm_words(line)
+        full = [k for k in hits if norm_words(bib[k]["fields"].get("title", "")) in nline]
+        if full:
+            full.sort(key=lambda k: -len(bib[k]["fields"].get("title", "")))
+            if len(full) == 1 or len(bib[full[0]]["fields"]["title"]) > len(bib[full[1]]["fields"]["title"]):
+                return [full[0]]
+        words = [w for w in re.findall(r"[a-z]{5,}", nline)]
         scored = []
         for k in hits:
             t = norm_words(bib[k]["fields"].get("title", ""))
