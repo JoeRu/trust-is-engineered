@@ -2,7 +2,7 @@
 
 > **DRAFT.** Work in progress, not peer reviewed and not empirically validated. Derived from the working paper *Trust is Engineered* v0.7 ([long version](../../docs/trust-is-engineered.md)); identifiers and evidence status follow it.
 
-Johannes Rumpf ([ORCID 0009-0001-8675-0608](https://orcid.org/0009-0001-8675-0608)) · Version 0.2 · 22 October 2026
+Johannes Rumpf ([ORCID 0009-0001-8675-0608](https://orcid.org/0009-0001-8675-0608)) · Version 0.2 · 22 October 2026 · DOI [10.5281/zenodo.23813118](https://doi.org/10.5281/zenodo.23813118)
 
 ## Abstract
 
@@ -10,7 +10,7 @@ Social engineering exploits trust, yet training people to detect deception achie
 
 **Keywords:** social engineering; verification; diffusion of responsibility; protection delegation; descriptive norms; security objectives; trust model
 
-Identifiers G (core assumption), H (hypothesis), V (prediction) and S (rule) follow the long version [Rumpf 2026, v0.7] so that they stay stable across papers.
+Identifiers G (core assumption), H (hypothesis), V (prediction) and S (rule) follow the long version [Rumpf 2026a, v0.7] so that they stay stable across papers.
 
 ## 1. Introduction
 
@@ -27,7 +27,7 @@ The contribution has four parts:
 3. **Trust dimensions and security objectives form a matrix,** not a mapping (Section 7).
 4. **Security rules ranked by loss** (Section 8).
 
-The core model is developed in Paper 1 (Rumpf, in preparation); human-agent and machine-machine trust are treated in Paper 3 (Rumpf, in preparation).
+The core model is developed in Paper 1 (Rumpf 2026b); human-agent and machine-machine trust are treated in Paper 3 (Rumpf 2026c).
 
 ## 2. Related work
 
@@ -35,7 +35,7 @@ The paper builds on the definition of trust as willingness to be vulnerable (May
 
 ## 3. The model in brief
 
-This section summarizes only the quantities used here. The full model is given in Paper 1 (Rumpf, in preparation) and in the long version (Chapters 3 to 6).
+This section summarizes only the quantities used here. The full model is given in Paper 1 (Rumpf 2026b) and in the long version (Chapters 3 to 6).
 
 **Opinion.** Trust is modeled as a directed graph of entities. Each edge carries, per context c and dimension k, an opinion instead of a scalar:
 
@@ -109,7 +109,7 @@ Between the macro and the micro level lies the level at which security decisions
 
 | Level | Unit | Typical action | Where treated |
 | --- | --- | --- | --- |
-| Micro | edge A→B | payment, approval, data disclosure | Paper 1 (Rumpf, in preparation); Section 6 |
+| Micro | edge A→B | payment, approval, data disclosure | Paper 1 (Rumpf 2026b); Section 6 |
 | Meso | team, department, organization | verifying, reporting, following or circumventing norms | this section |
 | Macro | public, categories | assent, sharing, turning away | long version, Section 12.4; [Case Study 1](../../docs/case-study-01-populist-techniques.md) |
 
@@ -137,7 +137,7 @@ In general, C is the probability that at least one person verifies, 1 − P(nobo
 
 Empirically, c_n decreases with n faster than the larger exponent compensates. Each individual applies the verification rule not to (1−E), but to the residual risk after the presumed verification by the others. If everyone presumes the same, nobody verifies; Section 4.8 derives the decrease from the verification rule. **Two possible verifiers without assigned responsibility often amount to less than one verification.**
 
-The four-eyes principle therefore protects only if both verifiers are explicitly responsible and verify independently. If both see the same justification via the same channel, their dependence D is close to 1, and the second verification has almost no evidential value. The same holds for correlated verifiers among agents (long version, Section 10.7; Paper 3 (Rumpf, in preparation)).
+The four-eyes principle therefore protects only if both verifiers are explicitly responsible and verify independently. If both see the same justification via the same channel, their dependence D is close to 1, and the second verification has almost no evidential value. The same holds for correlated verifiers among agents (long version, Section 10.7; Paper 3 (Rumpf 2026c)).
 
 ### 4.3 Protection delegation: “That's IT's job”
 
@@ -176,7 +176,7 @@ The matching attack is normalization (“Everyone here does it this way”). It 
 | Internal consensus (“We all saw it”) | cascade, D close to 1 | n_eff |
 | Blame after an incident | black sheep effect (Marques, Yzerbyt & Leyens 1988): deviants from one's own group are judged more harshly; reporting does not happen | s, S17 |
 
-G is the group prior. V9 (long version) predicts that in one-off contacts category signals remain decisive because u stays close to 1. H4 and H4a (long version; Paper 1 (Rumpf, in preparation)) state that referrals are discounted too little, least within the in-group.
+G is the group prior. V9 (long version) predicts that in one-off contacts category signals remain decisive because u stays close to 1. H4 and H4a (long version; Paper 1 (Rumpf 2026b)) state that referrals are discounted too little, least within the in-group.
 
 ### 4.6 Groups as a protective factor
 
@@ -377,7 +377,7 @@ If competence has no security objective, the question arises which one would cor
 
 In practice, an attack on utility is usually represented through availability, as with ransomware. The mapping breaks down where the result is available and unchanged but inadequate from the start, such as wrong advice or a correctly implemented but wrong specification.
 
-This yields a demarcation criterion. **Security models presuppose a target state and protect it against deviation. Competence concerns whether the target state is reached at all.** The third verification question, factual correctness, asks exactly this. In Chen's (2021) four-place relation, utility means that the action actually serves its goal. For AI agents, utility becomes a risk dimension in its own right (long version, Section 13.6, hypothesis H15c); this is treated in Paper 3 (Rumpf, in preparation).
+This yields a demarcation criterion. **Security models presuppose a target state and protect it against deviation. Competence concerns whether the target state is reached at all.** The third verification question, factual correctness, asks exactly this. In Chen's (2021) four-place relation, utility means that the action actually serves its goal. For AI agents, utility becomes a risk dimension in its own right (long version, Section 13.6, hypothesis H15c); this is treated in Paper 3 (Rumpf 2026c).
 
 ### 7.5 Authenticity as an anchor
 
@@ -427,7 +427,7 @@ Twenty-four concrete rules follow from the model (long version, Chapter 14). Man
 | S4 | For actions with a very high loss, personal trust is never sufficient. | θ close to 1 cannot be reached with u_min > 0 | second independent approval, technical limits |
 | S19 | With agents, the result is checked for utility per task, not just the system for availability and integrity. | competence has no counterpart in the CIA triad | acceptance criteria per task type, samples of re-checked results, utility as a fourth column of the protection requirements assessment |
 
-S19 concerns agents and is treated in Paper 3 (Rumpf, in preparation). In S4, u_min is the lower bound of uncertainty under temporal decay (long version, Section 4.3). S2 hits the core of business email compromise, with reported losses of about USD 2.77 billion in 2024 (FBI IC3 2024).
+S19 concerns agents and is treated in Paper 3 (Rumpf 2026c). In S4, u_min is the lower bound of uncertainty under temporal decay (long version, Section 4.3). S2 hits the core of business email compromise, with reported losses of about USD 2.77 billion in 2024 (FBI IC3 2024).
 
 ### 8.2 Evidence and channels
 
@@ -510,7 +510,7 @@ Two of the four core assumptions of the long version carry this paper. They are 
 
 - **H15a – Three pairs, one gap.** Benevolence and confidentiality, integrity and data integrity, and predictability and availability are strong mappings. Competence has a weak effect on all three but has no counterpart in the CIA triad.
 - **H15b – Authenticity as anchor.** Authenticity is not a counterpart to a dimension but the condition under which the trust profile is attributed to B. Impersonation invalidates the attribution of all rows of the matrix at once; whether a loss results still depends on scope of action P and loss L (G1).
-- H15c (utility for agents) is treated in Paper 3 (Rumpf, in preparation).
+- H15c (utility for agents) is treated in Paper 3 (Rumpf 2026c).
 
 **H16 – Protection delegation.** The higher the perceived detection rate τ_I of the security institution, the less often employees carry out verification themselves, regardless of their knowledge of attack features. The calibration gap on the edge to the institution predicts click rates in phishing simulations better than results of awareness tests.
 
@@ -578,7 +578,7 @@ The technical verification of a simulation is not an empirical validation of the
 - How can τ_I be measured without the question itself triggering undertrust in the institution?
 - Which team size and which role assignment maximize verification coverage C with acceptable friction?
 
-How λ and u_max are set on a justified basis for agent systems is discussed in Paper 3 (Rumpf, in preparation).
+How λ and u_max are set on a justified basis for agent systems is discussed in Paper 3 (Rumpf 2026c).
 
 ## 11. Limitations
 
@@ -611,7 +611,9 @@ All of this is a derivation. The hypotheses H16 to H19 are transfers from social
 
 ## References
 
-- Rumpf, J. (2026). Trust is Engineered. Working paper, version 0.7 (draft). https://github.com/JoeRu/trust-is-engineered
+- Rumpf, J. (2026a). Trust is Engineered. Working paper, version 0.7 (draft). https://github.com/JoeRu/trust-is-engineered
+- Rumpf, J. (2026b). Trust is Engineered: An Evidence Model of Trust, Distrust and the Calibration Gap. Preprint, version 0.1 (draft), Paper 1 of 3. Zenodo. https://doi.org/10.5281/zenodo.23810447
+- Rumpf, J. (2026c). Engineering Calibrated Trust between Humans, Agents and Machines: Evidence Accounts, Decay and Re-verification. Preprint, version 0.1 (draft), Paper 3 of 3. Zenodo. https://doi.org/10.5281/zenodo.23813132
 - ACFE (2024). Occupational Fraud 2024: A Report to the Nations.
 - Allport, G. W. (1954). The Nature of Prejudice. Addison-Wesley. (to be checked)
 - Asch, S. E. (1951). Effects of group pressure upon the modification and distortion of judgments. In Guetzkow (Eds.), Groups, Leadership and Men. Carnegie Press. (to be checked)

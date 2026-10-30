@@ -125,16 +125,26 @@ def citation_patterns(bib):
             continue
         for form in forms.split(" | "):
             form = form.strip()
-            m = re.match(r"^(.*?),?(?:\s+\(?|\s*\()(" + YEAR + r")[a-z]?\)?$", form)
+            # "02-verification:Rumpf 2026c" applies only to documents whose path
+            # contains "02-verification" (year suffixes differ per document when
+            # one author has several works of one year)
+            scope = None
+            sm = re.match(r"^([\w./-]+):(.+)$", form)
+            if sm and not sm.group(1).isdigit():
+                scope, form = sm.group(1), sm.group(2).strip()
+            m = re.match(r"^(.*?),?(?:\s+\(?|\s*\()(" + YEAR + r")([a-z]?)\)?$", form)
             if m:
-                authors, year = m.group(1).strip(), m.group(2)
+                authors, year, suffix = m.group(1).strip(), m.group(2), m.group(3)
                 # "&" and "and" are interchangeable; optional comma before the year;
-                # year may be in parentheses (narrative citation).
+                # year may be in parentheses (narrative citation). A year suffix
+                # ("Rumpf 2026b") distinguishes works of one author and year, so a
+                # form with a suffix matches only that suffix and a form without
+                # one matches only the bare year.
                 a = re.escape(authors).replace(r"\&", r"(?:&|and)")
-                rx = a + r",?\s+\(?" + year + r"[a-z]?\)?"
+                rx = a + r",?\s+\(?" + year + (suffix if suffix else r"(?![a-z])") + r"\)?"
             else:  # forms without a year, e.g. "NIST SP 800-207", "OWASP 2025 LLM09"
                 rx = re.escape(form)
-            explicit.append((re.compile(r"(?<![\w-])" + rx + r"(?![\w-])"), key))
+            explicit.append((re.compile(r"(?<![\w-])" + rx + r"(?![\w-])"), key, scope))
     # generic forms from the author field: "A YEAR", "A & B YEAR", "A et al. YEAR",
     # "A, B & C YEAR"; skipped when first author and year are not unique
     seen = {}
@@ -153,7 +163,7 @@ def citation_patterns(bib):
         name = r"[A-ZÄÖÜÅØ][\w'’\-]+(?: [A-Z][\w'’\-]+)?"
         rx = (re.escape(sur) + r"(?: et al\.|(?:,? (?:&|and) " + name + r")|(?:, " + name + r")+,? (?:&|and) " + name
               + r")?,?\s+\(?" + y + r"[a-z]?\)?")
-        generic.append((re.compile(r"(?<![\w-])" + rx + r"(?![\w-])"), keys[0]))
+        generic.append((re.compile(r"(?<![\w-])" + rx + r"(?![\w-])"), keys[0], None))
     # longer patterns first so "Lewicki, McAllister & Bies 1998" wins over "Lewicki 1998"
     # explicit intextform forms win over generic ones ("S. Kim et al. 2024" before
     # "Kim et al. 2024"); within each group longer patterns first
@@ -193,6 +203,7 @@ def entry_aliases(f):
     if raw.startswith("{"):
         aliases.add(initials(raw))
     for form in f.get("intextform", "").split(" | "):
+        form = re.sub(r"^[\w./-]+:", "", form.strip())
         aliases.add(norm(re.split(r",?\s*\(?" + YEAR, form)[0]))
     aliases.discard("")
     return aliases
@@ -220,8 +231,16 @@ def match_reference_line(line, bib):
             ok = any(al.startswith(acronym) for al in aliases)
         if ok:
             hits.append(key)
-    if len(hits) > 1:  # several works of one author and year: compare title words
-        words = [w for w in re.findall(r"[a-z]{5,}", norm_words(line))]
+    if len(hits) > 1:  # several works of one author and year: the line that
+        # contains one entry's full title (longest wins) decides; otherwise
+        # compare title words
+        nline = norm_words(line)
+        full = [k for k in hits if norm_words(bib[k]["fields"].get("title", "")) in nline]
+        if full:
+            full.sort(key=lambda k: -len(bib[k]["fields"].get("title", "")))
+            if len(full) == 1 or len(bib[full[0]]["fields"]["title"]) > len(bib[full[1]]["fields"]["title"]):
+                return [full[0]]
+        words = [w for w in re.findall(r"[a-z]{5,}", nline)]
         scored = []
         for k in hits:
             t = norm_words(bib[k]["fields"].get("title", ""))
@@ -296,6 +315,7 @@ def find_citations(text, pats):
 
 def check_document(path, bib, pats):
     md = open(os.path.join(ROOT, path), encoding="utf-8").read()
+    pats = [(rx, key) for rx, key, scope in pats if scope is None or scope in path]
     body, refs = split_references(md)
     errors, warnings = [], []
     listed = {}

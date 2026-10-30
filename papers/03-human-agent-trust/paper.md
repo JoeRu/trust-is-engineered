@@ -2,7 +2,7 @@
 
 > **DRAFT.** Work in progress, not peer reviewed and not empirically validated. Derived from the working paper *Trust is Engineered* v0.6 ([long version](../../docs/trust-is-engineered.md)); identifiers and evidence status follow it.
 
-Johannes Rumpf ([ORCID 0009-0001-8675-0608](https://orcid.org/0009-0001-8675-0608)) · Version 0.1 · 18 October 2026
+Johannes Rumpf ([ORCID 0009-0001-8675-0608](https://orcid.org/0009-0001-8675-0608)) · Version 0.1 · 18 October 2026 · DOI [10.5281/zenodo.23813132](https://doi.org/10.5281/zenodo.23813132)
 
 ## Abstract
 
@@ -10,7 +10,7 @@ AI agents now read content, call tools and trigger actions on behalf of people a
 
 **Keywords:** human-agent trust; machine-machine trust; Subjective Logic; temporal decay; re-verification; Zero Trust; utility risk
 
-Identifiers G (core assumption), H (hypothesis), V (prediction) and S (rule) follow the long version [Rumpf 2026, v0.6] so that they stay stable across papers.
+Identifiers G (core assumption), H (hypothesis), V (prediction) and S (rule) follow the long version [Rumpf 2026a, v0.6] so that they stay stable across papers.
 
 ## 1. Introduction
 
@@ -26,7 +26,7 @@ The working paper *Trust is Engineered* treats two application problems with one
 
 **Problem B – Integrating machines.** How can trust between human and agent, and between machines, be established and verified on a recurring basis?
 
-The first problem, training people to recognize abuse of trust, is treated in Paper 2 (Rumpf, in preparation). Both problems have the same structure: an entity must decide which action it allows another entity under incomplete evidence. The corresponding research question of the long version asks which rules for agent systems and information security follow from the model.
+The first problem, training people to recognize abuse of trust, is treated in Paper 2 (Rumpf 2026c). Both problems have the same structure: an entity must decide which action it allows another entity under incomplete evidence. The corresponding research question of the long version asks which rules for agent systems and information security follow from the model.
 
 ### 1.3 Contribution
 
@@ -46,7 +46,7 @@ The model represents trust as an opinion in Subjective Logic (Jøsang 2016) and 
 
 ## 3. The model in brief
 
-This section summarizes only the quantities this paper needs. The full model, including the descriptive account, beliefs and psychological factors, is developed in Paper 1 (Rumpf, in preparation) and in the long version (Chapters 2 to 6).
+This section summarizes only the quantities this paper needs. The full model, including the descriptive account, beliefs and psychological factors, is developed in Paper 1 (Rumpf 2026b) and in the long version (Chapters 2 to 6).
 
 ### 3.1 Trust as a directed graph of opinions
 
@@ -125,7 +125,7 @@ Repeated statements from dependent sources are not independent evidence. In the 
 n_{\text{eff}} = \frac{n}{1 + (n-1)\,D}, \qquad \lim_{n\to\infty} n_{\text{eff}} = \frac{1}{D}
 ```
 
-At D = 1 (one original source), n_eff = 1, no matter how often the statement appears. At D = 0.5, any number of repetitions reaches at most the value of two independent sources. The long version also keeps a descriptive account, in which perceived repetition raises trust without new evidence; the difference between the two accounts is the calibration gap Γ (long version, Sections 4.7 and 4.8; Paper 1 (Rumpf, in preparation)). Decisions are made only on the basis of the normative account.
+At D = 1 (one original source), n_eff = 1, no matter how often the statement appears. At D = 0.5, any number of repetitions reaches at most the value of two independent sources. The long version also keeps a descriptive account, in which perceived repetition raises trust without new evidence; the difference between the two accounts is the calibration gap Γ (long version, Sections 4.7 and 4.8; Paper 1 (Rumpf 2026b)). Decisions are made only on the basis of the normative account.
 
 ### 3.5 Three questions and the threshold rule
 
@@ -288,7 +288,7 @@ In the model, an injected instruction is an impersonation: the content claims th
 
 - **No transitivity.** If A trusts service B, this does not apply to B's subcontractor C. The discounting operator (Section 3.3) makes uncertainty grow with each link in the chain. In practice, this limits the permissible delegation depth.
 - **Narrowing delegation.** Rights passed on are at most as broad as one's own and shorter in time.
-- **Independent verifiers.** Two instances of the same model are correlated sources with D close to 1. A cross-check counts as second evidence only with a different model, a different data basis or a human verifier. The same applies to human verifiers (Paper 2 (Rumpf, in preparation)).
+- **Independent verifiers.** Two instances of the same model are correlated sources with D close to 1. A cross-check counts as second evidence only with a different model, a different data basis or a human verifier. The same applies to human verifiers (Paper 2 (Rumpf 2026c)).
 - **Sybil resistance.** Many agreeing agents of the same origin count as one source (Douceur 2002).
 - **Revocation.** Negative evidence on integrity withdraws permissions immediately and across contexts.
 - **Evidence provenance.** Every entry in the evidence account carries source and type of verification, so that the account itself remains verifiable.
@@ -303,7 +303,7 @@ An agent can keep the normative account for people: count independent origins, r
 
 ### 10.1 Background: dimensions and security objectives
 
-The long version compares the four trust dimensions with the security objectives of information security (long version, Chapter 13; treated in Paper 2 (Rumpf, in preparation)). The proposal in brief (hypothesis H15, untested): the dimensions are properties of the actor B and determine the probability of occurrence; the security objectives are properties of the asset and determine the type of loss. Benevolence and confidentiality, integrity and data integrity, and predictability and availability are taken to form strong pairs. Competence has a weak effect on all three but has no counterpart in the triad of confidentiality, integrity and availability (CIA). **CIA presupposes that the system does the right thing and only measures whether it remains undisturbed while doing so.** This gap becomes practically relevant with AI agents.
+The long version compares the four trust dimensions with the security objectives of information security (long version, Chapter 13; treated in Paper 2 (Rumpf 2026c)). The proposal in brief (hypothesis H15, untested): the dimensions are properties of the actor B and determine the probability of occurrence; the security objectives are properties of the asset and determine the type of loss. Benevolence and confidentiality, integrity and data integrity, and predictability and availability are taken to form strong pairs. Competence has a weak effect on all three but has no counterpart in the triad of confidentiality, integrity and availability (CIA). **CIA presupposes that the system does the right thing and only measures whether it remains undisturbed while doing so.** This gap becomes practically relevant with AI agents.
 
 ### 10.2 Competence without a counterpart
 
@@ -347,7 +347,7 @@ The four strong mappings lie on the diagonal. Competence additionally has a weak
 
 **Control and trust.** Security objectives are enforced through controls: encryption, rights, redundancy. Trust is needed where control is missing; Mayer et al. (1995) define it as vulnerability irrespective of the ability to monitor B. For the utility column of agents there are hardly any technical controls that reliably prevent a wrong but plausible result. What remains there is only calibrated trust, based on verified results per task type and human acceptance when L is high.
 
-**For human-agent trust.** Users of agents need the reverse of the training for people. In training against social engineering, the first verification question is "Is B really B?" (Paper 2 (Rumpf, in preparation)). An agent, however, can be authentic, available and confidential and still not be competent for the specific task. The verification question here is "Is this result fit for my purpose?", and it must be asked per result, not once per system. This verification, too, is subject to diffusion of responsibility: if several people share the acceptance of agent results, it needs a named role (Paper 2).
+**For human-agent trust.** Users of agents need the reverse of the training for people. In training against social engineering, the first verification question is "Is B really B?" (Paper 2 (Rumpf 2026c)). An agent, however, can be authentic, available and confidential and still not be competent for the specific task. The verification question here is "Is this result fit for my purpose?", and it must be asked per result, not once per system. This verification, too, is subject to diffusion of responsibility: if several people share the acceptance of agent results, it needs a named role (Paper 2).
 
 ## 11. Hypotheses
 
@@ -361,7 +361,7 @@ The following hypotheses of the long version concern human-agent and machine-mac
 
 **H15c – Utility for agents.** For AI agents, utility becomes an independent risk dimension because reaching the target state is probabilistic. Unusable but available and unaltered results also exist in classical IT; there they are treated as a quality or project risk before going into operation. With agents they occur per execution, more frequently and harder to detect, and thus become an operational risk that can be mapped neither to availability nor to data integrity.
 
-H15c refines the parent hypothesis H15: the four trust dimensions and the security objectives describe the same risk from two sides and form a matrix, not a mapping onto each other (long version, Section 11.3; Paper 2 (Rumpf, in preparation)).
+H15c refines the parent hypothesis H15: the four trust dimensions and the security objectives describe the same risk from two sides and form a matrix, not a mapping onto each other (long version, Section 11.3; Paper 2 (Rumpf 2026c)).
 
 Evidence status as in the long version (Section 11.4). H15c has no row of its own; the row of H15 applies. Section references in the table refer to the long version.
 
@@ -473,7 +473,9 @@ Trust is engineered: not because human trust could be reduced to an algorithm, b
 
 ## References
 
-- Rumpf, J. (2026). Trust is Engineered. Working paper, version 0.6 (draft). https://github.com/JoeRu/trust-is-engineered
+- Rumpf, J. (2026a). Trust is Engineered. Working paper, version 0.6 (draft). https://github.com/JoeRu/trust-is-engineered
+- Rumpf, J. (2026b). Trust is Engineered: An Evidence Model of Trust, Distrust and the Calibration Gap. Preprint, version 0.1 (draft), Paper 1 of 3. Zenodo. https://doi.org/10.5281/zenodo.23810447
+- Rumpf, J. (2026c). Verification as a Public Good: Groups, Protection Delegation and Action-Bound Rules against Social Engineering. Preprint, version 0.2 (draft), Paper 2 of 3. Zenodo. https://doi.org/10.5281/zenodo.23813118
 - Altay, S. & Gilardi, F. (2024). PNAS Nexus, 3(10), pgae403.
 - Brashier, N. M., Eliseev, E. D. & Marsh, E. J. (2020). Cognition, 194, 104054.
 - BSI (2023). IT-Grundschutz-Kompendium, Edition 2023, Glossar. Bundesamt für Sicherheit in der Informationstechnik. (wording on authenticity and *Verbindlichkeit* to be checked)
