@@ -101,6 +101,6 @@ Quotations from and content of the cited literature are not covered by this lice
 
 **Paper 1 (preprint):**
 
-> Rumpf, J. (2026). *Trust is Engineered: An Evidence Model of Trust, Distrust and the Calibration Gap* (Preprint, version 0.1, draft). Zenodo. https://doi.org/10.5281/zenodo.23810448
+> Rumpf, J. (2026). *Trust is Engineered: An Evidence Model of Trust, Distrust and the Calibration Gap* (Preprint, draft). Zenodo. https://doi.org/10.5281/zenodo.23810447 (all versions; v0.1: https://doi.org/10.5281/zenodo.23810448)
 
 The metadata are available in machine-readable form in [`CITATION.cff`](CITATION.cff); GitHub shows them under "Cite this repository".

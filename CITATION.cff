@@ -17,8 +17,11 @@ repository-code: "https://github.com/JoeRu/trust-is-engineered"
 url: "https://github.com/JoeRu/trust-is-engineered"
 identifiers:
   - type: doi
+    value: "10.5281/zenodo.23810447"
+    description: "Paper 1: An Evidence Model of Trust, Distrust and the Calibration Gap (Zenodo concept DOI, all versions)"
+  - type: doi
     value: "10.5281/zenodo.23810448"
-    description: "Paper 1: An Evidence Model of Trust, Distrust and the Calibration Gap (v0.1, Zenodo)"
+    description: "Paper 1, version 0.1 (Zenodo)"
 keywords:
   - trust
   - distrust

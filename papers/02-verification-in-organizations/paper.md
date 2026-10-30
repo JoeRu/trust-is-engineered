@@ -2,7 +2,7 @@
 
 > **DRAFT.** Work in progress, not peer reviewed and not empirically validated. Derived from the working paper *Trust is Engineered* v0.7 ([long version](../../docs/trust-is-engineered.md)); identifiers and evidence status follow it.
 
-Johannes Rumpf · Version 0.2 · 22 October 2026
+Johannes Rumpf ([ORCID 0009-0001-8675-0608](https://orcid.org/0009-0001-8675-0608)) · Version 0.2 · 22 October 2026
 
 ## Abstract
 
