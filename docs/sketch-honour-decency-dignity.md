@@ -100,7 +100,7 @@ All findings below are from abstracts and secondary summaries (new, secondary ci
 
 | Mechanism | Literature | Reading in the model |
 | --- | --- | --- |
-| *Norm erosion.* Electoral success signals that previously stigmatised views are widely held; sanctions for expressing them weaken. | Bursztyn, Egorov & Fiorin (2020); Valentim (2024), with the AfD as a central case | Shift of the descriptive norm, i.e. of group prior G and beliefs (3.3, 3.4); "norms beat knowledge" (7.5). Decency loses its social enforcement, not necessarily its private endorsement. |
+| *Norm erosion.* A signal that a candidate is locally popular makes people more willing to express xenophobic views in public and lowers sanctions against those who do; private behaviour does not change. | Bursztyn, Egorov & Fiorin (2020, read in full: Pittsburgh, 2018, N = 1,600 and 1,830; public donations to an anti-immigration group 33 % vs 20 %, private 31 % vs 30 %); Valentim (2024), with the AfD as a central case | Shift of the descriptive norm, i.e. of group prior G and beliefs (3.3, 3.4); "norms beat knowledge" (7.5). The norm loses its social enforcement, not its private endorsement: popularity "does not make these participants more xenophobic, but instead makes those who were already xenophobic more comfortable expressing their xenophobic views in public" (Bursztyn et al. 2020, p. 3525). |
 | *Style of the "low".* Populist performance uses "bad manners" to mark distance from elites. | Moffitt & Tormey (2014); Ostiguy (2017); Stein, Luebke & Engelmann (2025, German experiment: colloquial style raised perceived authenticity) | Incivility as a signal of authenticity, i.e. evidence on the integrity dimension ("says what he thinks"). **Counter-evidence:** Frimer & Skitka (2018) find that incivility lowers approval even among a politician's own base. The signal value is contested. |
 | *Narrowing of dignity and honour to the in-group.* Perceived loss of status and recognition; demand for dignity turns into ressentiment and collective narcissism. | Gidron & Hall (2017); Lamont (2018); Salmela & von Scheve (2017); Golec de Zavala & Keenan (2021); Fukuyama (2018, non-peer-reviewed book) | Honour is not abandoned but redefined as **group honour** (appraisal respect for "us"). Dignity loses its universality: recognition respect becomes conditional on membership. In Darwall's terms this is the decisive shift – a graded, earned respect replaces an ungraded, owed one. |
 
@@ -110,7 +110,7 @@ All findings below are from abstracts and secondary summaries (new, secondary ci
 
 | Finding | Literature | Consequence |
 | --- | --- | --- |
-| Criticism of authoritarian conduct reduces support, especially as costly action by a fellow partisan. | Hobolt & Osnabrügge (2025); Munger (2017, in-group messenger on Twitter) | **Messenger matters:** in-group sources carry more weight (source dependence, 4.7). |
+| Criticism by other MPs lowers the chance that a candidate is chosen by 2.9 (verbal criticism) to 7.4 (call for expulsion) percentage points; criticism from the candidate's own party adds only 1.8 points. Voters did not punish authoritarian conduct more than ordinary misconduct. | Hobolt & Osnabrügge (2025, read in full: England, 2021, conjoint, N = 4,012); Munger (2017, in-group messenger on Twitter) | **Costliness matters more than the messenger:** actions (refusal to cooperate, expulsion) work better than words. Value violations against democracy are not perceived as especially grave – pointing them out is not self-evidently effective. |
 | Voters penalise undemocratic candidates, but competence and partisanship partly offset the penalty. | Graham & Svolik (2020); Frederiksen (2022) | Value violations compete with other evidence; pointing them out alone is not decisive. |
 | Arguments in the recipient's moral values persuade better than in the speaker's. | Feinberg & Willer (2015, 2019); **but** no consistent effects in Hawkins et al. (2026) | "Reframing" is promising, not a reliable recipe. |
 | Non-judgmental, narrative conversations durably reduce exclusionary attitudes; arguments alone showed no effect. | Broockman & Kalla (2016); Kalla & Broockman (2020) | Respectful form is part of the effect. |
@@ -125,10 +125,10 @@ All findings below are from abstracts and secondary summaries (new, secondary ci
 
 | No. | Hypothesis | Basis | Possible test |
 | --- | --- | --- | --- |
-| HE5 | Electoral success of a party that violates decency norms lowers the perceived social sanction for violations more than private endorsement of the norms. | Bursztyn et al. (2020); 3.3, 7.5 | public vs private expression before/after election results |
+| HE5 | Electoral success of a party that violates decency norms lowers the perceived social sanction for violations more than private endorsement of the norms. | Bursztyn et al. (2020), partly: shown for xenophobic expression and a candidate (US), with private *behaviour* as proxy; private endorsement of decency norms and perceived sanctions were not measured; 3.3, 7.5 | public vs private expression and a direct norm-endorsement measure, before/after real election results, in Germany |
 | HE6 | Supporters of right-populist parties do not rate honour and dignity as less important, but restrict them more strongly to their in-group. | Golec de Zavala & Keenan (2021); Darwall (1977) | survey: importance × scope (universal vs in-group) of the three values |
 | HE7 | Pointing out a violation of universal dignity reduces support more when it names conduct than when it judges the supporters. | Margalit (1996); Noordzij et al. (2021); Kalla & Broockman (2020) | vignette experiment: conduct framing vs person framing |
-| HE8 | The effect of HE7 is stronger when the messenger is perceived as in-group and appeals to honour ("this is not honourable") than to decency as an elite norm. | Hobolt & Osnabrügge (2025); Munger (2017); Feinberg & Willer (2015) | 2×2 experiment: messenger × value frame |
+| HE8 | The effect of HE7 is stronger when the messenger is perceived as in-group and appeals to honour ("this is not honourable") than to decency as an elite norm. | Hobolt & Osnabrügge (2025): messenger effect small (1.8 points), frame not varied (always "damaging to democracy"); Munger (2017); Feinberg & Willer (2015). **The value frame is untested – a research gap.** | 2×2 experiment: messenger × value frame |
 
 ### E7 Literature
 
@@ -181,7 +181,7 @@ Status notes as in Chapter 16 of the working paper. "DOI confirmed" = title, aut
 
 - Moffitt, B. & Tormey, S. (2014). Rethinking populism: Politics, mediatisation and political style. *Political Studies*, 62(2), 381–397. doi:10.1111/1467-9248.12032 (new, secondary citation; DOI confirmed)
 - Ostiguy, P. (2017). Populism: A socio-cultural approach. In *The Oxford Handbook of Populism*, 73–98. Oxford University Press. (new, secondary citation)
-- Bursztyn, L., Egorov, G. & Fiorin, S. (2020). From extreme to mainstream: The erosion of social norms. *American Economic Review*, 110(11), 3522–3548. doi:10.1257/aer.20171175 (new, secondary citation; DOI confirmed)
+- Bursztyn, L., Egorov, G. & Fiorin, S. (2020). From extreme to mainstream: The erosion of social norms. *American Economic Review*, 110(11), 3522–3548. doi:10.1257/aer.20171175 (new, verified 2026-10-31)
 - Valentim, V. (2024). *The Normalization of the Radical Right*. Oxford University Press. (new, secondary citation)
 - Gidron, N. & Hall, P. A. (2017). The politics of social status. *British Journal of Sociology*, 68(S1), S57–S84. doi:10.1111/1468-4446.12319 (new, secondary citation)
 - Lamont, M. (2018). Addressing recognition gaps. *American Sociological Review*, 83(3), 419–444. doi:10.1177/0003122418773775 (new, secondary citation)
@@ -196,11 +196,11 @@ Status notes as in Chapter 16 of the working paper. "DOI confirmed" = title, aut
 - Noordzij, K., de Koster, W. & van der Waal, J. (2021). A revolt of the deplored? *British Journal of Sociology*, 72(5), 1448–1463. doi:10.1111/1468-4446.12892 (new, secondary citation; DOI confirmed)
 - Voelkel, J. G. et al. (2024). Megastudy testing 25 treatments to reduce antidemocratic attitudes and partisan animosity. *Science*, 386(6719), eadh4764. doi:10.1126/science.adh4764 (new, secondary citation; DOI confirmed)
 - Broockman, D. & Kalla, J. (2016). Durably reducing transphobia. *Science*, 352(6282), 220–224. doi:10.1126/science.aad9713 (new, secondary citation)
-- Kalla, J. L. & Broockman, D. E. (2020). Reducing exclusionary attitudes through interpersonal conversation. *American Political Science Review*, 114(2), 410–425. doi:10.1017/S0003055419000923 (new, secondary citation; DOI confirmed)
+- Kalla, J. L. & Broockman, D. E. (2020). Reducing exclusionary attitudes through interpersonal conversation. *American Political Science Review*, 114(2), 410–425. doi:10.1017/S0003055419000923 (new, secondary citation; DOI confirmed; full text not accessible 2026-10-31, abstract only: d = 0.08 for at least four months; arguments alone had no effect)
 - van Spanje, J. & van der Brug, W. (2009). Being intolerant of the intolerant. *Acta Politica*, 44(4), 353–384. doi:10.1057/ap.2009.7 (new, secondary citation)
 - Fahey, J. J. & Alarian, H. M. (2025). Tear down this (fire)wall? *German Politics and Society*, 43(4), 49–74. doi:10.3167/gps.2025.430404 (new, secondary citation; DOI confirmed, subtitle not in database)
 - Roozenbeek, J. et al. (2022). Psychological inoculation improves resilience against misinformation on social media. *Science Advances*, 8(34), eabo6254. doi:10.1126/sciadv.abo6254 (new, secondary citation)
 - Munger, K. (2017). Tweetment effects on the tweeted. *Political Behavior*, 39(3), 629–649. doi:10.1007/s11109-016-9373-5 (new, secondary citation)
 - Graham, M. H. & Svolik, M. W. (2020). Democracy in America? *American Political Science Review*, 114(2), 392–409. doi:10.1017/S0003055420000052 (new, secondary citation)
 - Frederiksen, K. V. S. (2022). Does competence make citizens tolerate undemocratic behavior? *American Political Science Review*, 116(3), 1147–1153. doi:10.1017/S0003055422000119 (new, secondary citation)
-- Hobolt, S. B. & Osnabrügge, M. (2025). Countering authoritarian behavior in democracies. *Political Behavior*, 47(2), 781–800. doi:10.1007/s11109-024-09971-5 (new, secondary citation; DOI confirmed)
+- Hobolt, S. B. & Osnabrügge, M. (2025). Countering authoritarian behavior in democracies. *Political Behavior*, 47(2), 781–800. doi:10.1007/s11109-024-09971-5 (new, verified 2026-10-31)
