@@ -4,7 +4,7 @@
 
 *Planned companion paper to “Trust is Engineered” v0.7 (paper as of 22 October 2026) · Sketch as of 31 October 2026 · Derived from the model, not yet empirically tested · Section references refer to v0.7*
 
-**Short question.** Can the everyday virtues honour, decency and dignity be read as quantities of the evidence model? Working proposal: **honour** is reputation on the integrity dimension, **decency** is shown benevolence plus adherence to norms of interaction, and **dignity** is a floor that does not depend on evidence. The first two can be earned and lost; the third cannot. All three readings are proposals of this sketch, not findings.
+**Short question.** Can the everyday virtues honour, decency and dignity be read as quantities of the evidence model? Working proposal: **honour** is reputation on the integrity dimension, **decency** is shown benevolence plus adherence to norms of interaction, and **dignity** is a floor that does not depend on evidence. The first two can be earned and lost; the third cannot. All three readings are proposals of this sketch, not findings. Applied to right-wing populism (E6), the sketch proposes that the universal parts of these values recede while their in-group parts are emphasised, and that pointing out violations helps only if it is costly, credible and itself respects dignity.
 
 ### E0 Research questions
 
@@ -119,7 +119,7 @@ All findings below are from abstracts and secondary summaries (new, secondary ci
 | Exclusion (cordon sanitaire) has mixed electoral effects; a German 2025 experiment found no effect of firewall signals. | van Spanje & van der Brug (2009); Fahey & Alarian (2025) | Exclusion of parties is not a value argument and is not shown to persuade. |
 | Prebunking improves recognition of manipulation techniques. | Roozenbeek et al. (2022) | Complements Case Study 1 (techniques, not values). |
 
-**Working answer to RQ2 (hypothesis, not finding).** Pointing out value violations can help if it is itself **dignity-consistent**: it names conduct and harm, not the worth of the people; it comes from credible, ideally in-group, sources; it appeals to values the audience holds – honour and dignity are such values. It backfires if it is received as humiliation (Margalit): then it delivers negative benevolence evidence on the edge from voters to the critics and widens the calibration gap towards institutions (Γ < 0, Case Study 1).
+**Working answer to RQ2 (hypothesis, not finding).** Pointing out value violations is not effective by itself: in the one full-text study, voters did not punish authoritarian conduct more than ordinary misconduct, and verbal criticism had the smallest effect (Hobolt & Osnabrügge 2025). It can help under three conditions: (1) it is **costly and credible** – consequences such as refusing cooperation weigh more than words, and who speaks matters less than what is done; (2) it is itself **dignity-consistent** – it names conduct and harm, not the worth of the people; (3) it appeals to values the audience holds – honour and dignity are such values. Whether an honour frame works better than a decency or democracy frame has not been tested (research gap, HE8). It backfires if it is received as humiliation (Margalit): then it delivers negative benevolence evidence on the edge from voters to the critics and widens the calibration gap towards institutions (Γ < 0, Case Study 1).
 
 **Hypotheses (sketch).**
 
